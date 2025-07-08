@@ -1,0 +1,100 @@
+Sure — here’s the same breakdown in clean plain text format:
+
+---
+
+**PROBLEM:**  
+Your current landing page is positioned like an AI SaaS company, but you're a builder showcasing a mix of design and software projects. This creates confusion — are you a product agency? Or an AI specialist?
+
+**GOAL:**  
+Clarify your positioning:  
+> “I build and ship digital products. My specialty is turning AI into working software.”
+
+---
+
+**NEW LANDING PAGE STRUCTURE (PLAIN TEXT):**
+
+---
+
+**1. Hero Section**  
+**Heading:**  
+“I design and build intelligent apps—from zero to one.”
+
+**Subheading:**  
+“From full-stack software to LLM-powered copilots, I help companies ship AI-first products that are fast, scalable, and user-friendly.”
+
+**CTA Button:**  
+“Let’s Build Together” (link to Notion form)
+
+---
+
+**2. What I Build Section**  
+Split into two columns or tabs:
+
+**Column 1: AI-Powered Products**
+- AI Agents: LLM bots for support, onboarding, or lead gen  
+- Analytics Copilots: Ask your data questions in plain English  
+- Voice Interfaces: Voice agents that handle calls and requests  
+- Smart Integrations: Add AI layers to existing CRMs, Freshdesk, etc.
+
+**Column 2: Full Product Development**
+- Full-stack Web & Mobile Apps  
+- MVP Prototypes  
+- UX & Product Design  
+- Systems Integration  
+
+---
+
+**3. Projects Section**  
+**Heading:** “Real Projects. Real Results.”  
+**Subheading:** “From AI agents to ecommerce platforms, here’s what I’ve built.”
+
+Use tags to classify work:  
+AI Agent • Ecommerce • Analytics • Voice AI • Loyalty App  
+
+Showcase all your projects — not just AI — but let users filter or visually identify AI ones.
+
+---
+
+**4. Why AI Section**  
+Turn your current “AI Services” block into this section.
+
+**Heading:** “Why AI. Why Now.”
+
+Start with 3 benefit cards:  
+- Save Time  
+- Scale Personalization  
+- Solve Problems at Scale  
+
+Then list your specific features as examples:
+- Accurate Image Classification  
+- Automated Quality Audits  
+- Voice AI Agents  
+- AI Analytics  
+- Intelligent Conversations  
+- Fluid Integrations
+
+---
+
+**5. Optional: Case Study Highlights**  
+Highlight 1–2 AI case studies with results (like ReplyRocket or INAAM), including screenshots or quick stats.
+
+---
+
+**6. Final CTA**  
+**Heading:** “Build with AI. Build with Me.”  
+**Subheading:** “Let’s turn your product idea into a real, working AI-powered app.”
+
+**Button:** “Get in touch” → Notion form
+
+---
+
+**KEY POSITIONING SHIFT:**
+Old Message:  
+"We are an AI services company."
+
+New Message:  
+"I’m a product builder who specializes in AI."
+
+---
+
+Let me know if you want this turned into a visual mockup or coded layout.

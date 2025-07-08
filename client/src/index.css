@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --ambient-gradient: radial-gradient(ellipse at top, rgba(120, 119, 198, 0.3), transparent 50%), radial-gradient(ellipse at bottom, rgba(36, 107, 253, 0.3), transparent 50%);
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+
+    --sidebar: 0 0% 4%;
+    --sidebar-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 3%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 0% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 15%;
+    --radius: 0.5rem;
+
+    --chart-1: 0 0% 60%;
+    --chart-2: 0 0% 45%;
+    --chart-3: 0 0% 30%;
+    --chart-4: 0 0% 75%;
+    --chart-5: 0 0% 55%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: 'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    @apply antialiased bg-background text-foreground;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  /* Custom styles */
+  .gradient-text {
+    background: linear-gradient(135deg, #a0a0a0 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .grid-lines {
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .horizontal-scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Artistic minimalist enhancements */
+  .artistic-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .mega-text {
+    font-size: clamp(3rem, 8vw, 12rem);
+    font-weight: 100;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+
+  .geometric-line {
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+    fill: none;
+    stroke-dasharray: 0, 1000;
+    animation: drawLine 3s ease-in-out forwards;
+  }
+
+  @keyframes drawLine {
+    to {
+      stroke-dasharray: 1000, 0;
+    }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 1.2s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.3s; }
+  .stagger-3 { animation-delay: 0.5s; }
+  .stagger-4 { animation-delay: 0.7s; }
+
+  .minimal-hover {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .minimal-hover:hover {
+    transform: translateY(-2px);
+    opacity: 0.8;
+  }
+
+  .service-card {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .service-card:hover {
+    @apply transform -translate-y-2 shadow-xl shadow-accent/20;
+  }
+
+  .blob-animation {
+    animation: blob-pulse 8s infinite alternate;
+  }
+
+  @keyframes blob-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Shimmer effect styling */
+  .shimmer-effect {
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.25; /* Increased opacity */
+    overflow: hidden;
+  }
+  
+  .shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 30%, /* Increased brightness */
+      rgba(255, 255, 255, 0.15) 50%, /* Increased brightness */
+      rgba(255, 255, 255, 0.05) 70%, /* Increased brightness */
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 4s infinite linear; /* Faster animation */
+    transform-origin: center;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: rotate(0) translateY(-10%);
+    }
+    100% {
+      transform: rotate(360deg) translateY(-10%);
+    }
+  }
+
+  /* Enhanced microanimations */
+  @keyframes subtle-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  .pulse-subtle {
+    animation: subtle-pulse 2s ease-in-out infinite;
+  }
+
+  /* Floating animation for cards */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Smooth glow effect */
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .glow-hover:hover {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  /* Button hover effects */
+  .btn-hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Enhanced button interactions */
+  .btn-microinteraction {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+
+  .btn-microinteraction:hover {
+    transform: scale(1.02);
+  }
+
+  .btn-microinteraction:active {
+    transform: scale(0.98);
+  }
+
+  /* Scale hover for interactive elements */
+  .scale-hover {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .scale-hover:hover {
+    transform: scale(1.05);
+  }
+
+  /* Subtle rotate animation for icons */
+  @keyframes subtle-rotate {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+  }
+
+  .rotate-subtle:hover {
+    animation: subtle-rotate 0.5s ease-in-out;
+  }
+}

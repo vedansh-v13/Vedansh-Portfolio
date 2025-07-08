@@ -1,0 +1,51 @@
+"replyrocket": {
+  id: "replyrocket",
+  title: "ReplyRocket AI",
+  category: "AI Agent",
+  description: "An intelligent AI agent that automates Twitter engagement while maintaining authentic brand voice.",
+  coverImage: "/images/replyrocket.webp",
+  date: "2024",
+  metrics: [
+    { value: "5.3x", label: "Engagement Increase" },
+    { value: "73%", label: "Time Saved on Social" },
+    { value: "47%", label: "Follower Growth" }
+  ],
+  externalLink: {
+    url: "https://www.replyrocket.ai",
+    label: "Visit Website",
+    type: "web"
+  },
+  videoUrl: "https://www.youtube.com/embed/video_id_here",
+  screenshots: [
+    { url: "/images/screenshot1.webp", alt: "ReplyRocket Dashboard", type: "desktop" },
+    { url: "/images/screenshot2.webp", alt: "AI Response Settings", type: "desktop" },
+    { url: "/images/screenshot3.webp", alt: "Mobile Dashboard", type: "mobile" }
+  ],
+  problemDescription: "Businesses struggle to consistently engage with their Twitter audience, missing valuable opportunities for connection, lead generation, and support. Manual handling of customer queries, influencer tracking, and product marketing slows down teams and makes it hard to scale authentic interactions.",
+  painPoints: [
+    {
+      title: "Response Delays",
+      description: "Brands taking too long to respond to mentions and complaints, hurting retention and leaving customers feeling ignored."
+    },
+    {
+      title: "Missed Marketing Opportunities",
+      description: "Companies fail to join relevant trending conversations where their product could shine, resulting in lost inbounds."
+    },
+    {
+      title: "Lack of Proactive Networking",
+      description: "It's difficult to track and engage with high-value individuals consistently at scale."
+    }
+  ],
+  solutionDescription: "We developed ReplyRocket AI — a fully autonomous Twitter agent that handles customer support, product marketing, and proactive networking in real time. It mirrors your brand’s tone, prioritizes responses intelligently, and boosts visibility by engaging first with your target audience.",
+  solutions: [
+    {
+      title: "Instant AI-Powered Replies",
+      description: "Fully automated, lightning-fast responses to support mentions and DMs — ensuring your customers feel heard, instantly."
+    },
+    {
+      title: "Contextual Product Positioning",
+      description: "The agent intelligently inserts your product into relevant Twitter conversations, helping drive inbounds with zero manual effort."
+    },
+    {
+      title: "Influencer & Prospect Tracking",
+      description: "Track your target audience and ensure you're the first to engage with their posts

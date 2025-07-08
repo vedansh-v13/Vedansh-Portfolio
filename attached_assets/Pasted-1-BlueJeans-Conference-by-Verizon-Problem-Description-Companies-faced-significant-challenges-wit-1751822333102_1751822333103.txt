@@ -1,0 +1,94 @@
+1. BlueJeans Conference by Verizon
+🧩 Problem Description
+Companies faced significant challenges with hybrid and virtual meetings—specifically:
+
+Inconsistent user experience across devices (desktop, mobile, conference rooms).
+
+Lack of inclusive features for global teams (e.g., language support, accessible interfaces).
+
+Difficulty in hosting large-scale interactive events with high engagement.
+
+📈 Pain Points
+Low engagement in virtual events.
+
+Poor video/audio quality across platforms.
+
+Inability to support diverse participants (language barriers, accessibility).
+
+Manual meeting setups and suboptimal presenter experiences.
+
+🚀 Solution
+Redesigned and enhanced the BlueJeans Meetings and Events platform to deliver:
+
+Multi-device, high-quality audio/video collaboration.
+
+Inclusive features like multi-language captions and auto-framing.
+
+Scalable event capabilities enabling up to 150,000 interactive participants.
+
+Frictionless presenter tools: virtual background, auto-camera framing, “weather person mode”.
+
+✅ Key Features Implemented
+Cross-platform HD video and content sharing (desktop, mobile, Portal) 
+de.wikipedia.org
++14
+verizon.com
++14
+verizon.com
++14
+verizon.com
+verizon.com
++3
+reddit.com
++3
+gurufocus.com
++3
+
+Inclusive tools: real-time multi-language CC, hide self-view, breakout sessions 
+gurufocus.com
++3
+verizon.com
++3
+bignewsnetwork.com
++3
+
+Auto-camera framing & presenter overlay enhancements
+
+Virtual events capability with scalable support for up to 150,000 attendees 
+verizon.com
+
+📊 Impact–Driven Metrics
+48% increase in customer revenue post-adoption
+
+51% cost savings, 41% gain in productivity, 25% reduced staff turnover
+
+Rated “MetriStar Top Provider” for meeting applications
+
+Events platform now supports up to 150,000 participants with live polling and Q&A 
+verizon.com
+
+🛠️ Tech Stack
+Design: Figma, Adobe XD
+
+Development: Native desktop, mobile (iOS/Android), Meta Portal, WebRTC
+
+Analytics & Captioning: AWS Transcribe, custom streaming APIs
+
+Event Scalability: RTMP streaming, embed widgets
+
+💬 Social Proof
+“BlueJeans customers saw a 48 % increase in revenue, 51 % cost savings, 25 % reduction in employee turnover, and a 41 % improvement in employee productivity after their deployment.” 
+itnewsonline.com
++3
+gurufocus.com
++3
+verizon.com
++3
+verizon.com
++7
+verizon.com
++7
+bignewsnetwork.com
++7
+
+— Irwin Lazar, Principal Analyst, Metrigy
