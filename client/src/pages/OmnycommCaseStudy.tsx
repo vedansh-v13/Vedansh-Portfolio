@@ -531,6 +531,36 @@ export default function OmnycommCaseStudy() {
         </div>
       </section>
 
+      {/* Demo CTA section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl artistic-text font-extralight mb-6 text-white">
+              Get in Touch for Product Demo
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Interested in seeing the Omnycomm dashboard in action? I'd be happy to walk you through the design process and show you how it works.
+            </p>
+            <Button 
+              asChild 
+              size="lg"
+              className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <a href="mailto:vedanshwandalkar@gmail.com" className="inline-flex items-center gap-2 px-8 py-4">
+                <Mail size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                Request Demo
+              </a>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
