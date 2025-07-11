@@ -531,49 +531,6 @@ export default function OmnycommCaseStudy() {
         </div>
       </section>
 
-      {/* CTA section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl artistic-text font-extralight mb-6 text-white">
-              Ready to Work Together?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's create something amazing. I'm always open to discussing new opportunities and exciting projects.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                asChild 
-                size="lg"
-                className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <a href="mailto:vedanshwandalkar@gmail.com" className="inline-flex items-center gap-2 px-8 py-4">
-                  <Mail size={20} className="group-hover:scale-110 transition-transform duration-300" />
-                  Get in Touch
-                </a>
-              </Button>
-              <Button 
-                asChild 
-                variant="outline" 
-                size="lg"
-                className="group relative overflow-hidden bg-black/50 hover:bg-black/70 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300"
-              >
-                <a href="/#projects" className="inline-flex items-center gap-2 px-8 py-4">
-                  <ExternalLink size={20} className="group-hover:scale-110 transition-transform duration-300" />
-                  View More Projects
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
