@@ -12,6 +12,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/projects/omnycomm-ecommerce" component={OmnycommCaseStudy} />
       <Route path="/projects/:id" component={ProjectDetails} />
       <Route path="/case-studies/omnycomm" component={OmnycommCaseStudy} />
       <Route component={NotFound} />

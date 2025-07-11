@@ -1,1 +1,41 @@
- 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#bg)" stroke="url(#accent)" stroke-width="8"/>
+  
+  <!-- Juggernot-inspired geometric design -->
+  <g filter="url(#glow)">
+    <!-- Central diamond -->
+    <polygon points="256,128 320,256 256,384 192,256" fill="url(#accent)" opacity="0.9"/>
+    
+    <!-- Corner accents -->
+    <rect x="96" y="96" width="64" height="64" fill="url(#accent)" opacity="0.7" rx="16"/>
+    <rect x="352" y="96" width="64" height="64" fill="url(#accent)" opacity="0.7" rx="16"/>
+    <rect x="96" y="352" width="64" height="64" fill="url(#accent)" opacity="0.7" rx="16"/>
+    <rect x="352" y="352" width="64" height="64" fill="url(#accent)" opacity="0.7" rx="16"/>
+    
+    <!-- Center dot -->
+    <circle cx="256" cy="256" r="32" fill="#ffffff" opacity="0.8"/>
+  </g>
+  
+  <!-- Subtle grid lines -->
+  <line x1="128" y1="256" x2="384" y2="256" stroke="url(#accent)" stroke-width="4" opacity="0.3"/>
+  <line x1="256" y1="128" x2="256" y2="384" stroke="url(#accent)" stroke-width="4" opacity="0.3"/>
+</svg> 

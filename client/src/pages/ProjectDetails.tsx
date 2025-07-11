@@ -141,64 +141,64 @@ const StoryCard = ({
       onHoverEnd={() => setIsHovered(false)}
       className="relative group"
     >
-      {/* Floating effect shadow */}
-      <motion.div
-        className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          filter: "blur(20px)",
-          transform: "translateY(10px)",
-        }}
-      />
-      
-      {/* Main card */}
-      <motion.div
-        className={cn(
-          "relative bg-card/10 p-6 rounded-xl border border-white/10 backdrop-blur-sm",
-          "hover:bg-card/20 hover:border-white/30 transition-all duration-500",
-          "cursor-pointer"
-        )}
-        style={{
-          boxShadow: isHovered 
-            ? "0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)" 
-            : "0 4px 20px rgba(0,0,0,0.1)",
-        }}
-      >
-        {/* Animated border glow */}
+        {/* Floating effect shadow */}
         <motion.div
-          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
+          className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            background: `linear-gradient(45deg, ${color}20, transparent, ${color}20)`,
-            backgroundSize: "200% 200%",
-          }}
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
+            filter: "blur(20px)",
+            transform: "translateY(10px)",
           }}
         />
         
-        <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-4">
-            <motion.div
-              style={{ 
-                scale: iconScale,
-                background: isHovered ? `${color}30` : `${color}15`,
-                boxShadow: isHovered ? `0 0 20px ${color}40` : "none",
-              }}
-              className={cn(
-                "w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300",
-                "group-hover:shadow-lg"
-              )}
-            >
-              <Icon 
-                size={24} 
-                className="transition-colors duration-300"
-                style={{ color: isHovered ? color : `${color}80` }}
-              />
-            </motion.div>
+        {/* Main card */}
+        <motion.div
+          className={cn(
+            "relative bg-card/10 p-6 rounded-xl border border-white/10 backdrop-blur-sm",
+            "hover:bg-card/20 hover:border-white/30 transition-all duration-500",
+            "cursor-pointer"
+          )}
+          style={{
+            boxShadow: isHovered 
+              ? "0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)" 
+              : "0 4px 20px rgba(0,0,0,0.1)",
+          }}
+        >
+          {/* Animated border glow */}
+          <motion.div
+            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
+            style={{
+              background: `linear-gradient(45deg, ${color}20, transparent, ${color}20)`,
+              backgroundSize: "200% 200%",
+            }}
+            animate={{
+              backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <motion.div
+                className={cn(
+                  "w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300",
+                  "group-hover:shadow-lg"
+                )}
+                style={{ 
+                  scale: iconScale,
+                  background: isHovered ? `${color}30` : `${color}15`,
+                  boxShadow: isHovered ? `0 0 20px ${color}40` : "none",
+                }}
+              >
+                <Icon 
+                  size={24} 
+                  className="transition-colors duration-300"
+                  style={{ color: isHovered ? color : `${color}80` }}
+                />
+              </motion.div>
             <motion.h3 
               className="text-xl font-bold text-gray-200"
               animate={{
@@ -359,7 +359,7 @@ export default function ProjectDetails() {
   };
   
   // Navigation functions
-  const handleNavigateLeft = () => {
+  const navigateLeft = () => {
     scrollToImage(currentImageIndex - 1);
   };
   
@@ -729,7 +729,7 @@ export default function ProjectDetails() {
             <div className="relative group">
               {/* Navigation Buttons */}
               <motion.button
-                onClick={handleNavigateLeft}
+                onClick={navigateLeft}
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
                 disabled={currentImageIndex === 0}
                 whileHover={{ scale: 1.1 }}
