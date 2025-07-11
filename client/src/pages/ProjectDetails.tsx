@@ -382,22 +382,44 @@ export default function ProjectDetails() {
           
           {/* Content */}
           <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-between">
-            {/* Back button - layered over the image for better visibility */}
-            <div className="pt-6">
-              <Button 
-                asChild 
-                variant="outline" 
-                size="sm" 
-                className="w-fit bg-black/50 hover:bg-black/70 border-white/20"
+            {/* Enhanced Back button - layered over the image for better visibility */}
+            <div className="pt-6 md:pt-8">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                <a href="/#projects" className="inline-flex items-center">
-                  <ArrowLeft size={16} className="mr-2" />
-                  Back
-                </a>
-              </Button>
+                <Button 
+                  asChild 
+                  variant="outline" 
+                  size="sm" 
+                  className="group relative overflow-hidden bg-black/50 hover:bg-black/70 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
+                    <motion.div
+                      className="relative"
+                      whileHover={{ x: -2 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ArrowLeft size={18} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
+                    </motion.div>
+                    <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
+                      Back to Projects
+                    </span>
+                    
+                    {/* Hover effect background */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "0%" }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </a>
+                </Button>
+              </motion.div>
             </div>
             
-            <div className="pb-16 text-center">
+            <div className="pb-16 md:pb-20 mt-8 md:mt-12 text-center">
               <h1 className="text-4xl md:text-6xl artistic-text font-extralight mb-8 text-gray-200">Project Not Found</h1>
               <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto artistic-text font-light">
                 The project you're looking for doesn't seem to exist.
@@ -454,22 +476,44 @@ export default function ProjectDetails() {
         
         {/* Content */}
         <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-between">
-          {/* Back button */}
-          <div className="pt-6">
-            <Button 
-              asChild 
-              variant="outline" 
-              size="sm" 
-              className="w-fit"
+          {/* Enhanced Back button */}
+          <div className="pt-6 md:pt-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <a href="/#projects" className="inline-flex items-center">
-                <ArrowLeft size={16} className="mr-2" />
-                Back
-              </a>
-            </Button>
+              <Button 
+                asChild 
+                variant="outline" 
+                size="sm" 
+                className="group relative overflow-hidden bg-black/20 hover:bg-black/40 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
+                  <motion.div
+                    className="relative"
+                    whileHover={{ x: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ArrowLeft size={18} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
+                  </motion.div>
+                  <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
+                    Back to Projects
+                  </span>
+                  
+                  {/* Hover effect background */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "0%" }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </a>
+              </Button>
+            </motion.div>
           </div>
           
-          <div className="pb-16">            
+          <div className="pb-16 md:pb-20 mt-8 md:mt-12">            
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -488,19 +532,19 @@ export default function ProjectDetails() {
               {projectDetails.description}
             </motion.p>
             
-            <div className="flex flex-wrap gap-8">
-              <div className="bg-card/20 backdrop-blur-md px-5 py-3 rounded-md border border-white/10">
+            <div className="flex flex-wrap gap-4 md:gap-8">
+              <div className="bg-card/20 backdrop-blur-md px-4 md:px-5 py-3 rounded-md border border-white/10">
                 <p className="text-sm text-gray-400">Project Timeline</p>
-                <p className="text-xl font-medium">{projectDetails.date}</p>
+                <p className="text-lg md:text-xl font-medium">{projectDetails.date}</p>
               </div>
               
               {projectDetails.metrics.map((metric, index) => (
                 <div 
                   key={index} 
-                  className="bg-card/20 backdrop-blur-md px-5 py-3 rounded-md border border-white/10"
+                  className="bg-card/20 backdrop-blur-md px-4 md:px-5 py-3 rounded-md border border-white/10"
                 >
                   <p className="text-sm text-gray-400">{metric.label}</p>
-                  <p className="text-xl font-medium text-white">{metric.value}</p>
+                  <p className="text-lg md:text-xl font-medium text-white">{metric.value}</p>
                 </div>
               ))}
               
