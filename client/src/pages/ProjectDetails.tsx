@@ -403,9 +403,9 @@ export default function ProjectDetails() {
                     >
                       <ArrowLeft size={18} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
                     </motion.div>
-                    <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
-                      Back to Projects
-                    </span>
+                                      <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
+                    Back
+                  </span>
                     
                     {/* Hover effect background */}
                     <motion.div
@@ -498,7 +498,7 @@ export default function ProjectDetails() {
                     <ArrowLeft size={18} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
                   </motion.div>
                   <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
-                    Back to Projects
+                    Back
                   </span>
                   
                   {/* Hover effect background */}
