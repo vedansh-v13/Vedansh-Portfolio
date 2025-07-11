@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRoute } from "wouter";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowLeft, ExternalLink, AlertTriangle, Globe, Smartphone, CheckCircle, Lightbulb, Target, Search, Palette, TrendingUp, BookOpen, LucideIcon } from "lucide-react";
+import { ArrowLeft, ExternalLink, AlertTriangle, Globe, Smartphone, CheckCircle, Lightbulb, Target, Search, Palette, TrendingUp, BookOpen, LucideIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projectDetailsData } from "../data/projectDetailsData";
 import { cn } from "@/lib/utils";
@@ -250,6 +250,11 @@ export default function ProjectDetails() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   
+  // Gallery control states
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  
   // Visibility state for cards
   const [visibleCards, setVisibleCards] = useState<Record<string, boolean>>({});
   
@@ -263,16 +268,21 @@ export default function ProjectDetails() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
   
-  // Auto-scroll for screenshots
+  // Auto-scroll for screenshots with pause functionality
   useEffect(() => {
-    if (!screenshotScrollRef.current) return;
+    if (!screenshotScrollRef.current || !isAutoScrolling || isHovering || isDragging) return;
     
     const scrollContainer = screenshotScrollRef.current;
     let animationFrameId: number;
-    let scrollPosition = 0;
-    const scrollSpeed = 0.8;
+    let scrollPosition = scrollContainer.scrollLeft;
+    const scrollSpeed = 0.5; // Slower speed for better control
     
     const scroll = () => {
+      if (!isAutoScrolling || isHovering || isDragging) {
+        cancelAnimationFrame(animationFrameId);
+        return;
+      }
+      
       scrollPosition += scrollSpeed;
       
       if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
@@ -288,23 +298,94 @@ export default function ProjectDetails() {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [projectDetails]);
+  }, [projectDetails, isAutoScrolling, isHovering, isDragging]);
+  
+  // Update current image index based on scroll position
+  useEffect(() => {
+    if (!screenshotScrollRef.current || !projectDetails?.screenshots) return;
+    
+    const scrollContainer = screenshotScrollRef.current;
+    const handleScroll = () => {
+      const scrollLeft = scrollContainer.scrollLeft;
+      const containerWidth = scrollContainer.clientWidth;
+      const imageWidth = containerWidth * 0.8; // Approximate image width
+      const newIndex = Math.round(scrollLeft / imageWidth);
+      setCurrentImageIndex(Math.max(0, Math.min(newIndex, projectDetails.screenshots.length - 1)));
+    };
+    
+    scrollContainer.addEventListener('scroll', handleScroll);
+    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+  }, [projectDetails?.screenshots]);
+  
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!screenshotScrollRef.current || !projectDetails?.screenshots) return;
+      
+      switch (e.key) {
+        case 'ArrowLeft':
+          e.preventDefault();
+          scrollToImage(currentImageIndex - 1);
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          scrollToImage(currentImageIndex + 1);
+          break;
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentImageIndex, projectDetails?.screenshots]);
+  
+  // Scroll to specific image
+  const scrollToImage = (index: number) => {
+    if (!screenshotScrollRef.current || !projectDetails?.screenshots) return;
+    
+    const scrollContainer = screenshotScrollRef.current;
+    const containerWidth = scrollContainer.clientWidth;
+    const imageWidth = containerWidth * 0.8; // Approximate image width
+    const targetScroll = index * imageWidth;
+    
+    scrollContainer.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth'
+    });
+    
+    // Pause auto-scroll temporarily
+    setIsAutoScrolling(false);
+    setTimeout(() => setIsAutoScrolling(true), 3000);
+  };
+  
+  // Navigation functions
+  const navigateLeft = () => {
+    scrollToImage(currentImageIndex - 1);
+  };
+  
+  const navigateRight = () => {
+    scrollToImage(currentImageIndex + 1);
+  };
   
   // Handle mouse drag for screenshots
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!screenshotScrollRef.current) return;
     
     setIsDragging(true);
+    setIsAutoScrolling(false);
     setStartX(e.pageX - screenshotScrollRef.current.offsetLeft);
     setScrollLeft(screenshotScrollRef.current.scrollLeft);
   };
   
   const handleMouseLeave = () => {
     setIsDragging(false);
+    if (!isHovering) {
+      setTimeout(() => setIsAutoScrolling(true), 1000);
+    }
   };
   
   const handleMouseUp = () => {
     setIsDragging(false);
+    setTimeout(() => setIsAutoScrolling(true), 1000);
   };
   
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -314,6 +395,17 @@ export default function ProjectDetails() {
     const x = e.pageX - screenshotScrollRef.current.offsetLeft;
     const walk = (x - startX) * 3;
     screenshotScrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+  
+  // Gallery hover handlers
+  const handleGalleryMouseEnter = () => {
+    setIsHovering(true);
+    setIsAutoScrolling(false);
+  };
+  
+  const handleGalleryMouseLeave = () => {
+    setIsHovering(false);
+    setTimeout(() => setIsAutoScrolling(true), 1000);
   };
 
   // Hide testimonial for Agent Ari project
@@ -620,31 +712,95 @@ export default function ProjectDetails() {
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-12 text-gray-200">Project Gallery</h2>
             
-            <div 
-              ref={screenshotScrollRef}
-              className="overflow-x-auto cursor-grab active:cursor-grabbing horizontal-scroll-container"
-              onMouseDown={handleMouseDown}
-              onMouseLeave={handleMouseLeave}
-              onMouseUp={handleMouseUp}
-              onMouseMove={handleMouseMove}
-            >
-              <div className="inline-flex space-x-6">
-                {projectDetails.screenshots.map((screenshot, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex-none"
-                  >
-                    {screenshot.type === 'mobile' ? (
-                      // Mobile screenshot - iPhone mockup for UCaaS and BlueJeans, simple for Inaam
-                      projectDetails?.id === 'inaam-application' ? (
+            {/* Gallery Container with Controls */}
+            <div className="relative group">
+              {/* Navigation Buttons */}
+              <motion.button
+                onClick={navigateLeft}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                disabled={currentImageIndex === 0}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronLeft size={24} />
+              </motion.button>
+              
+              <motion.button
+                onClick={navigateRight}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                disabled={currentImageIndex === (projectDetails?.screenshots?.length || 0) - 1}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronRight size={24} />
+              </motion.button>
+              
+              {/* Scroll Container */}
+              <div 
+                ref={screenshotScrollRef}
+                className="overflow-x-auto cursor-grab active:cursor-grabbing horizontal-scroll-container scrollbar-hide"
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={handleGalleryMouseEnter}
+                onMouseLeave={handleGalleryMouseLeave}
+              >
+                <div className="inline-flex space-x-6">
+                  {projectDetails.screenshots.map((screenshot, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="flex-none"
+                    >
+                      {screenshot.type === 'mobile' ? (
+                        // Mobile screenshot - iPhone mockup for UCaaS and BlueJeans, simple for Inaam
+                        projectDetails?.id === 'inaam-application' ? (
+                          <div className="relative">
+                            <img 
+                              src={screenshot.url} 
+                              alt={screenshot.alt}
+                              className="flex-none rounded-lg shadow-lg w-[300px] md:w-[350px]"
+                            />
+                            {screenshot.caption && (
+                              <p className="text-sm text-gray-400 mt-3 text-center">
+                                {screenshot.caption}
+                              </p>
+                            )}
+                          </div>
+                        ) : (
+                          // iPhone mockup for other projects
+                          <div className="relative">
+                            {/* iPhone frame */}
+                            <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl" style={{ width: '300px', height: '650px' }}>
+                              {/* Screen */}
+                              <div className="relative bg-white rounded-[2rem] overflow-hidden h-full">
+                                <img 
+                                  src={screenshot.url} 
+                                  alt={screenshot.alt}
+                                  className="w-full h-full object-cover object-top"
+                                />
+                              </div>
+                              {/* Home indicator */}
+                              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full opacity-60"></div>
+                            </div>
+                            {/* Caption */}
+                            {screenshot.caption && (
+                              <p className="text-sm text-gray-400 mt-3 text-center max-w-[300px]">
+                                {screenshot.caption}
+                              </p>
+                            )}
+                          </div>
+                        )
+                      ) : (
+                        // Desktop screenshot
                         <div className="relative">
                           <img 
                             src={screenshot.url} 
                             alt={screenshot.alt}
-                            className="flex-none rounded-lg shadow-lg w-[300px] md:w-[350px]"
+                            className="flex-none rounded-lg shadow-lg w-[400px] md:w-[500px]"
                           />
                           {screenshot.caption && (
                             <p className="text-sm text-gray-400 mt-3 text-center">
@@ -652,48 +808,38 @@ export default function ProjectDetails() {
                             </p>
                           )}
                         </div>
-                      ) : (
-                        // iPhone mockup for other projects
-                        <div className="relative">
-                          {/* iPhone frame */}
-                          <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl" style={{ width: '300px', height: '650px' }}>
-                            {/* Screen */}
-                            <div className="relative bg-white rounded-[2rem] overflow-hidden h-full">
-                              <img 
-                                src={screenshot.url} 
-                                alt={screenshot.alt}
-                                className="w-full h-full object-cover object-top"
-                              />
-                            </div>
-                            {/* Home indicator */}
-                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full opacity-60"></div>
-                          </div>
-                          {/* Caption */}
-                          {screenshot.caption && (
-                            <p className="text-sm text-gray-400 mt-3 text-center max-w-[300px]">
-                              {screenshot.caption}
-                            </p>
-                          )}
-                        </div>
-                      )
-                    ) : (
-                      // Desktop screenshot
-                      <div className="relative">
-                        <img 
-                          src={screenshot.url} 
-                          alt={screenshot.alt}
-                          className="flex-none rounded-lg shadow-lg w-[400px] md:w-[500px]"
-                        />
-                        {screenshot.caption && (
-                          <p className="text-sm text-gray-400 mt-3 text-center">
-                            {screenshot.caption}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </motion.div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Scroll Indicators */}
+            {projectDetails?.screenshots && projectDetails.screenshots.length > 1 && (
+              <div className="flex justify-center mt-6 space-x-2">
+                {projectDetails.screenshots.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToImage(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex 
+                        ? 'bg-white scale-125' 
+                        : 'bg-white/30 hover:bg-white/50'
+                    }`}
+                  />
                 ))}
               </div>
+            )}
+            
+            {/* Auto-scroll indicator */}
+            <div className="flex justify-center mt-4">
+              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                isAutoScrolling ? 'bg-green-400 animate-pulse' : 'bg-gray-400'
+              }`} />
+              <span className="text-xs text-gray-400 ml-2">
+                {isAutoScrolling ? 'Auto-scrolling' : 'Paused'}
+              </span>
             </div>
           </div>
         </section>
