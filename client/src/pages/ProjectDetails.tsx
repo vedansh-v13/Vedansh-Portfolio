@@ -753,7 +753,6 @@ export default function ProjectDetails() {
                 ref={screenshotScrollRef}
                 className="overflow-x-auto cursor-grab active:cursor-grabbing horizontal-scroll-container scrollbar-hide"
                 onMouseDown={handleMouseDown}
-                onMouseLeave={handleMouseLeave}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleGalleryMouseEnter}
