@@ -358,11 +358,11 @@ export default function ProjectDetails() {
   };
   
   // Navigation functions
-  const navigateLeft = () => {
+  const handleNavigateLeft = () => {
     scrollToImage(currentImageIndex - 1);
   };
   
-  const navigateRight = () => {
+  const handleNavigateRight = () => {
     scrollToImage(currentImageIndex + 1);
   };
   
@@ -716,7 +716,7 @@ export default function ProjectDetails() {
             <div className="relative group">
               {/* Navigation Buttons */}
               <motion.button
-                onClick={navigateLeft}
+                onClick={handleNavigateLeft}
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
                 disabled={currentImageIndex === 0}
                 whileHover={{ scale: 1.1 }}
@@ -726,7 +726,7 @@ export default function ProjectDetails() {
               </motion.button>
               
               <motion.button
-                onClick={navigateRight}
+                onClick={handleNavigateRight}
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
                 disabled={currentImageIndex === (projectDetails?.screenshots?.length || 0) - 1}
                 whileHover={{ scale: 1.1 }}
