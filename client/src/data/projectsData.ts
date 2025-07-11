@@ -9,6 +9,7 @@ export interface Project {
   icon: React.ReactElement[];
   image?: string;   // Optional image URL property
   comingSoon?: boolean; // Indicates if the project is coming soon
+  caseStudyUrl?: string; // Optional URL to dedicated case study page
 }
 
 export const projectsData: Project[] = [
@@ -94,6 +95,7 @@ export const projectsData: Project[] = [
     title: "Omnycomm - Ecommerce",
     category: "E-commerce Platform",
     description: "Everything you need to sell online",
+    caseStudyUrl: "/case-studies/omnycomm",
     icon: [
       // Browser window frame
       React.createElement("rect", { key: 1, x: "40", y: "60", width: "320", height: "280", rx: "12", fill: "#0a0a0a", stroke: "#333", strokeWidth: "2" }),

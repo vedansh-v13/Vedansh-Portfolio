@@ -6,12 +6,14 @@ import { HelmetProvider } from "react-helmet-async";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import ProjectDetails from "./pages/ProjectDetails";
+import OmnycommCaseStudy from "./pages/OmnycommCaseStudy";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/projects/:id" component={ProjectDetails} />
+      <Route path="/case-studies/omnycomm" component={OmnycommCaseStudy} />
       <Route component={NotFound} />
     </Switch>
   );
