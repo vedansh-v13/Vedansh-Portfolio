@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { projectDetailsData } from "../data/projectDetailsData";
 import { cn } from "@/lib/utils";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet-async";
 
 // Floating particle component
 const FloatingParticle = ({ delay = 0, duration = 20, size = 4, color = "rgba(255,255,255,0.1)" }: {
@@ -525,6 +526,19 @@ export default function ProjectDetails() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{projectDetails.title} - Vedansh Wandalkar Portfolio</title>
+        <meta name="description" content={projectDetails.description} />
+        <meta property="og:title" content={`${projectDetails.title} - Vedansh Wandalkar Portfolio`} />
+        <meta property="og:description" content={projectDetails.description} />
+        <meta property="og:image" content={projectDetails.screenshots?.[0]?.url || 'https://vedanshwandalkar.com/og-image.jpg'} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://vedanshwandalkar.com/projects/${projectId}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${projectDetails.title} - Vedansh Wandalkar Portfolio`} />
+        <meta name="twitter:description" content={projectDetails.description} />
+        <meta name="twitter:image" content={projectDetails.screenshots?.[0]?.url || 'https://vedanshwandalkar.com/og-image.jpg'} />
+      </Helmet>
       {/* Hero section */}
       <section className="relative w-full h-[60vh] min-h-[500px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-background">
         {/* Animated background with gradient shifts */}
