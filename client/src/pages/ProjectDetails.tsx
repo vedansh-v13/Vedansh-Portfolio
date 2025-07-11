@@ -249,7 +249,7 @@ export default function ProjectDetails() {
   const screenshotScrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const [scrollLeftPosition, setScrollLeftPosition] = useState(0);
   
   // Gallery control states
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
@@ -374,7 +374,7 @@ export default function ProjectDetails() {
     setIsDragging(true);
     setIsAutoScrolling(false);
     setStartX(e.pageX - screenshotScrollRef.current.offsetLeft);
-    setScrollLeft(screenshotScrollRef.current.scrollLeft);
+    setScrollLeftPosition(screenshotScrollRef.current.scrollLeft);
   };
   
   const handleMouseLeave = () => {
@@ -395,7 +395,7 @@ export default function ProjectDetails() {
     e.preventDefault();
     const x = e.pageX - screenshotScrollRef.current.offsetLeft;
     const walk = (x - startX) * 3;
-    screenshotScrollRef.current.scrollLeft = scrollLeft - walk;
+    screenshotScrollRef.current.scrollLeft = scrollLeftPosition - walk;
   };
   
   // Gallery hover handlers
