@@ -547,7 +547,6 @@ export default function ProjectDetails() {
           style={{ y: backgroundY, opacity }}
         >
           <div className="absolute inset-0 grid-lines opacity-10"></div>
-          <AnimatedGrid mouseX={mousePosition.x} mouseY={mousePosition.y} />
           
           {/* Floating particles */}
           {Array.from({ length: 15 }).map((_, i) => (
