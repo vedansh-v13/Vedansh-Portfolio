@@ -13,6 +13,27 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    id: "bluejeans-verizon",
+    title: "BlueJeans Conference",
+    category: "Video Conferencing",
+    description: "Redesigned Verizon's virtual events platform",
+    icon: [
+      React.createElement("rect", { key: 1, x: "50", y: "80", width: "300", height: "240", rx: "20", fill: "#0a0a0a", stroke: "#0066cc", strokeWidth: "3" }),
+      React.createElement("rect", { key: 2, x: "70", y: "100", width: "260", height: "35", rx: "8", fill: "#0066cc" }),
+      React.createElement("text", { key: 3, x: "200", y: "122", fontSize: "14", fill: "#ffffff", textAnchor: "middle", fontFamily: "Arial, sans-serif", fontWeight: "bold" }, "BlueJeans Conference"),
+      React.createElement("rect", { key: 4, x: "80", y: "150", width: "70", height: "55", rx: "8", fill: "#2a2a2a", stroke: "#444", strokeWidth: "1" }),
+      React.createElement("rect", { key: 5, x: "165", y: "150", width: "70", height: "55", rx: "8", fill: "#2a2a2a", stroke: "#444", strokeWidth: "1" }),
+      React.createElement("rect", { key: 6, x: "250", y: "150", width: "70", height: "55", rx: "8", fill: "#2a2a2a", stroke: "#444", strokeWidth: "1" }),
+      React.createElement("circle", { key: 7, cx: "115", cy: "177", r: "15", fill: "#ff6b6b" }),
+      React.createElement("circle", { key: 8, cx: "200", cy: "177", r: "15", fill: "#51cf66" }),
+      React.createElement("circle", { key: 9, cx: "285", cy: "177", r: "15", fill: "#ffd43b" }),
+      React.createElement("rect", { key: 10, x: "70", y: "220", width: "260", height: "80", rx: "12", fill: "#1a1a1a", stroke: "#444", strokeWidth: "1" }),
+      React.createElement("rect", { key: 11, x: "90", y: "240", width: "220", height: "12", rx: "6", fill: "#666" }),
+      React.createElement("rect", { key: 12, x: "90", y: "260", width: "160", height: "12", rx: "6", fill: "#666" }),
+      React.createElement("circle", { key: 13, cx: "280", cy: "275", r: "8", fill: "#0066cc" })
+    ]
+  },
+  {
     id: "verizon-uccaas",
     title: "UCaaS [Verizon]",
     category: "Unified Communications",
@@ -49,27 +70,6 @@ export const projectsData: Project[] = [
       React.createElement("circle", { key: 22, cx: "255", cy: "299", r: "3", fill: "#666" }),
       React.createElement("circle", { key: 23, cx: "275", cy: "299", r: "3", fill: "#666" }),
       React.createElement("circle", { key: 24, cx: "295", cy: "299", r: "3", fill: "#666" })
-    ]
-  },
-  {
-    id: "bluejeans-verizon",
-    title: "BlueJeans Conference",
-    category: "Video Conferencing",
-    description: "Redesigned Verizon's virtual events platform",
-    icon: [
-      React.createElement("rect", { key: 1, x: "50", y: "80", width: "300", height: "240", rx: "20", fill: "#0a0a0a", stroke: "#0066cc", strokeWidth: "3" }),
-      React.createElement("rect", { key: 2, x: "70", y: "100", width: "260", height: "35", rx: "8", fill: "#0066cc" }),
-      React.createElement("text", { key: 3, x: "200", y: "122", fontSize: "14", fill: "#ffffff", textAnchor: "middle", fontFamily: "Arial, sans-serif", fontWeight: "bold" }, "BlueJeans Conference"),
-      React.createElement("rect", { key: 4, x: "80", y: "150", width: "70", height: "55", rx: "8", fill: "#2a2a2a", stroke: "#444", strokeWidth: "1" }),
-      React.createElement("rect", { key: 5, x: "165", y: "150", width: "70", height: "55", rx: "8", fill: "#2a2a2a", stroke: "#444", strokeWidth: "1" }),
-      React.createElement("rect", { key: 6, x: "250", y: "150", width: "70", height: "55", rx: "8", fill: "#2a2a2a", stroke: "#444", strokeWidth: "1" }),
-      React.createElement("circle", { key: 7, cx: "115", cy: "177", r: "15", fill: "#ff6b6b" }),
-      React.createElement("circle", { key: 8, cx: "200", cy: "177", r: "15", fill: "#51cf66" }),
-      React.createElement("circle", { key: 9, cx: "285", cy: "177", r: "15", fill: "#ffd43b" }),
-      React.createElement("rect", { key: 10, x: "70", y: "220", width: "260", height: "80", rx: "12", fill: "#1a1a1a", stroke: "#444", strokeWidth: "1" }),
-      React.createElement("rect", { key: 11, x: "90", y: "240", width: "220", height: "12", rx: "6", fill: "#666" }),
-      React.createElement("rect", { key: 12, x: "90", y: "260", width: "160", height: "12", rx: "6", fill: "#666" }),
-      React.createElement("circle", { key: 13, cx: "280", cy: "275", r: "8", fill: "#0066cc" })
     ]
   },
   {

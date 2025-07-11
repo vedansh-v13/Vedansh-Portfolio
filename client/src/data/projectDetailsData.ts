@@ -61,6 +61,14 @@ export interface ProjectDetails {
   solutions: ProjectSolution[];
   techStack: TechStackItem[]; // Tech stack used in the project
   testimonial?: ProjectTestimonial;
+  // Storytelling sections
+  projectOverview?: string;
+  projectGoals?: string;
+  researchDiscovery?: string;
+  uxFlowWireframes?: string;
+  uiDesignComponents?: string;
+  outcomeResults?: string;
+  whatILearned?: string;
 }
 
 // Project details for detailed case studies
@@ -127,7 +135,15 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       { name: "Node.js", category: "development" },
       { name: "Google Analytics", category: "analytics" },
       { name: "Mixpanel", category: "analytics" }
-    ]
+    ],
+    // Storytelling sections
+    projectOverview: "Inaam is a comprehensive loyalty program mobile application designed to enhance customer engagement through rewards, points tracking, and personalized offers. As the lead UX/UI designer, I was tasked with transforming a traditional loyalty program into a modern, mobile-first experience that would address the fundamental issues preventing user engagement.",
+    projectGoals: "Primary Goal: Design an intuitive mobile loyalty application that increases user engagement and retention. Secondary Goals: Simplify complex point systems, create personalized user experiences, optimize for mobile usage patterns. Success Metrics: User engagement rates, retention improvement, point redemption frequency, customer satisfaction.",
+    researchDiscovery: "I began by analyzing existing loyalty programs and conducting user research to understand why traditional programs fail. The research revealed that users were overwhelmed by complex point calculations, frustrated by generic rewards that didn't match their preferences, and often forgot about their rewards entirely due to poor mobile experiences.",
+    uxFlowWireframes: "I designed streamlined user flows that reduced cognitive load while maintaining functionality. The wireframes focused on three core user journeys: earning points, tracking progress, and redeeming rewards. Each flow was optimized for mobile interaction patterns and quick access to key features.",
+    uiDesignComponents: "The design system prioritized clarity and engagement through clean visual hierarchy, intuitive navigation, and touch-friendly interactions. I implemented visual progress indicators and achievement systems to make point tracking transparent and rewarding.",
+    outcomeResults: "The redesigned application successfully addressed the core pain points through simplified point visualization, personalized reward recommendations, mobile-optimized interfaces, and smart notification systems that kept users engaged without being intrusive.",
+    whatILearned: "This project reinforced the importance of user-centered design in loyalty programs. The success of simplified point systems and personalized experiences showed that users respond well to clear, transparent interfaces that make rewards feel attainable and valuable."
   },
   "bluejeans-verizon": {
     id: "bluejeans-verizon",
@@ -197,7 +213,15 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       { name: "AWS Transcribe", category: "integration" },
       { name: "RTMP Streaming", category: "development" },
       { name: "Custom Analytics APIs", category: "analytics" }
-    ]
+    ],
+    // Storytelling sections
+    projectOverview: "BlueJeans Conference by Verizon is a comprehensive web, voice, and video collaboration platform designed to enable seamless hybrid meetings and large-scale interactive events for global teams. As the lead designer, I was tasked with redesigning and enhancing the platform to address the complex challenges of modern enterprise communication.",
+    projectGoals: "Primary Goal: Create a unified collaboration platform that works seamlessly across all devices and scales to support massive events. Secondary Goals: Improve accessibility and inclusion for global teams, enhance presenter tools, reduce setup complexity. Success Metrics: User adoption across devices, event engagement rates, accessibility compliance, setup time reduction.",
+    researchDiscovery: "I conducted extensive research with enterprise users across different regions and technical capabilities. The findings revealed that inconsistent experiences across devices were the biggest pain point, followed by lack of inclusive features for international teams and poor engagement during large-scale virtual events.",
+    uxFlowWireframes: "I designed comprehensive user flows for multiple scenarios: one-on-one meetings, team collaboration, and large-scale events. The wireframes prioritized consistency across desktop, mobile, and conference room setups while maintaining the flexibility needed for different use cases.",
+    uiDesignComponents: "The design system focused on accessibility and inclusivity, with features like multi-language captions, hide self-view options, and presenter enhancement tools. I created components that worked consistently across all platforms while maintaining high performance.",
+    outcomeResults: "The redesigned platform successfully delivered seamless multi-device experiences, implemented inclusive features for global teams, and built scalable event capabilities supporting up to 150,000 interactive participants while maintaining high engagement levels.",
+    whatILearned: "This project taught me the importance of designing for scale and inclusivity. Creating experiences that work for diverse global teams requires careful consideration of accessibility, language barriers, and varying technical capabilities."
   },
   "verizon-uccaas": {
     id: "verizon-uccaas",
@@ -274,7 +298,15 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       { name: "Swift", category: "development" },
       { name: "Enterprise APIs", category: "integration" },
       { name: "LDAP", category: "integration" }
-    ]
+    ],
+    // Storytelling sections
+    projectOverview: "The Verizon UCaaS Platform is a comprehensive unified communications suite that integrates messaging, voice, video, and mobile device security for global enterprise teams. As the lead designer, I was tasked with creating a seamless experience that would consolidate multiple communication tools into a single, secure platform.",
+    projectGoals: "Primary Goal: Consolidate fragmented communication tools into a unified platform that improves productivity and security. Secondary Goals: Reduce IT overhead, improve user experience consistency, enhance mobile security. Success Metrics: User adoption, security compliance, IT management efficiency, collaboration effectiveness.",
+    researchDiscovery: "I analyzed Verizon's existing communication infrastructure and interviewed IT teams and end users across different departments. The research revealed that managing multiple platforms was creating significant operational overhead, while security gaps in mobile device usage were exposing enterprise data to risks.",
+    uxFlowWireframes: "I designed unified user flows that eliminated tool-switching while maintaining all necessary functionality. The wireframes focused on creating consistent experiences across messaging, calling, and video collaboration, with special attention to mobile workflows and security features.",
+    uiDesignComponents: "The design system prioritized security and ease of use, with components that worked seamlessly across desktop and mobile platforms. I created interfaces that made complex enterprise features accessible while maintaining the security requirements of a global organization.",
+    outcomeResults: "The unified platform successfully consolidated all communication channels, secured 100K+ mobile devices, and created a seamless experience for over 160 employees while significantly reducing IT overhead and improving collaboration efficiency.",
+    whatILearned: "This project reinforced the value of consolidation in enterprise software. Creating a unified experience that maintains security while improving usability requires careful balance between functionality and simplicity."
   },
 
   "omnycomm-ecommerce": {
@@ -342,6 +374,14 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       { name: "AWS", category: "development" },
       { name: "Docker", category: "development" },
       { name: "Google Analytics", category: "analytics" }
-    ]
+    ],
+    // Storytelling sections
+    projectOverview: "Omnycomm is a comprehensive e-commerce solution designed to empower businesses with everything they need to sell online effectively. As the lead designer, I was tasked with creating an all-in-one platform that would eliminate the technical barriers preventing small and medium businesses from competing in the digital marketplace.",
+    projectGoals: "Primary Goal: Create an intuitive e-commerce platform that enables non-technical users to build professional online stores. Secondary Goals: Reduce setup costs, improve mobile experience, provide comprehensive business tools. Success Metrics: User adoption, store creation success rate, mobile conversion rates, customer satisfaction.",
+    researchDiscovery: "I conducted research with small business owners and analyzed existing e-commerce platforms. The findings revealed that high setup costs, technical complexity, and poor mobile experiences were the biggest barriers preventing businesses from establishing online presence.",
+    uxFlowWireframes: "I designed intuitive user flows that guided users from initial setup to store launch without requiring technical knowledge. The wireframes focused on the drag-and-drop store builder, mobile-first design system, and integrated business tools that would make e-commerce accessible to everyone.",
+    uiDesignComponents: "The design system prioritized simplicity and accessibility, with components that worked seamlessly across all devices. I created an intuitive drag-and-drop interface, mobile-optimized templates, and integrated tools that made complex e-commerce functionality accessible to non-technical users.",
+    outcomeResults: "The platform successfully provided an all-in-one, user-friendly e-commerce solution that combined powerful functionality with intuitive design, enabling businesses of all sizes to create professional online stores without technical expertise.",
+    whatILearned: "This project taught me the importance of democratizing technology through design. Creating powerful tools that are accessible to non-technical users requires careful attention to user experience and progressive disclosure of complexity."
   }
 };
