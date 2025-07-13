@@ -73,9 +73,9 @@ export default function ProjectShowcase() {
         transition={{ duration: 0.8 }}
         className="container mx-auto px-6 mb-12 text-center"
       >
-        <h2 className="text-4xl md:text-6xl artistic-text font-extralight mb-6 text-gray-200">Selected Work</h2>
+        <h2 className="text-4xl md:text-6xl artistic-text font-extralight mb-6 text-gray-200">My Selected Work</h2>
         <p className="text-gray-300 max-w-2xl mx-auto artistic-text font-light text-lg">
-          A showcase of design projects that solve real problems and create meaningful user experiences.
+          A showcase of my design projects that solve real problems and create meaningful user experiences.
         </p>
       </motion.div>
 

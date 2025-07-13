@@ -17,7 +17,7 @@ export const projectsData: Project[] = [
     id: "bluejeans-verizon",
     title: "BlueJeans Conference",
     category: "Video Conferencing",
-    description: "Redesigned Verizon's virtual events platform",
+    description: "I redesigned Verizon's virtual events platform",
     icon: [
       React.createElement("rect", { key: 1, x: "50", y: "80", width: "300", height: "240", rx: "20", fill: "#0a0a0a", stroke: "#0066cc", strokeWidth: "3" }),
       React.createElement("rect", { key: 2, x: "70", y: "100", width: "260", height: "35", rx: "8", fill: "#0066cc" }),
@@ -38,7 +38,7 @@ export const projectsData: Project[] = [
     id: "verizon-uccaas",
     title: "UCaaS [Verizon]",
     category: "Unified Communications",
-    description: "An all-in-one communication platform",
+    description: "I built an all-in-one communication platform",
     icon: [
       // Background
       React.createElement("rect", { key: 1, x: "50", y: "60", width: "300", height: "280", rx: "20", fill: "#0a0a0a", stroke: "#ff0000", strokeWidth: "2" }),
@@ -77,7 +77,7 @@ export const projectsData: Project[] = [
     id: "inaam-application",
     title: "Inaam, Application",
     category: "Mobile App",
-    description: "Loyalty Program - App",
+    description: "I designed a loyalty program app",
     icon: [
       React.createElement("rect", { key: 1, x: "80", y: "100", width: "240", height: "320", rx: "30", fill: "#1a1a1a", stroke: "#333", strokeWidth: "3" }),
       React.createElement("rect", { key: 2, x: "100", y: "130", width: "200", height: "40", rx: "6", fill: "#f59e0b" }),
@@ -94,7 +94,7 @@ export const projectsData: Project[] = [
     id: "omnycomm-ecommerce",
     title: "Omnycomm - Ecommerce",
     category: "E-commerce Platform",
-    description: "Everything you need to sell online",
+    description: "I created everything you need to sell online",
     icon: [
       // Browser window frame
       React.createElement("rect", { key: 1, x: "40", y: "60", width: "320", height: "280", rx: "12", fill: "#0a0a0a", stroke: "#333", strokeWidth: "2" }),

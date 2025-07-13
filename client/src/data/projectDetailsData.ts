@@ -165,42 +165,42 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       { url: "/images/bluejeans-config.png", alt: "Event Configuration Panel", caption: "Detailed event settings with host management and customization options", type: "desktop" },
       { url: "/images/bluejeans-form.png", alt: "Event Creation Form", caption: "Form interface for creating new events with scheduling and settings", type: "desktop" }
     ],
-    problemDescription: "Companies faced significant challenges with hybrid and virtual meetings across diverse global teams. Organizations struggled with inconsistent user experiences across devices, lack of inclusive features for international collaboration, and difficulty hosting large-scale interactive events with meaningful engagement.",
+    problemDescription: "I identified that companies faced significant challenges with hybrid and virtual meetings across diverse global teams. Organizations struggled with inconsistent user experiences across devices, lack of inclusive features for international collaboration, and difficulty hosting large-scale interactive events with meaningful engagement.",
     painPoints: [
       {
         title: "Inconsistent Multi-Device Experience",
-        description: "Poor video/audio quality and interface inconsistencies across desktop, mobile, and conference room setups leading to frustrating user experiences."
+        description: "I found poor video/audio quality and interface inconsistencies across desktop, mobile, and conference room setups leading to frustrating user experiences."
       },
       {
         title: "Low Virtual Event Engagement",
-        description: "Traditional platforms failed to maintain participant attention and interaction during large-scale virtual events and presentations."
+        description: "I discovered that traditional platforms failed to maintain participant attention and interaction during large-scale virtual events and presentations."
       },
       {
         title: "Accessibility and Inclusion Barriers",
-        description: "Lack of features supporting diverse participants including language barriers, accessibility needs, and varying technical capabilities."
+        description: "I identified lack of features supporting diverse participants including language barriers, accessibility needs, and varying technical capabilities."
       },
       {
         title: "Complex Manual Setup Processes",
-        description: "Time-consuming meeting setups and suboptimal presenter tools reduced efficiency and created technical friction."
+        description: "I observed time-consuming meeting setups and suboptimal presenter tools reduced efficiency and created technical friction."
       }
     ],
-    solutionDescription: "We redesigned and enhanced the BlueJeans Meetings and Events platform to deliver a comprehensive collaboration solution. The redesign focused on creating seamless multi-device experiences, implementing inclusive features for global teams, and building scalable event capabilities that could support massive interactive gatherings while maintaining high engagement levels.",
+    solutionDescription: "I redesigned and enhanced the BlueJeans Meetings and Events platform to deliver a comprehensive collaboration solution. My redesign focused on creating seamless multi-device experiences, implementing inclusive features for global teams, and building scalable event capabilities that could support massive interactive gatherings while maintaining high engagement levels.",
     solutions: [
       {
         title: "Cross-Platform HD Collaboration",
-        description: "Implemented consistent high-quality audio/video and content sharing across desktop, mobile, and Meta Portal devices with optimized performance."
+        description: "I implemented consistent high-quality audio/video and content sharing across desktop, mobile, and Meta Portal devices with optimized performance."
       },
       {
         title: "Inclusive Communication Tools",
-        description: "Developed real-time multi-language closed captions, hide self-view options, breakout session management, and accessibility-focused interface design."
+        description: "I developed real-time multi-language closed captions, hide self-view options, breakout session management, and accessibility-focused interface design."
       },
       {
         title: "Smart Presenter Enhancement Suite",
-        description: "Created auto-camera framing, virtual backgrounds, presenter overlay modes, and 'weather person mode' for professional presentation delivery."
+        description: "I created auto-camera framing, virtual backgrounds, presenter overlay modes, and 'weather person mode' for professional presentation delivery."
       },
       {
         title: "Massive-Scale Event Platform",
-        description: "Built scalable event infrastructure supporting up to 150,000 interactive participants with live polling, Q&A, and engagement analytics."
+        description: "I built scalable event infrastructure supporting up to 150,000 interactive participants with live polling, Q&A, and engagement analytics."
       }
     ],
     techStack: [
@@ -216,11 +216,11 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     ],
     // Storytelling sections
     projectOverview: "BlueJeans Conference by Verizon is a comprehensive web, voice, and video collaboration platform designed to enable seamless hybrid meetings and large-scale interactive events for global teams. As the lead designer, I was tasked with redesigning and enhancing the platform to address the complex challenges of modern enterprise communication.",
-    projectGoals: "Primary Goal: Create a unified collaboration platform that works seamlessly across all devices and scales to support massive events. Secondary Goals: Improve accessibility and inclusion for global teams, enhance presenter tools, reduce setup complexity. Success Metrics: User adoption across devices, event engagement rates, accessibility compliance, setup time reduction.",
-    researchDiscovery: "I conducted extensive research with enterprise users across different regions and technical capabilities. The findings revealed that inconsistent experiences across devices were the biggest pain point, followed by lack of inclusive features for international teams and poor engagement during large-scale virtual events.",
-    uxFlowWireframes: "I designed comprehensive user flows for multiple scenarios: one-on-one meetings, team collaboration, and large-scale events. The wireframes prioritized consistency across desktop, mobile, and conference room setups while maintaining the flexibility needed for different use cases.",
-    uiDesignComponents: "The design system focused on accessibility and inclusivity, with features like multi-language captions, hide self-view options, and presenter enhancement tools. I created components that worked consistently across all platforms while maintaining high performance.",
-    outcomeResults: "The redesigned platform successfully delivered seamless multi-device experiences, implemented inclusive features for global teams, and built scalable event capabilities supporting up to 150,000 interactive participants while maintaining high engagement levels.",
+    projectGoals: "Primary Goal: I aimed to create a unified collaboration platform that works seamlessly across all devices and scales to support massive events. Secondary Goals: I wanted to improve accessibility and inclusion for global teams, enhance presenter tools, reduce setup complexity. Success Metrics: I measured user adoption across devices, event engagement rates, accessibility compliance, setup time reduction.",
+    researchDiscovery: "I conducted extensive research with enterprise users across different regions and technical capabilities. My findings revealed that inconsistent experiences across devices were the biggest pain point, followed by lack of inclusive features for international teams and poor engagement during large-scale virtual events.",
+    uxFlowWireframes: "I designed comprehensive user flows for multiple scenarios: one-on-one meetings, team collaboration, and large-scale events. My wireframes prioritized consistency across desktop, mobile, and conference room setups while maintaining the flexibility needed for different use cases.",
+    uiDesignComponents: "My design system focused on accessibility and inclusivity, with features like multi-language captions, hide self-view options, and presenter enhancement tools. I created components that worked consistently across all platforms while maintaining high performance.",
+    outcomeResults: "My redesigned platform successfully delivered seamless multi-device experiences, implemented inclusive features for global teams, and built scalable event capabilities supporting up to 150,000 interactive participants while maintaining high engagement levels.",
     whatILearned: "This project taught me the importance of designing for scale and inclusivity. Creating experiences that work for diverse global teams requires careful consideration of accessibility, language barriers, and varying technical capabilities."
   },
   "verizon-uccaas": {
@@ -245,44 +245,49 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       { url: "/images/ucaas-contact-profile.png", alt: "Contact Profile", caption: "Detailed contact information with integrated messaging, calling, and meeting capabilities", type: "mobile" },
       { url: "/images/ucaas-active-call.png", alt: "Active Call Interface", caption: "Full-featured call control with mute, keypad, speaker, hold, transfer, and video options", type: "mobile" },
       { url: "/images/ucaas-dialpad.png", alt: "Smart Dialpad", caption: "Advanced dialing interface with caller ID selection and company number management", type: "mobile" },
-      { url: "/images/verizon-uccaas.png", alt: "UCaaS Dashboard", caption: "Unified communications platform overview showing integrated messaging and calling features", type: "mobile" }
+      // Desktop screenshots
+      { url: "/images/uccaas-desktop-dm-info.png", alt: "Desktop DM with Info Panel", caption: "Desktop - Direct message with information panel and pinned messages", type: "desktop" },
+      { url: "/images/uccaas-desktop-calls-log.png", alt: "Desktop Calls Log", caption: "Desktop - Call history with hover details and quick actions", type: "desktop" },
+      { url: "/images/uccaas-desktop-new-channel.png", alt: "Desktop Create Channel", caption: "Desktop - Create new channel with participant selection", type: "desktop" },
+      { url: "/images/uccaas-desktop-conversation.png", alt: "Desktop Recent Conversations", caption: "Desktop - Recent conversations with active 1:1 chat", type: "desktop" },
+      { url: "/images/uccaas-desktop-attachments.png", alt: "Desktop Send Attachments", caption: "Desktop - File attachment interface with sharing options", type: "desktop" }
     ],
-    problemDescription: "Verizon's global teams relied on disparate communication tools that hindered real-time collaboration and created security vulnerabilities. Organizations struggled with multiple platforms causing confusion, security gaps in mobile device usage, and operational overhead from managing fragmented communication systems.",
+    problemDescription: "I discovered that Verizon's global teams relied on disparate communication tools that hindered real-time collaboration and created security vulnerabilities. Organizations struggled with multiple platforms causing confusion, security gaps in mobile device usage, and operational overhead from managing fragmented communication systems.",
     painPoints: [
       {
         title: "Fragmented Communication Tools",
-        description: "Multiple platforms like Webex, Jabber, and conference bridges caused confusion and reduced productivity across global teams."
+        description: "I found that multiple platforms like Webex, Jabber, and conference bridges caused confusion and reduced productivity across global teams."
       },
       {
         title: "Mobile Security Vulnerabilities",
-        description: "Lack of secure device management and compliance controls exposed enterprise data to security risks."
+        description: "I identified lack of secure device management and compliance controls that exposed enterprise data to security risks."
       },
       {
         title: "Operational Complexity",
-        description: "Managing disparate systems increased IT overhead and created inconsistent user experiences across departments."
+        description: "I observed that managing disparate systems increased IT overhead and created inconsistent user experiences across departments."
       },
       {
         title: "Collaboration Inefficiencies",
-        description: "Tool-switching and management complexity reduced team responsiveness and hindered real-time collaboration."
+        description: "I discovered that tool-switching and management complexity reduced team responsiveness and hindered real-time collaboration."
       }
     ],
-    solutionDescription: "We designed and implemented a comprehensive unified communications suite that consolidated all communication channels into a single platform. The solution integrated Cisco Jabber for messaging, Webex for video collaboration, and MobileIron for secure device management, creating a seamless experience for over 160 employees while securing 100K+ mobile devices across global endpoints.",
+    solutionDescription: "I designed and implemented a comprehensive unified communications suite that consolidated all communication channels into a single platform. My solution integrated Cisco Jabber for messaging, Webex for video collaboration, and MobileIron for secure device management, creating a seamless experience for over 160 employees while securing 100K+ mobile devices across global endpoints.",
     solutions: [
       {
         title: "Unified Platform Integration",
-        description: "Consolidated messaging, voice, and video into one platform using Cisco Jabber and Webex, eliminating tool-switching confusion."
+        description: "I consolidated messaging, voice, and video into one platform using Cisco Jabber and Webex, eliminating tool-switching confusion."
       },
       {
         title: "Enterprise Mobile Security",
-        description: "Implemented MobileIron for comprehensive device management, ensuring compliance and data protection across all mobile endpoints."
+        description: "I implemented MobileIron for comprehensive device management, ensuring compliance and data protection across all mobile endpoints."
       },
       {
         title: "Scalable Audio Conferencing",
-        description: "Deployed Cloud Connect Audio for seamless conferencing with native audio bridges supporting enterprise-scale meetings."
+        description: "I deployed Cloud Connect Audio for seamless conferencing with native audio bridges supporting enterprise-scale meetings."
       },
       {
         title: "Centralized IT Management",
-        description: "Created unified administration portal for IT teams to manage users, security policies, and system-wide configurations from one interface."
+        description: "I created unified administration portal for IT teams to manage users, security policies, and system-wide configurations from one interface."
       }
     ],
     techStack: [
@@ -301,11 +306,11 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     ],
     // Storytelling sections
     projectOverview: "The Verizon UCaaS Platform is a comprehensive unified communications suite that integrates messaging, voice, video, and mobile device security for global enterprise teams. As the lead designer, I was tasked with creating a seamless experience that would consolidate multiple communication tools into a single, secure platform.",
-    projectGoals: "Primary Goal: Consolidate fragmented communication tools into a unified platform that improves productivity and security. Secondary Goals: Reduce IT overhead, improve user experience consistency, enhance mobile security. Success Metrics: User adoption, security compliance, IT management efficiency, collaboration effectiveness.",
-    researchDiscovery: "I analyzed Verizon's existing communication infrastructure and interviewed IT teams and end users across different departments. The research revealed that managing multiple platforms was creating significant operational overhead, while security gaps in mobile device usage were exposing enterprise data to risks.",
-    uxFlowWireframes: "I designed unified user flows that eliminated tool-switching while maintaining all necessary functionality. The wireframes focused on creating consistent experiences across messaging, calling, and video collaboration, with special attention to mobile workflows and security features.",
-    uiDesignComponents: "The design system prioritized security and ease of use, with components that worked seamlessly across desktop and mobile platforms. I created interfaces that made complex enterprise features accessible while maintaining the security requirements of a global organization.",
-    outcomeResults: "The unified platform successfully consolidated all communication channels, secured 100K+ mobile devices, and created a seamless experience for over 160 employees while significantly reducing IT overhead and improving collaboration efficiency.",
+    projectGoals: "Primary Goal: I aimed to consolidate fragmented communication tools into a unified platform that improves productivity and security. Secondary Goals: I wanted to reduce IT overhead, improve user experience consistency, enhance mobile security. Success Metrics: I measured user adoption, security compliance, IT management efficiency, collaboration effectiveness.",
+    researchDiscovery: "I analyzed Verizon's existing communication infrastructure and interviewed IT teams and end users across different departments. My research revealed that managing multiple platforms was creating significant operational overhead, while security gaps in mobile device usage were exposing enterprise data to risks.",
+    uxFlowWireframes: "I designed unified user flows that eliminated tool-switching while maintaining all necessary functionality. My wireframes focused on creating consistent experiences across messaging, calling, and video collaboration, with special attention to mobile workflows and security features.",
+    uiDesignComponents: "My design system prioritized security and ease of use, with components that worked seamlessly across desktop and mobile platforms. I created interfaces that made complex enterprise features accessible while maintaining the security requirements of a global organization.",
+    outcomeResults: "My unified platform successfully consolidated all communication channels, secured 100K+ mobile devices, and created a seamless experience for over 160 employees while significantly reducing IT overhead and improving collaboration efficiency.",
     whatILearned: "This project reinforced the value of consolidation in enterprise software. Creating a unified experience that maintains security while improving usability requires careful balance between functionality and simplicity."
   },
 
@@ -325,42 +330,42 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     screenshots: [
       { url: "/images/OmynComm_JNT.webp", alt: "Omnycomm Platform Overview", caption: "Comprehensive e-commerce platform with integrated tools and analytics", type: "desktop" }
     ],
-    problemDescription: "Small and medium businesses struggle with complex, expensive e-commerce solutions that require technical expertise and significant upfront investment, limiting their ability to compete in the digital marketplace.",
+    problemDescription: "I discovered that small and medium businesses struggle with complex, expensive e-commerce solutions that require technical expertise and significant upfront investment, limiting their ability to compete in the digital marketplace.",
     painPoints: [
       {
         title: "High Setup Costs",
-        description: "Traditional e-commerce platforms require significant upfront investment and ongoing maintenance costs that small businesses can't afford."
+        description: "I found that traditional e-commerce platforms require significant upfront investment and ongoing maintenance costs that small businesses can't afford."
       },
       {
         title: "Technical Complexity",
-        description: "Most platforms require technical knowledge for setup, customization, and maintenance, creating barriers for non-technical business owners."
+        description: "I observed that most platforms require technical knowledge for setup, customization, and maintenance, creating barriers for non-technical business owners."
       },
       {
         title: "Limited Customization",
-        description: "Cookie-cutter solutions don't allow businesses to create unique brand experiences that differentiate them from competitors."
+        description: "I identified that cookie-cutter solutions don't allow businesses to create unique brand experiences that differentiate them from competitors."
       },
       {
         title: "Poor Mobile Experience",
-        description: "Many platforms don't prioritize mobile-first design, resulting in poor conversion rates on mobile devices where most shopping happens."
+        description: "I discovered that many platforms don't prioritize mobile-first design, resulting in poor conversion rates on mobile devices where most shopping happens."
       }
     ],
-    solutionDescription: "Omnycomm provides an all-in-one, user-friendly e-commerce platform that combines powerful functionality with intuitive design, enabling businesses of all sizes to create professional online stores without technical expertise.",
+    solutionDescription: "I created Omnycomm as an all-in-one, user-friendly e-commerce platform that combines powerful functionality with intuitive design, enabling businesses of all sizes to create professional online stores without technical expertise.",
     solutions: [
       {
         title: "Drag-and-Drop Store Builder",
-        description: "Intuitive visual editor allows anyone to create professional storefronts without coding knowledge."
+        description: "I built an intuitive visual editor that allows anyone to create professional storefronts without coding knowledge."
       },
       {
         title: "Mobile-First Design System",
-        description: "All templates and components are designed mobile-first to ensure optimal performance across all devices."
+        description: "I designed all templates and components mobile-first to ensure optimal performance across all devices."
       },
       {
         title: "Integrated Payment Gateway",
-        description: "Seamless payment processing with multiple payment options and secure checkout experience."
+        description: "I implemented seamless payment processing with multiple payment options and secure checkout experience."
       },
       {
         title: "Advanced Analytics Dashboard",
-        description: "Comprehensive insights into sales, customer behavior, and business performance with actionable recommendations."
+        description: "I created comprehensive insights into sales, customer behavior, and business performance with actionable recommendations."
       }
     ],
     techStack: [
@@ -377,11 +382,11 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     ],
     // Storytelling sections
     projectOverview: "Omnycomm is a comprehensive e-commerce solution designed to empower businesses with everything they need to sell online effectively. As the lead designer, I was tasked with creating an all-in-one platform that would eliminate the technical barriers preventing small and medium businesses from competing in the digital marketplace.",
-    projectGoals: "Primary Goal: Create an intuitive e-commerce platform that enables non-technical users to build professional online stores. Secondary Goals: Reduce setup costs, improve mobile experience, provide comprehensive business tools. Success Metrics: User adoption, store creation success rate, mobile conversion rates, customer satisfaction.",
-    researchDiscovery: "I conducted research with small business owners and analyzed existing e-commerce platforms. The findings revealed that high setup costs, technical complexity, and poor mobile experiences were the biggest barriers preventing businesses from establishing online presence.",
-    uxFlowWireframes: "I designed intuitive user flows that guided users from initial setup to store launch without requiring technical knowledge. The wireframes focused on the drag-and-drop store builder, mobile-first design system, and integrated business tools that would make e-commerce accessible to everyone.",
-    uiDesignComponents: "The design system prioritized simplicity and accessibility, with components that worked seamlessly across all devices. I created an intuitive drag-and-drop interface, mobile-optimized templates, and integrated tools that made complex e-commerce functionality accessible to non-technical users.",
-    outcomeResults: "The platform successfully provided an all-in-one, user-friendly e-commerce solution that combined powerful functionality with intuitive design, enabling businesses of all sizes to create professional online stores without technical expertise.",
+    projectGoals: "Primary Goal: I aimed to create an intuitive e-commerce platform that enables non-technical users to build professional online stores. Secondary Goals: I wanted to reduce setup costs, improve mobile experience, provide comprehensive business tools. Success Metrics: I measured user adoption, store creation success rate, mobile conversion rates, customer satisfaction.",
+    researchDiscovery: "I conducted research with small business owners and analyzed existing e-commerce platforms. My findings revealed that high setup costs, technical complexity, and poor mobile experiences were the biggest barriers preventing businesses from establishing online presence.",
+    uxFlowWireframes: "I designed intuitive user flows that guided users from initial setup to store launch without requiring technical knowledge. My wireframes focused on the drag-and-drop store builder, mobile-first design system, and integrated business tools that would make e-commerce accessible to everyone.",
+    uiDesignComponents: "My design system prioritized simplicity and accessibility, with components that worked seamlessly across all devices. I created an intuitive drag-and-drop interface, mobile-optimized templates, and integrated tools that made complex e-commerce functionality accessible to non-technical users.",
+    outcomeResults: "My platform successfully provided an all-in-one, user-friendly e-commerce solution that combined powerful functionality with intuitive design, enabling businesses of all sizes to create professional online stores without technical expertise.",
     whatILearned: "This project taught me the importance of democratizing technology through design. Creating powerful tools that are accessible to non-technical users requires careful attention to user experience and progressive disclosure of complexity."
   }
 };

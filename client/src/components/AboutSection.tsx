@@ -162,7 +162,7 @@ export default function AboutSection() {
                   <h3 className="text-3xl font-semibold mb-8 text-white">My Story</h3>
                   <div className="space-y-6 text-gray-300 leading-relaxed text-lg">
                     <p>
-                      I'm a UX/UI designer creating digital products that are{" "}
+                      I'm a UX/UI designer who creates digital products that are{" "}
                       <motion.span 
                         className="text-accent font-medium"
                         whileHover={{ scale: 1.05 }}
@@ -186,7 +186,7 @@ export default function AboutSection() {
                       >
                         AI tools
                       </motion.span>
-                      {" "}can support—not replace—the design process. I'm interested in how they can deepen research, reveal patterns, and open up new ways of thinking creatively.
+                      {" "}can support—not replace—my design process. I'm interested in how they can deepen my research, reveal patterns, and open up new ways of thinking creatively.
                     </p>
                     <motion.p
                       whileHover={{ x: 4 }}

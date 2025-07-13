@@ -1,12 +1,311 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRoute } from "wouter";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowLeft, ExternalLink, AlertTriangle, Globe, Smartphone, CheckCircle, Lightbulb, Target, Search, Palette, TrendingUp, BookOpen, LucideIcon, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ExternalLink, AlertTriangle, Globe, Smartphone, CheckCircle, Lightbulb, Target, Search, Palette, TrendingUp, BookOpen, LucideIcon, ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Activity, Clock, TrendingDown, Minus, BarChart3, Code, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projectDetailsData } from "../data/projectDetailsData";
 import { cn } from "@/lib/utils";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
+
+// Visual Components for enhanced storytelling
+const ProcessFlow = ({ steps, color = "#3b82f6" }: { 
+  steps: { title: string; description: string; icon: LucideIcon }[];
+  color?: string;
+}) => {
+  return (
+    <div className="relative">
+      {/* Connection line */}
+      <div className="absolute top-8 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((step, index) => {
+          const Icon = step.icon;
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="relative text-center"
+            >
+              {/* Step number */}
+              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-background border-2 border-gray-600 rounded-full flex items-center justify-center text-sm font-bold text-gray-300">
+                {index + 1}
+              </div>
+              
+              {/* Icon */}
+              <motion.div
+                className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${color}20, ${color}10)`,
+                  border: `2px solid ${color}30`
+                }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Icon size={28} style={{ color }} />
+              </motion.div>
+              
+              <h3 className="text-lg font-semibold mb-2 text-gray-200">{step.title}</h3>
+              <p className="text-gray-400 text-sm">{step.description}</p>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const MetricsCard = ({ 
+  title, 
+  value, 
+  change, 
+  icon: Icon, 
+  color = "#3b82f6",
+  trend = "up" 
+}: {
+  title: string;
+  value: string;
+  change: string;
+  icon: LucideIcon;
+  color?: string;
+  trend?: "up" | "down" | "neutral";
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="bg-card/10 p-6 rounded-xl border border-white/10 hover:bg-card/15 hover:border-white/20 transition-all duration-300"
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div 
+          className="w-12 h-12 rounded-lg flex items-center justify-center"
+          style={{ background: `${color}15` }}
+        >
+          <Icon size={24} style={{ color }} />
+        </div>
+        <div className={`flex items-center gap-1 text-sm ${
+          trend === "up" ? "text-emerald-400" : 
+          trend === "down" ? "text-rose-400" : "text-gray-400"
+        }`}>
+          {trend === "up" && <ArrowUpRight size={16} />}
+          {trend === "down" && <ArrowDownRight size={16} />}
+          {trend === "neutral" && <Minus size={16} />}
+          <span>{change}</span>
+        </div>
+      </div>
+      
+      <h3 className="text-2xl font-bold text-gray-200 mb-1">{value}</h3>
+      <p className="text-gray-400 text-sm">{title}</p>
+    </motion.div>
+  );
+};
+
+const TechStack = ({ technologies, color = "#3b82f6" }: {
+  technologies: { name: string; category: string; icon?: string }[];
+  color?: string;
+}) => {
+  const categories = Array.from(new Set(technologies.map(t => t.category)));
+  
+  return (
+    <div className="space-y-6">
+      {categories.map((category, catIndex) => (
+        <motion.div
+          key={category}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: catIndex * 0.1 }}
+        >
+          <h3 className="text-lg font-semibold mb-3 text-gray-200">{category}</h3>
+          <div className="flex flex-wrap gap-3">
+            {technologies
+              .filter(tech => tech.category === category)
+              .map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: (catIndex * 0.1) + (index * 0.05) }}
+                  className="px-4 py-2 rounded-lg border border-white/10 bg-card/5 hover:bg-card/10 hover:border-white/20 transition-all duration-300"
+                  style={{ borderColor: `${color}30` }}
+                >
+                  <span className="text-sm text-gray-300">{tech.name}</span>
+                </motion.div>
+              ))}
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
+const Timeline = ({ milestones, color = "#3b82f6" }: {
+  milestones: { date: string; title: string; description: string; status: "completed" | "in-progress" | "planned" }[];
+  color?: string;
+}) => {
+  return (
+    <div className="relative">
+      {/* Timeline line */}
+      <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gray-600 via-gray-500 to-gray-600" />
+      
+      <div className="space-y-8">
+        {milestones.map((milestone, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="relative flex items-start gap-6"
+          >
+            {/* Timeline dot */}
+            <div className="relative z-10">
+              <div 
+                className={`w-12 h-12 rounded-full flex items-center justify-center border-2 ${
+                  milestone.status === "completed" 
+                    ? "bg-emerald-500/20 border-emerald-500/50" 
+                    : milestone.status === "in-progress"
+                    ? "bg-yellow-500/20 border-yellow-500/50"
+                    : "bg-gray-500/20 border-gray-500/50"
+                }`}
+              >
+                {milestone.status === "completed" && <CheckCircle size={20} className="text-emerald-400" />}
+                {milestone.status === "in-progress" && <Activity size={20} className="text-yellow-400" />}
+                {milestone.status === "planned" && <Clock size={20} className="text-gray-400" />}
+              </div>
+            </div>
+            
+            <div className="flex-1 pt-2">
+              <div className="flex items-center gap-3 mb-2">
+                {milestone.date && <span className="text-sm text-gray-400">{milestone.date}</span>}
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  milestone.status === "completed" 
+                    ? "bg-emerald-500/20 text-emerald-400" 
+                    : milestone.status === "in-progress"
+                    ? "bg-yellow-500/20 text-yellow-400"
+                    : "bg-gray-500/20 text-gray-400"
+                }`}>
+                  {milestone.status.replace("-", " ")}
+                </span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-200">{milestone.title}</h3>
+              <p className="text-gray-400">{milestone.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ComparisonChart = ({ 
+  before, 
+  after, 
+  metrics, 
+  color = "#3b82f6" 
+}: {
+  before: { title: string; description: string; icon: LucideIcon };
+  after: { title: string; description: string; icon: LucideIcon };
+  metrics: { label: string; before: number; after: number; unit: string }[];
+  color?: string;
+}) => {
+  return (
+    <div className="space-y-8">
+      {/* Before/After comparison */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Before */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative p-6 rounded-xl border border-rose-500/20 bg-rose-500/5"
+        >
+          <div className="absolute top-4 right-4">
+            <div className="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center">
+              <TrendingDown size={16} className="text-rose-400" />
+            </div>
+          </div>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-lg bg-rose-500/15 flex items-center justify-center">
+              <before.icon size={24} className="text-rose-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-200">{before.title}</h3>
+          </div>
+          <p className="text-gray-400">{before.description}</p>
+        </motion.div>
+        
+        {/* After */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative p-6 rounded-xl border border-emerald-500/20 bg-emerald-500/5"
+        >
+          <div className="absolute top-4 right-4">
+            <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+              <TrendingUp size={16} className="text-emerald-400" />
+            </div>
+          </div>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-lg bg-emerald-500/15 flex items-center justify-center">
+              <after.icon size={24} className="text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-200">{after.title}</h3>
+          </div>
+          <p className="text-gray-400">{after.description}</p>
+        </motion.div>
+      </div>
+      
+      {/* Metrics comparison */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {metrics.map((metric, index) => {
+          const improvement = ((metric.after - metric.before) / metric.before) * 100;
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-card/10 p-6 rounded-xl border border-white/10"
+            >
+              <h4 className="text-sm font-medium text-gray-400 mb-3">{metric.label}</h4>
+              <div className="flex items-end justify-between mb-2">
+                <span className="text-2xl font-bold text-gray-200">{metric.after}{metric.unit}</span>
+                <span className={`text-sm font-medium ${
+                  improvement > 0 ? "text-emerald-400" : "text-rose-400"
+                }`}>
+                  {improvement > 0 ? "+" : ""}{improvement.toFixed(1)}%
+                </span>
+              </div>
+              <div className="w-full bg-gray-700 rounded-full h-2">
+                <motion.div
+                  className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${(metric.after / (metric.after + metric.before)) * 100}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                />
+              </div>
+              <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <span>{metric.before}{metric.unit}</span>
+                <span>{metric.after}{metric.unit}</span>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 // Floating particle component
 const FloatingParticle = ({ delay = 0, duration = 20, size = 4, color = "rgba(255,255,255,0.1)" }: {
@@ -45,16 +344,16 @@ const AnimatedGrid = ({ mouseX, mouseY }: { mouseX: number; mouseY: number }) =>
   const gridY = useMotionValue(0);
   
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      
-      gridX.set((clientX / innerWidth) * 100);
-      gridY.set((clientY / innerHeight) * 100);
-    };
+      const handleGridMouseMove = (e: MouseEvent) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
     
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    gridX.set((clientX / innerWidth) * 100);
+    gridY.set((clientY / innerHeight) * 100);
+  };
+    
+    window.addEventListener("mousemove", handleGridMouseMove);
+    return () => window.removeEventListener("mousemove", handleGridMouseMove);
   }, [gridX, gridY]);
 
   return (
@@ -66,9 +365,17 @@ const AnimatedGrid = ({ mouseX, mouseY }: { mouseX: number; mouseY: number }) =>
             linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
           `,
-          backgroundSize: "50px 50px",
-          x: useTransform(gridX, [0, 100], [-10, 10]),
-          y: useTransform(gridY, [0, 100], [-10, 10]),
+          backgroundSize: "50px 50px"
+        }}
+        animate={{
+          x: [-10, 10],
+          y: [-10, 10]
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
         }}
       />
     </div>
@@ -132,14 +439,14 @@ const StoryCard = ({
           ease: [0.25, 0.46, 0.45, 0.94]
         }
       } : {}}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="relative group"
       style={{
         scale,
         y,
         rotateX: rotation,
       }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="relative group"
     >
         {/* Floating effect shadow */}
         <motion.div
@@ -166,10 +473,6 @@ const StoryCard = ({
           {/* Animated border glow */}
           <motion.div
             className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
-            style={{
-              background: `linear-gradient(45deg, ${color}20, transparent, ${color}20)`,
-              backgroundSize: "200% 200%",
-            }}
             animate={{
               backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
             }}
@@ -177,6 +480,10 @@ const StoryCard = ({
               duration: 3,
               repeat: Infinity,
               ease: "easeInOut",
+            }}
+            style={{
+              background: `linear-gradient(45deg, ${color}20, transparent, ${color}20)`,
+              backgroundSize: "200% 200%",
             }}
           />
           
@@ -190,7 +497,7 @@ const StoryCard = ({
                 style={{ 
                   scale: iconScale,
                   background: isHovered ? `${color}30` : `${color}15`,
-                  boxShadow: isHovered ? `0 0 20px ${color}40` : "none",
+                  boxShadow: isHovered ? `0 0 20px ${color}40` : "none"
                 }}
               >
                 <Icon 
@@ -247,26 +554,31 @@ export default function ProjectDetails() {
   
   // Refs for horizontal scroll functionality
   const screenshotScrollRef = useRef<HTMLDivElement>(null);
+  const desktopScreenshotScrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isDesktopDragging, setIsDesktopDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeftPosition, setScrollLeftPosition] = useState(0);
   
   // Gallery control states
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isDesktopAutoScrolling, setIsDesktopAutoScrolling] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
+  const [isDesktopHovering, setIsDesktopHovering] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentDesktopImageIndex, setCurrentDesktopImageIndex] = useState(0);
   
   // Visibility state for cards
   const [visibleCards, setVisibleCards] = useState<Record<string, boolean>>({});
   
   // Mouse move handler for grid animations
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleGlobalMouseMove);
+    return () => window.removeEventListener("mousemove", handleGlobalMouseMove);
   }, []);
   
   // Auto-scroll for screenshots with pause functionality
@@ -301,17 +613,69 @@ export default function ProjectDetails() {
     };
   }, [projectDetails, isAutoScrolling, isHovering, isDragging]);
   
+  // Auto-scroll for desktop screenshots
+  useEffect(() => {
+    if (!desktopScreenshotScrollRef.current || !isDesktopAutoScrolling || isDesktopHovering || isDesktopDragging) return;
+    
+    const scrollContainer = desktopScreenshotScrollRef.current;
+    let animationFrameId: number;
+    let scrollPosition = scrollContainer.scrollLeft;
+    const scrollSpeed = 0.5; // Slower speed for better control
+    
+    const scroll = () => {
+      if (!isDesktopAutoScrolling || isDesktopHovering || isDesktopDragging) {
+        cancelAnimationFrame(animationFrameId);
+        return;
+      }
+      
+      scrollPosition += scrollSpeed;
+      
+      if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+        scrollPosition = 0;
+      }
+      
+      scrollContainer.scrollLeft = scrollPosition;
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+    
+    animationFrameId = requestAnimationFrame(scroll);
+    
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [projectDetails, isDesktopAutoScrolling, isDesktopHovering, isDesktopDragging]);
+  
   // Update current image index based on scroll position
   useEffect(() => {
     if (!screenshotScrollRef.current || !projectDetails?.screenshots) return;
     
     const scrollContainer = screenshotScrollRef.current;
     const handleScroll = () => {
-      const scrollLeft = scrollContainer.scrollLeft;
+      const currentScrollLeft = scrollContainer.scrollLeft;
       const containerWidth = scrollContainer.clientWidth;
       const imageWidth = containerWidth * 0.8; // Approximate image width
-      const newIndex = Math.round(scrollLeft / imageWidth);
+      const newIndex = Math.round(currentScrollLeft / imageWidth);
       setCurrentImageIndex(Math.max(0, Math.min(newIndex, projectDetails.screenshots.length - 1)));
+    };
+    
+    scrollContainer.addEventListener('scroll', handleScroll);
+    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+  }, [projectDetails?.screenshots]);
+  
+  // Update current desktop image index based on scroll position
+  useEffect(() => {
+    if (!desktopScreenshotScrollRef.current || !projectDetails?.screenshots) return;
+    
+    const desktopScreenshots = projectDetails.screenshots.filter(s => s.type === 'desktop');
+    if (desktopScreenshots.length === 0) return;
+    
+    const scrollContainer = desktopScreenshotScrollRef.current;
+    const handleScroll = () => {
+      const currentScrollLeft = scrollContainer.scrollLeft;
+      const containerWidth = scrollContainer.clientWidth;
+      const imageWidth = containerWidth * 0.8; // Approximate image width
+      const newIndex = Math.round(currentScrollLeft / imageWidth);
+      setCurrentDesktopImageIndex(Math.max(0, Math.min(newIndex, desktopScreenshots.length - 1)));
     };
     
     scrollContainer.addEventListener('scroll', handleScroll);
@@ -321,27 +685,45 @@ export default function ProjectDetails() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!screenshotScrollRef.current || !projectDetails?.screenshots) return;
+      const mobileScreenshots = projectDetails?.screenshots?.filter(s => s.type === 'mobile') || [];
+      const desktopScreenshots = projectDetails?.screenshots?.filter(s => s.type === 'desktop') || [];
       
-      switch (e.key) {
-        case 'ArrowLeft':
-          e.preventDefault();
-          scrollToImage(currentImageIndex - 1);
-          break;
-        case 'ArrowRight':
-          e.preventDefault();
-          scrollToImage(currentImageIndex + 1);
-          break;
+      // Check if we're focused on mobile gallery
+      if (screenshotScrollRef.current && mobileScreenshots.length > 0) {
+        switch (e.key) {
+          case 'ArrowLeft':
+            e.preventDefault();
+            scrollToImage(currentImageIndex - 1, mobileScreenshots);
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            scrollToImage(currentImageIndex + 1, mobileScreenshots);
+            break;
+        }
+      }
+      
+      // Check if we're focused on desktop gallery
+      if (desktopScreenshotScrollRef.current && desktopScreenshots.length > 0) {
+        switch (e.key) {
+          case 'ArrowLeft':
+            e.preventDefault();
+            scrollToDesktopImage(currentDesktopImageIndex - 1);
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            scrollToDesktopImage(currentDesktopImageIndex + 1);
+            break;
+        }
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentImageIndex, projectDetails?.screenshots]);
+  }, [currentImageIndex, currentDesktopImageIndex, projectDetails?.screenshots]);
   
   // Scroll to specific image
-  const scrollToImage = (index: number) => {
-    if (!screenshotScrollRef.current || !projectDetails?.screenshots) return;
+  const scrollToImage = (index: number, screenshots = projectDetails?.screenshots) => {
+    if (!screenshotScrollRef.current || !screenshots) return;
     
     const scrollContainer = screenshotScrollRef.current;
     const containerWidth = scrollContainer.clientWidth;
@@ -358,7 +740,26 @@ export default function ProjectDetails() {
     setTimeout(() => setIsAutoScrolling(true), 3000);
   };
   
-  // Navigation functions
+  // Scroll to specific desktop image
+  const scrollToDesktopImage = (index: number, screenshots = projectDetails?.screenshots?.filter(s => s.type === 'desktop')) => {
+    if (!desktopScreenshotScrollRef.current || !screenshots) return;
+    
+    const scrollContainer = desktopScreenshotScrollRef.current;
+    const containerWidth = scrollContainer.clientWidth;
+    const imageWidth = containerWidth * 0.8; // Approximate image width
+    const targetScroll = index * imageWidth;
+    
+    scrollContainer.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth'
+    });
+    
+    // Pause auto-scroll temporarily
+    setIsDesktopAutoScrolling(false);
+    setTimeout(() => setIsDesktopAutoScrolling(true), 3000);
+  };
+  
+  // Rename scrollLeft function to navigateLeft
   const navigateLeft = () => {
     scrollToImage(currentImageIndex - 1);
   };
@@ -367,13 +768,24 @@ export default function ProjectDetails() {
     scrollToImage(currentImageIndex + 1);
   };
   
-  // Handle mouse drag for screenshots
+  // Handle mouse and touch drag for screenshots
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!screenshotScrollRef.current) return;
     
     setIsDragging(true);
     setIsAutoScrolling(false);
     setStartX(e.pageX - screenshotScrollRef.current.offsetLeft);
+    setScrollLeftPosition(screenshotScrollRef.current.scrollLeft);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!screenshotScrollRef.current) return;
+    
+    e.preventDefault(); // Prevent default touch behaviors
+    setIsDragging(true);
+    setIsAutoScrolling(false);
+    const touch = e.touches[0];
+    setStartX(touch.pageX - screenshotScrollRef.current.offsetLeft);
     setScrollLeftPosition(screenshotScrollRef.current.scrollLeft);
   };
   
@@ -388,6 +800,12 @@ export default function ProjectDetails() {
     setIsDragging(false);
     setTimeout(() => setIsAutoScrolling(true), 1000);
   };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    e.preventDefault(); // Prevent default touch behaviors
+    setIsDragging(false);
+    setTimeout(() => setIsAutoScrolling(true), 1000);
+  };
   
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !screenshotScrollRef.current) return;
@@ -395,6 +813,16 @@ export default function ProjectDetails() {
     e.preventDefault();
     const x = e.pageX - screenshotScrollRef.current.offsetLeft;
     const walk = (x - startX) * 3;
+    screenshotScrollRef.current.scrollLeft = scrollLeftPosition - walk;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !screenshotScrollRef.current) return;
+    
+    e.preventDefault();
+    const touch = e.touches[0];
+    const x = touch.pageX - screenshotScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Reduced multiplier for smoother touch scrolling
     screenshotScrollRef.current.scrollLeft = scrollLeftPosition - walk;
   };
   
@@ -407,6 +835,74 @@ export default function ProjectDetails() {
   const handleGalleryMouseLeave = () => {
     setIsHovering(false);
     setTimeout(() => setIsAutoScrolling(true), 1000);
+  };
+
+  // Desktop gallery handlers
+  const handleDesktopMouseDown = (e: React.MouseEvent) => {
+    if (!desktopScreenshotScrollRef.current) return;
+    
+    setIsDesktopDragging(true);
+    setIsDesktopAutoScrolling(false);
+    setStartX(e.pageX - desktopScreenshotScrollRef.current.offsetLeft);
+    setScrollLeftPosition(desktopScreenshotScrollRef.current.scrollLeft);
+  };
+
+  const handleDesktopTouchStart = (e: React.TouchEvent) => {
+    if (!desktopScreenshotScrollRef.current) return;
+    
+    e.preventDefault();
+    setIsDesktopDragging(true);
+    setIsDesktopAutoScrolling(false);
+    const touch = e.touches[0];
+    setStartX(touch.pageX - desktopScreenshotScrollRef.current.offsetLeft);
+    setScrollLeftPosition(desktopScreenshotScrollRef.current.scrollLeft);
+  };
+  
+  const handleDesktopMouseLeave = () => {
+    setIsDesktopDragging(false);
+    if (!isDesktopHovering) {
+      setTimeout(() => setIsDesktopAutoScrolling(true), 1000);
+    }
+  };
+  
+  const handleDesktopMouseUp = () => {
+    setIsDesktopDragging(false);
+    setTimeout(() => setIsDesktopAutoScrolling(true), 1000);
+  };
+
+  const handleDesktopTouchEnd = (e: React.TouchEvent) => {
+    e.preventDefault();
+    setIsDesktopDragging(false);
+    setTimeout(() => setIsDesktopAutoScrolling(true), 1000);
+  };
+  
+  const handleDesktopMouseMove = (e: React.MouseEvent) => {
+    if (!isDesktopDragging || !desktopScreenshotScrollRef.current) return;
+    
+    e.preventDefault();
+    const x = e.pageX - desktopScreenshotScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 3;
+    desktopScreenshotScrollRef.current.scrollLeft = scrollLeftPosition - walk;
+  };
+
+  const handleDesktopTouchMove = (e: React.TouchEvent) => {
+    if (!isDesktopDragging || !desktopScreenshotScrollRef.current) return;
+    
+    e.preventDefault();
+    const touch = e.touches[0];
+    const x = touch.pageX - desktopScreenshotScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    desktopScreenshotScrollRef.current.scrollLeft = scrollLeftPosition - walk;
+  };
+  
+  const handleDesktopGalleryMouseEnter = () => {
+    setIsDesktopHovering(true);
+    setIsDesktopAutoScrolling(false);
+  };
+  
+  const handleDesktopGalleryMouseLeave = () => {
+    setIsDesktopHovering(false);
+    setTimeout(() => setIsDesktopAutoScrolling(true), 1000);
   };
 
   // Hide testimonial for Agent Ari project
@@ -423,7 +919,6 @@ export default function ProjectDetails() {
     projectId !== "agent-lav" && 
     projectId !== "agent-malcom" &&
     projectId !== "nyuyu" &&
-    projectId !== "verizon-bluejeans" &&
     projectId !== "ess-dee" &&
     !isComingSoon;
 
@@ -460,6 +955,12 @@ export default function ProjectDetails() {
 
     return () => observer.disconnect();
   }, [storyCards]);
+
+  // Reset gallery index when project changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+    setCurrentDesktopImageIndex(0);
+  }, [projectId]);
 
   // Render not found if project doesn't exist
   if (!projectDetails) {
@@ -523,6 +1024,9 @@ export default function ProjectDetails() {
       </div>
     );
   }
+
+  const mobileScreenshots = projectDetails.screenshots.filter(s => s.type === 'mobile');
+  const desktopScreenshots = projectDetails.screenshots.filter(s => s.type === 'desktop');
 
   return (
     <div className="min-h-screen bg-background">
@@ -720,13 +1224,15 @@ export default function ProjectDetails() {
       )}
       
       {/* Screenshots section */}
-      {shouldShowScreenshots && (
+      {shouldShowScreenshots && (mobileScreenshots.length > 0 || desktopScreenshots.length > 0) && (
         <section className="py-20 bg-card/5">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-12 text-gray-200">Project Gallery</h2>
-            
-            {/* Gallery Container with Controls */}
-            <div className="relative group">
+            {mobileScreenshots.length > 0 && (
+              <>
+                <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-12 text-gray-200">Mobile Experience Gallery</h2>
+                
+                {/* Gallery Container with Controls */}
+                <div className="relative group">
               {/* Navigation Buttons */}
               <motion.button
                 onClick={navigateLeft}
@@ -739,9 +1245,9 @@ export default function ProjectDetails() {
               </motion.button>
               
               <motion.button
-                onClick={handleNavigateRight}
+                onClick={() => scrollToImage(currentImageIndex + 1, mobileScreenshots)}
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
-                disabled={currentImageIndex === (projectDetails?.screenshots?.length || 0) - 1}
+                disabled={currentImageIndex === (mobileScreenshots.length || 0) - 1}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -751,15 +1257,24 @@ export default function ProjectDetails() {
               {/* Scroll Container */}
               <div 
                 ref={screenshotScrollRef}
-                className="overflow-x-auto cursor-grab active:cursor-grabbing horizontal-scroll-container scrollbar-hide"
+                className="overflow-x-auto cursor-grab active:cursor-grabbing horizontal-scroll-container scrollbar-hide touch-pan-x"
+                style={{
+                  WebkitOverflowScrolling: 'touch',
+                  scrollBehavior: 'smooth',
+                  userSelect: 'none',
+                  touchAction: 'pan-x'
+                }}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleGalleryMouseEnter}
                 onMouseLeave={handleGalleryMouseLeave}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onTouchMove={handleTouchMove}
               >
                 <div className="inline-flex space-x-6">
-                  {projectDetails.screenshots.map((screenshot, index) => (
+                  {mobileScreenshots.map((screenshot, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
@@ -771,11 +1286,16 @@ export default function ProjectDetails() {
                         // Mobile screenshot - iPhone mockup for UCaaS and BlueJeans, simple for Inaam
                         projectDetails?.id === 'inaam-application' ? (
                           <div className="relative">
-                            <img 
-                              src={screenshot.url} 
-                              alt={screenshot.alt}
-                              className="flex-none rounded-lg shadow-lg w-[300px] md:w-[350px]"
-                            />
+                            {/* Simple mobile frame with glassmorphism */}
+                            <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-2 shadow-2xl border border-white/10 backdrop-blur-sm">
+                              <div className="bg-black rounded-md p-1 overflow-hidden">
+                                <img 
+                                  src={screenshot.url} 
+                                  alt={screenshot.alt}
+                                  className="w-[300px] md:w-[350px] h-auto object-cover rounded-sm"
+                                />
+                              </div>
+                            </div>
                             {screenshot.caption && (
                               <p className="text-sm text-gray-400 mt-3 text-center">
                                 {screenshot.caption}
@@ -783,17 +1303,20 @@ export default function ProjectDetails() {
                             )}
                           </div>
                         ) : (
-                          // iPhone mockup for other projects
+                          // iPhone mockup with glassmorphism for other projects
                           <div className="relative">
-                            {/* iPhone frame */}
-                            <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl" style={{ width: '300px', height: '650px' }}>
-                              {/* Screen */}
-                              <div className="relative bg-white rounded-[2rem] overflow-hidden h-full">
-                                <img 
-                                  src={screenshot.url} 
-                                  alt={screenshot.alt}
-                                  className="w-full h-full object-cover object-top"
-                                />
+                            {/* iPhone frame with glassmorphism */}
+                            <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] p-2 shadow-2xl border border-white/10 backdrop-blur-sm" style={{ width: '300px', height: '650px' }}>
+                              {/* Screen bezel */}
+                              <div className="bg-black rounded-[2rem] p-1 h-full">
+                                {/* Screen */}
+                                <div className="relative bg-white rounded-[1.8rem] overflow-hidden h-full">
+                                  <img 
+                                    src={screenshot.url} 
+                                    alt={screenshot.alt}
+                                    className="w-full h-full object-cover object-top"
+                                  />
+                                </div>
                               </div>
                               {/* Home indicator */}
                               <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full opacity-60"></div>
@@ -828,12 +1351,12 @@ export default function ProjectDetails() {
             </div>
             
             {/* Scroll Indicators */}
-            {projectDetails?.screenshots && projectDetails.screenshots.length > 1 && (
+            {mobileScreenshots.length > 1 && (
               <div className="flex justify-center mt-6 space-x-2">
-                {projectDetails.screenshots.map((_, index) => (
+                {mobileScreenshots.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => scrollToImage(index)}
+                    onClick={() => scrollToImage(index, mobileScreenshots)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       index === currentImageIndex 
                         ? 'bg-white scale-125' 
@@ -853,6 +1376,126 @@ export default function ProjectDetails() {
                 {isAutoScrolling ? 'Auto-scrolling' : 'Paused'}
               </span>
             </div>
+          </>
+            )}
+          </div>
+        </section>
+      )}
+      
+      {/* Desktop Screenshots section */}
+      {shouldShowScreenshots && desktopScreenshots.length > 0 && (
+        <section className="py-20 bg-card/5">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-12 text-gray-200">Desktop Experience Gallery</h2>
+            
+            {/* Desktop Gallery Container with Controls */}
+            <div className="relative group">
+              {/* Navigation Buttons */}
+              <motion.button
+                onClick={() => scrollToDesktopImage(currentDesktopImageIndex - 1)}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                disabled={currentDesktopImageIndex === 0}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronLeft size={24} />
+              </motion.button>
+              
+              <motion.button
+                onClick={() => scrollToDesktopImage(currentDesktopImageIndex + 1)}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                disabled={currentDesktopImageIndex === (desktopScreenshots.length || 0) - 1}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronRight size={24} />
+              </motion.button>
+              
+              {/* Scroll Container */}
+              <div 
+                ref={desktopScreenshotScrollRef}
+                className="overflow-x-auto cursor-grab active:cursor-grabbing horizontal-scroll-container scrollbar-hide touch-pan-x"
+                style={{
+                  WebkitOverflowScrolling: 'touch',
+                  scrollBehavior: 'smooth',
+                  userSelect: 'none',
+                  touchAction: 'pan-x'
+                }}
+                onMouseDown={handleDesktopMouseDown}
+                onMouseUp={handleDesktopMouseUp}
+                onMouseMove={handleDesktopMouseMove}
+                onMouseEnter={handleDesktopGalleryMouseEnter}
+                onMouseLeave={handleDesktopGalleryMouseLeave}
+                onTouchStart={handleDesktopTouchStart}
+                onTouchEnd={handleDesktopTouchEnd}
+                onTouchMove={handleDesktopTouchMove}
+              >
+                <div className="inline-flex space-x-6">
+                  {desktopScreenshots.map((screenshot, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="flex-none"
+                    >
+                      {/* Desktop screenshot with glassmorphism frame */}
+                      <div className="relative">
+                        {/* Desktop frame */}
+                        <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-3 shadow-2xl border border-white/10 backdrop-blur-sm">
+                          {/* Screen bezel */}
+                          <div className="bg-black rounded-md p-2 overflow-hidden">
+                            {/* Screen */}
+                            <div className="relative bg-white rounded-sm overflow-hidden">
+                              <img 
+                                src={screenshot.url} 
+                                alt={screenshot.alt}
+                                className="w-[500px] md:w-[600px] h-auto object-cover"
+                              />
+                            </div>
+                          </div>
+                          {/* Desktop stand effect */}
+                          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gradient-to-r from-gray-600 to-gray-800 rounded-full"></div>
+                        </div>
+                        {/* Caption */}
+                        {screenshot.caption && (
+                          <p className="text-sm text-gray-400 mt-4 text-center max-w-[500px]">
+                            {screenshot.caption}
+                          </p>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Scroll Indicators */}
+            {desktopScreenshots.length > 1 && (
+              <div className="flex justify-center mt-6 space-x-2">
+                {desktopScreenshots.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToDesktopImage(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentDesktopImageIndex 
+                        ? 'bg-white scale-125' 
+                        : 'bg-white/30 hover:bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+            
+            {/* Auto-scroll indicator */}
+            <div className="flex justify-center mt-4">
+              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                isDesktopAutoScrolling ? 'bg-green-400 animate-pulse' : 'bg-gray-400'
+              }`} />
+              <span className="text-xs text-gray-400 ml-2">
+                {isDesktopAutoScrolling ? 'Auto-scrolling' : 'Paused'}
+              </span>
+            </div>
           </div>
         </section>
       )}
@@ -860,18 +1503,50 @@ export default function ProjectDetails() {
       {/* Problem section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="text-center mb-16"
             >
               <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">The Challenge</h2>
-              <p className="text-gray-300 mb-12">{projectDetails.problemDescription}</p>
+              <p className="text-gray-300 mb-12 max-w-3xl mx-auto">{projectDetails.problemDescription}</p>
             </motion.div>
             
-            <div className="space-y-6">
+            {/* Visual Problem Flow */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-16"
+            >
+              <ProcessFlow 
+                steps={[
+                  { 
+                    title: "Identify Issues", 
+                    description: "Analyze user pain points and system inefficiencies", 
+                    icon: Search 
+                  },
+                  { 
+                    title: "Understand Impact", 
+                    description: "Measure the business and user experience impact", 
+                    icon: BarChart3 
+                  },
+                  { 
+                    title: "Define Goals", 
+                    description: "Set clear objectives for improvement", 
+                    icon: Target 
+                  }
+                ]}
+                color="#ef4444"
+              />
+            </motion.div>
+            
+            {/* Pain Points with Enhanced Visuals */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {projectDetails.painPoints.map((point, index) => (
                 <motion.div
                   key={index}
@@ -879,14 +1554,19 @@ export default function ProjectDetails() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-card/10 p-6 rounded-lg border border-white/10 flex gap-4 items-start hover:bg-card/15 hover:border-white/20 transition-all duration-300"
+                  className="bg-card/10 p-6 rounded-xl border border-white/10 hover:bg-card/15 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 bg-rose-500/15 rounded-full flex items-center justify-center text-rose-400">
-                    {point.icon || <AlertTriangle size={20} />}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">{point.title}</h3>
-                    <p className="text-gray-400">{point.description}</p>
+                  {/* Background gradient effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="relative z-10 flex gap-4 items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-rose-500/15 rounded-xl flex items-center justify-center text-rose-400 group-hover:scale-110 transition-transform duration-300">
+                      {point.icon || <AlertTriangle size={24} />}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 text-gray-200">{point.title}</h3>
+                      <p className="text-gray-400">{point.description}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -898,18 +1578,50 @@ export default function ProjectDetails() {
       {/* Solution section */}
       <section className="py-20 bg-card/5">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">Our Solution</h2>
-              <p className="text-gray-300 mb-12">{projectDetails.solutionDescription}</p>
+              <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">The Solution</h2>
+              <p className="text-gray-300 mb-12 max-w-3xl mx-auto">{projectDetails.solutionDescription}</p>
             </motion.div>
             
-            <div className="space-y-6">
+            {/* Visual Solution Process */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-16"
+            >
+              <ProcessFlow 
+                steps={[
+                  { 
+                    title: "Research & Design", 
+                    description: "User research, wireframes, and design system", 
+                    icon: Search 
+                  },
+                  { 
+                    title: "Development", 
+                    description: "Build and implement the solution", 
+                    icon: Code 
+                  },
+                  { 
+                    title: "Testing & Launch", 
+                    description: "Quality assurance and deployment", 
+                    icon: Rocket 
+                  }
+                ]}
+                color="#10b981"
+              />
+            </motion.div>
+            
+            {/* Solutions with Enhanced Visuals */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {projectDetails.solutions.map((solution, index) => (
                 <motion.div
                   key={index}
@@ -917,17 +1629,174 @@ export default function ProjectDetails() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-card/10 p-6 rounded-lg border border-white/10 flex gap-4 items-start hover:bg-card/15 hover:border-white/20 transition-all duration-300"
+                  className="bg-card/10 p-6 rounded-xl border border-white/10 hover:bg-card/15 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 bg-emerald-500/15 rounded-full flex items-center justify-center text-emerald-400">
-                    <CheckCircle size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">{solution.title}</h3>
-                    <p className="text-gray-400">{solution.description}</p>
+                  {/* Background gradient effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="relative z-10 flex gap-4 items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/15 rounded-xl flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 text-gray-200">{solution.title}</h3>
+                      <p className="text-gray-400">{solution.description}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
+            </div>
+            
+            {/* Before/After Comparison (if metrics are available) */}
+            {projectDetails.metrics && projectDetails.metrics.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mt-16"
+              >
+                <h3 className="text-2xl md:text-3xl artistic-text font-extralight mb-8 text-gray-200 text-center">Impact & Results</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {projectDetails.metrics.map((metric, index) => (
+                    <MetricsCard
+                      key={index}
+                      title={metric.label}
+                      value={metric.value}
+                      change="+25%"
+                      icon={TrendingUp}
+                      color="#10b981"
+                      trend="up"
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </section>
+      
+      {/* Project Timeline & Tech Stack */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">Project Timeline</h2>
+              <p className="text-gray-300 mb-12 max-w-3xl mx-auto">The journey from concept to completion</p>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Timeline */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <Timeline 
+                  milestones={[
+                    { 
+                      date: "", 
+                      title: "Discovery & Research", 
+                      description: "User interviews, competitive analysis, and requirement gathering", 
+                      status: "completed" 
+                    },
+                    { 
+                      date: "", 
+                      title: "Design & Prototyping", 
+                      description: "Wireframes, user flows, and interactive prototypes", 
+                      status: "completed" 
+                    },
+                    { 
+                      date: "", 
+                      title: "Development", 
+                      description: "Frontend and backend implementation with regular testing", 
+                      status: "completed" 
+                    },
+                    { 
+                      date: "", 
+                      title: "Testing & Launch", 
+                      description: "Quality assurance, bug fixes, and production deployment", 
+                      status: "completed" 
+                    }
+                  ]}
+                  color="#3b82f6"
+                />
+              </motion.div>
+              
+              {/* Tech Stack */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <h3 className="text-2xl md:text-3xl artistic-text font-extralight mb-8 text-gray-200">Technology Stack</h3>
+                <TechStack 
+                  technologies={(() => {
+                    // Contextual tech stack based on project type
+                    const baseTech = [
+                      { name: "React", category: "Frontend" },
+                      { name: "TypeScript", category: "Frontend" },
+                      { name: "Tailwind CSS", category: "Frontend" },
+                      { name: "Framer Motion", category: "Frontend" }
+                    ];
+                    
+                    const backendTech = [
+                      { name: "Node.js", category: "Backend" },
+                      { name: "Express", category: "Backend" }
+                    ];
+                    
+                    const databaseTech = [
+                      { name: "PostgreSQL", category: "Database" },
+                      { name: "Drizzle ORM", category: "Database" }
+                    ];
+                    
+                    const toolsTech = [
+                      { name: "Vite", category: "Build Tools" },
+                      { name: "Netlify", category: "Deployment" }
+                    ];
+                    
+                    // Add project-specific technologies
+                    let projectSpecificTech: { name: string; category: string }[] = [];
+                    
+                    if (projectId?.includes('replyrocket')) {
+                      projectSpecificTech = [
+                        { name: "OpenAI API", category: "AI/ML" },
+                        { name: "LangChain", category: "AI/ML" },
+                        { name: "WebSocket", category: "Real-time" }
+                      ];
+                    } else if (projectId?.includes('omnycomm')) {
+                      projectSpecificTech = [
+                        { name: "Shopify API", category: "E-commerce" },
+                        { name: "Google Analytics", category: "Analytics" },
+                        { name: "Chart.js", category: "Data Visualization" }
+                      ];
+                    } else if (projectId?.includes('bluejeans')) {
+                      projectSpecificTech = [
+                        { name: "WebRTC", category: "Communication" },
+                        { name: "Socket.io", category: "Real-time" },
+                        { name: "Media APIs", category: "Communication" }
+                      ];
+                    } else if (projectId?.includes('inaam')) {
+                      projectSpecificTech = [
+                        { name: "React Native", category: "Mobile" },
+                        { name: "Firebase", category: "Backend" },
+                        { name: "Push Notifications", category: "Mobile" }
+                      ];
+                    }
+                    
+                    return [...baseTech, ...backendTech, ...databaseTech, ...toolsTech, ...projectSpecificTech];
+                  })()}
+                  color="#3b82f6"
+                />
+              </motion.div>
             </div>
           </div>
         </div>
@@ -1036,45 +1905,7 @@ export default function ProjectDetails() {
         </section>
       )}
 
-      {/* Tech Stack section - Updated with simplified design */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">Technology Stack</h2>
-              <p className="text-gray-300 artistic-text font-light text-lg">Tools and technologies used to deliver this project</p>
-            </motion.div>
-            
-            <div className="flex flex-wrap justify-center gap-4">
-              {projectDetails.techStack.map((tech, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="flex items-center gap-3 bg-card/10 px-4 py-2 rounded-full hover:bg-card/20 transition-all duration-300"
-                >
-                  {tech.logo ? (
-                    <img src={tech.logo} alt={tech.name} className="w-5 h-5" />
-                  ) : (
-                    <div className="w-5 h-5 bg-card/50 rounded-md flex items-center justify-center text-xs font-bold">
-                      {tech.name.charAt(0)}
-                    </div>
-                  )}
-                  <span className="text-sm">{tech.name}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+
       
       {/* Testimonial section - hidden for Agent Ari project */}
       {shouldShowTestimonial && projectDetails.testimonial && (

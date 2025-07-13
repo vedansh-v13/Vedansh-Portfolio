@@ -49,9 +49,17 @@ const AnimatedGrid = ({ mouseX, mouseY }: { mouseX: number; mouseY: number }) =>
           linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
         `,
-        backgroundSize: "50px 50px",
-        x: useTransform(gridX, [0, 100], [-10, 10]),
-        y: useTransform(gridY, [0, 100], [-10, 10])
+        backgroundSize: "50px 50px"
+      }}
+      animate={{
+        x: [-10, 10],
+        y: [-10, 10]
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut"
       }}
     />
   );
@@ -148,10 +156,6 @@ const StoryCard = ({
         {/* Animated border glow */}
         <motion.div
           className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
-          style={{
-            background: `linear-gradient(45deg, ${color}20, transparent, ${color}20)`,
-            backgroundSize: "200% 200%",
-          }}
           animate={{
             backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
           }}
@@ -159,6 +163,10 @@ const StoryCard = ({
             duration: 3,
             repeat: Infinity,
             ease: "easeInOut",
+          }}
+          style={{
+            background: `linear-gradient(45deg, ${color}20, transparent, ${color}20)`,
+            backgroundSize: "200% 200%",
           }}
         />
         
@@ -172,7 +180,7 @@ const StoryCard = ({
               style={{ 
                 scale: iconScale,
                 background: isHovered ? `${color}30` : `${color}15`,
-                boxShadow: isHovered ? `0 0 20px ${color}40` : "none",
+                boxShadow: isHovered ? `0 0 20px ${color}40` : "none"
               }}
             >
               <Icon 
@@ -232,12 +240,12 @@ export default function OmnycommCaseStudy() {
   // Storytelling cards data
   const storyCards = [
     { key: 'overview', icon: Globe, title: 'Project Overview', content: 'Omnycomm is a marketing OS for D2C brands, built to unify ecommerce data, campaign performance, and communication. I designed the first version of its ecommerce dashboard to help users understand their brand performance at a glance.', color: '#3b82f6', delay: 0.1 },
-    { key: 'problem', icon: Target, title: 'The Problem', content: 'The ecommerce dashboard was cluttered and hard to use. Users struggled to find information quickly, and the interface lacked clear visual hierarchy, leading to confusion and inefficiency.', color: '#ef4444', delay: 0.2 },
-    { key: 'solution', icon: Search, title: 'The Solution', content: 'I designed the dashboard to prioritize important metrics, introduce clean layout, and enhance visual hierarchy. The new design provides intuitive and efficient user experience.', color: '#10b981', delay: 0.3 },
-    { key: 'research', icon: Smartphone, title: 'Research & Discovery', content: 'Analyzed dashboards from Triple Whale, Peel Analytics, Google Ads, and Meta Business Suite. Found that users wanted clarity over complexity and high-level summaries.', color: '#8b5cf6', delay: 0.4 },
-    { key: 'design', icon: Palette, title: 'UX Architecture', content: 'Structured the dashboard into vertical sections with persistent filters, modular components, and scalable KPI displays for traffic, attribution, and campaign views.', color: '#f97316', delay: 0.5 },
-    { key: 'results', icon: TrendingUp, title: 'Results & Impact', content: 'Created a clean, focused layout for quick decision-making. Designed modular system to extend across Omnycomm\'s other dashboards with improved user efficiency.', color: '#22c55e', delay: 0.6 },
-    { key: 'learnings', icon: BookOpen, title: 'Key Learnings', content: 'Users prioritize clarity over complexity. High-level summaries should tell 80% of the story. Filters need to be persistent, not buried in menus.', color: '#06b6d4', delay: 0.7, fullWidth: true },
+    { key: 'problem', icon: Target, title: 'The Problem', content: 'I discovered that the ecommerce dashboard was cluttered and hard to use. Users struggled to find information quickly, and the interface lacked clear visual hierarchy, leading to confusion and inefficiency.', color: '#ef4444', delay: 0.2 },
+    { key: 'solution', icon: Search, title: 'The Solution', content: 'I designed the dashboard to prioritize important metrics, introduce clean layout, and enhance visual hierarchy. My new design provides intuitive and efficient user experience.', color: '#10b981', delay: 0.3 },
+    { key: 'research', icon: Smartphone, title: 'Research & Discovery', content: 'I analyzed dashboards from Triple Whale, Peel Analytics, Google Ads, and Meta Business Suite. My findings revealed that users wanted clarity over complexity and high-level summaries.', color: '#8b5cf6', delay: 0.4 },
+    { key: 'design', icon: Palette, title: 'UX Architecture', content: 'I structured the dashboard into vertical sections with persistent filters, modular components, and scalable KPI displays for traffic, attribution, and campaign views.', color: '#f97316', delay: 0.5 },
+    { key: 'results', icon: TrendingUp, title: 'Results & Impact', content: 'I created a clean, focused layout for quick decision-making. I designed a modular system to extend across Omnycomm\'s other dashboards with improved user efficiency.', color: '#22c55e', delay: 0.6 },
+    { key: 'learnings', icon: BookOpen, title: 'Key Learnings', content: 'I learned that users prioritize clarity over complexity. High-level summaries should tell 80% of the story. Filters need to be persistent, not buried in menus.', color: '#06b6d4', delay: 0.7, fullWidth: true },
   ];
 
   // Intersection observer for card visibility
@@ -474,7 +482,7 @@ export default function OmnycommCaseStudy() {
                 Key Features
               </h2>
               <p className="text-xl text-gray-300">
-                The dashboard was designed with these core principles in mind
+                I designed the dashboard with these core principles in mind
               </p>
             </div>
 
@@ -545,7 +553,7 @@ export default function OmnycommCaseStudy() {
               Get in Touch for Product Demo
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Interested in seeing the Omnycomm dashboard in action? I'd be happy to walk you through the design process and show you how it works.
+              Interested in seeing the Omnycomm dashboard in action? I'd be happy to walk you through my design process and show you how it works.
             </p>
             <Button 
               asChild 

@@ -63,7 +63,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 1.0 }}
             className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed artistic-text font-light"
           >
-            With 5+ years of experience, I simplify systems, craft intuitive products, and now, integrate AI into design workflows.
+            I've spent 5+ years simplifying complex systems and crafting intuitive products. Now I'm integrating AI into design workflows to push boundaries further.
           </motion.p>
 
           <motion.div 

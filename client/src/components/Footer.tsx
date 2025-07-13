@@ -83,7 +83,7 @@ export default function Footer() {
               </span>
             </motion.div>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed text-sm">
-              UX/UI designer passionate about creating meaningful digital experiences that solve real problems. Specializing in enterprise solutions and design systems.
+              I'm a UX/UI designer passionate about creating meaningful digital experiences that solve real problems. I specialize in enterprise solutions and design systems.
             </p>
             <div className="flex items-center gap-4">
               <motion.a

@@ -16,7 +16,7 @@ export default function ServicesSection() {
       >
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-6xl artistic-text font-extralight mb-6 leading-tight text-gray-200">
-            Design Expertise
+            My Design Expertise
           </h2>
           <p className="text-gray-300 artistic-text font-light text-lg">
             That drives digital transformation

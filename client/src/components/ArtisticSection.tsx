@@ -66,7 +66,7 @@ export default function ArtisticSection() {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="text-xl md:text-2xl text-gray-300 artistic-text font-light leading-relaxed max-w-3xl mx-auto"
           >
-            Creating digital experiences that bridge the gap between human needs and technological possibilities.
+            I create digital experiences that bridge the gap between human needs and technological possibilities.
           </motion.p>
 
           {/* Minimalist Stats */}
