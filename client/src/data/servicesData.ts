@@ -36,7 +36,7 @@ export const servicesData = [
     title: "Mobile App Design",
     description: "I design native and cross-platform mobile applications with focus on usability and engagement",
     icon: React.createElement(Smartphone, { className: "h-5 w-5 text-accent" }),
-    features: ["iOS & Android Design", "Mobile-First Approach", "Touch Interactions", "Responsive Design"],
+    features: ["iOS & Android Design", "Mobile First Approach", "Touch Interactions", "Responsive Design"],
     demoContent: "I create native mobile experiences for loyalty programs and e-commerce platforms"
   },
   {

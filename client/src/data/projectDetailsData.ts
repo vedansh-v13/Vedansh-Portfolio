@@ -95,7 +95,7 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       },
       {
         title: "Generic Rewards",
-        description: "One-size-fits-all rewards didn't match individual user preferences and spending patterns."
+        description: "One size fits all rewards didn't match individual user preferences and spending patterns."
       },
       {
         title: "Poor Mobile Experience",
@@ -106,7 +106,7 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
         description: "Users forgot about the program and missed opportunities to earn or redeem points."
       }
     ],
-    solutionDescription: "Designed an intuitive mobile-first loyalty application with personalized rewards, gamified engagement, and transparent point tracking to maximize user participation and satisfaction.",
+    solutionDescription: "Designed an intuitive mobile first loyalty application with personalized rewards, gamified engagement, and transparent point tracking to maximize user participation and satisfaction.",
     solutions: [
       {
         title: "Simplified Point Visualization",
@@ -117,7 +117,7 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
         description: "Implemented AI-driven reward suggestions based on user behavior, purchase history, and preferences."
       },
       {
-        title: "Mobile-Optimized Interface",
+        title: "Mobile Optimized Interface",
         description: "Designed touch-friendly interfaces with intuitive navigation and quick access to key features."
       },
       {
@@ -137,12 +137,12 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       { name: "Mixpanel", category: "analytics" }
     ],
     // Storytelling sections
-    projectOverview: "Inaam is a comprehensive loyalty program mobile application designed to enhance customer engagement through rewards, points tracking, and personalized offers. As the lead UX/UI designer, I was tasked with transforming a traditional loyalty program into a modern, mobile-first experience that would address the fundamental issues preventing user engagement.",
+    projectOverview: "I transformed a traditional loyalty program into a modern, mobile first experience that would address the fundamental issues preventing user engagement.",
     projectGoals: "Primary Goal: Design an intuitive mobile loyalty application that increases user engagement and retention. Secondary Goals: Simplify complex point systems, create personalized user experiences, optimize for mobile usage patterns. Success Metrics: User engagement rates, retention improvement, point redemption frequency, customer satisfaction.",
     researchDiscovery: "I began by analyzing existing loyalty programs and conducting user research to understand why traditional programs fail. The research revealed that users were overwhelmed by complex point calculations, frustrated by generic rewards that didn't match their preferences, and often forgot about their rewards entirely due to poor mobile experiences.",
     uxFlowWireframes: "I designed streamlined user flows that reduced cognitive load while maintaining functionality. The wireframes focused on three core user journeys: earning points, tracking progress, and redeeming rewards. Each flow was optimized for mobile interaction patterns and quick access to key features.",
     uiDesignComponents: "The design system prioritized clarity and engagement through clean visual hierarchy, intuitive navigation, and touch-friendly interactions. I implemented visual progress indicators and achievement systems to make point tracking transparent and rewarding.",
-    outcomeResults: "The redesigned application successfully addressed the core pain points through simplified point visualization, personalized reward recommendations, mobile-optimized interfaces, and smart notification systems that kept users engaged without being intrusive.",
+    outcomeResults: "The redesigned application successfully addressed the core pain points through simplified point visualization, personalized reward recommendations, mobile optimized interfaces, and smart notification systems that kept users engaged without being intrusive.",
     whatILearned: "This project reinforced the importance of user-centered design in loyalty programs. The success of simplified point systems and personalized experiences showed that users respond well to clear, transparent interfaces that make rewards feel attainable and valuable."
   },
   "bluejeans-verizon": {
@@ -316,7 +316,7 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
 
   "omnycomm-ecommerce": {
     id: "omnycomm-ecommerce",
-    title: "Omnycomm - Ecommerce",
+    title: "Omnycomm Ecommerce",
     category: "E-commerce Platform",
     description: "A comprehensive e-commerce solution designed to empower businesses with everything they need to sell online effectively.",
     coverImage: "/images/OmynComm_JNT.webp",
@@ -346,17 +346,17 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
       },
       {
         title: "Poor Mobile Experience",
-        description: "I discovered that many platforms don't prioritize mobile-first design, resulting in poor conversion rates on mobile devices where most shopping happens."
+        description: "I discovered that many platforms don't prioritize mobile first design, resulting in poor conversion rates on mobile devices where most shopping happens."
       }
     ],
     solutionDescription: "I created Omnycomm as an all-in-one, user-friendly e-commerce platform that combines powerful functionality with intuitive design, enabling businesses of all sizes to create professional online stores without technical expertise.",
     solutions: [
       {
-        title: "Drag-and-Drop Store Builder",
+        title: "Drag and Drop Store Builder",
         description: "I built an intuitive visual editor that allows anyone to create professional storefronts without coding knowledge."
       },
       {
-        title: "Mobile-First Design System",
+        title: "Mobile First Design System",
         description: "I designed all templates and components mobile-first to ensure optimal performance across all devices."
       },
       {
@@ -384,8 +384,8 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     projectOverview: "Omnycomm is a comprehensive e-commerce solution designed to empower businesses with everything they need to sell online effectively. As the lead designer, I was tasked with creating an all-in-one platform that would eliminate the technical barriers preventing small and medium businesses from competing in the digital marketplace.",
     projectGoals: "Primary Goal: I aimed to create an intuitive e-commerce platform that enables non-technical users to build professional online stores. Secondary Goals: I wanted to reduce setup costs, improve mobile experience, provide comprehensive business tools. Success Metrics: I measured user adoption, store creation success rate, mobile conversion rates, customer satisfaction.",
     researchDiscovery: "I conducted research with small business owners and analyzed existing e-commerce platforms. My findings revealed that high setup costs, technical complexity, and poor mobile experiences were the biggest barriers preventing businesses from establishing online presence.",
-    uxFlowWireframes: "I designed intuitive user flows that guided users from initial setup to store launch without requiring technical knowledge. My wireframes focused on the drag-and-drop store builder, mobile-first design system, and integrated business tools that would make e-commerce accessible to everyone.",
-    uiDesignComponents: "My design system prioritized simplicity and accessibility, with components that worked seamlessly across all devices. I created an intuitive drag-and-drop interface, mobile-optimized templates, and integrated tools that made complex e-commerce functionality accessible to non-technical users.",
+    uxFlowWireframes: "I designed intuitive user flows that guided users from initial setup to store launch without requiring technical knowledge. My wireframes focused on the drag and drop store builder, mobile first design system, and integrated business tools that would make e-commerce accessible to everyone.",
+    uiDesignComponents: "My design system prioritized simplicity and accessibility, with components that worked seamlessly across all devices. I created an intuitive drag and drop interface, mobile optimized templates, and integrated tools that made complex e-commerce functionality accessible to non-technical users.",
     outcomeResults: "My platform successfully provided an all-in-one, user-friendly e-commerce solution that combined powerful functionality with intuitive design, enabling businesses of all sizes to create professional online stores without technical expertise.",
     whatILearned: "This project taught me the importance of democratizing technology through design. Creating powerful tools that are accessible to non-technical users requires careful attention to user experience and progressive disclosure of complexity."
   }

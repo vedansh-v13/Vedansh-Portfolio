@@ -92,7 +92,7 @@ export const projectsData: Project[] = [
   },
   {
     id: "omnycomm-ecommerce",
-    title: "Omnycomm - Ecommerce",
+    title: "Omnycomm Ecommerce",
     category: "E-commerce Platform",
     description: "I created everything you need to sell online",
     icon: [
