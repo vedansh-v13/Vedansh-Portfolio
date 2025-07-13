@@ -45,7 +45,7 @@ export default function AboutSection() {
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Vedansh
+              Me
             </motion.span>
           </h2>
         </motion.div>
