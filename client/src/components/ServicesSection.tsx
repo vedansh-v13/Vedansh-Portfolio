@@ -2,6 +2,18 @@ import { motion } from "framer-motion";
 import { servicesData } from "../data/servicesData";
 
 export default function ServicesSection() {
+  // Add safety check for servicesData
+  if (!servicesData || servicesData.length === 0) {
+    return (
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Services</h2>
+          <p className="text-gray-400">Loading services...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       id="services"
@@ -42,7 +54,7 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {servicesData[0].icon}
+                {(servicesData && servicesData[0] && servicesData[0].icon) || "🎨"}
               </motion.div>
               <h3 className="text-2xl font-bold text-accent">{servicesData[0].title}</h3>
             </div>
@@ -68,7 +80,7 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {servicesData[1].icon}
+                {(servicesData && servicesData[1] && servicesData[1].icon) || "🎯"}
               </motion.div>
               <h3 className="text-xl font-bold">{servicesData[1].title}</h3>
             </div>
@@ -89,7 +101,7 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {servicesData[2].icon}
+                {(servicesData && servicesData[2] && servicesData[2].icon) || "📱"}
               </motion.div>
               <h3 className="text-lg font-bold mb-3">{servicesData[2].title}</h3>
               <p className="text-gray-400 text-sm">{servicesData[2].description}</p>
@@ -110,7 +122,7 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {servicesData[3].icon}
+                {(servicesData && servicesData[3] && servicesData[3].icon) || "📱"}
               </motion.div>
               <h3 className="text-xl font-bold">{servicesData[3].title}</h3>
             </div>
@@ -131,7 +143,7 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {servicesData[4].icon}
+                {(servicesData && servicesData[4] && servicesData[4].icon) || "👁️"}
               </motion.div>
               <h3 className="text-xl font-bold">{servicesData[4].title}</h3>
             </div>
@@ -152,7 +164,7 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {servicesData[5].icon}
+                {(servicesData && servicesData[5] && servicesData[5].icon) || "🎯"}
               </motion.div>
               <h3 className="text-xl font-bold text-accent">{servicesData[5].title}</h3>
             </div>

@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import logoImage from "@assets/Vedansh commission copy_1751925553130.jpg";
+import logoImage from "@/assets/images/vedansh-profile.jpg";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

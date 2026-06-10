@@ -9,7 +9,6 @@ import AboutSection from "../components/AboutSection";
 import Footer from "../components/Footer";
 
 export default function Home() {
-
   return (
     <motion.div
       initial={{ opacity: 0 }}

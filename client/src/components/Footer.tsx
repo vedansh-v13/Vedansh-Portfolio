@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Linkedin, Instagram, Mail, Phone, MapPin, ArrowUpRight, Download } from "lucide-react";
-import logoImage from "@assets/Vedansh commission copy_1751925553130.jpg";
+import logoImage from "@/assets/images/vedansh-profile.jpg";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -153,6 +153,8 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Featured Work</h4>
             <ul className="space-y-2.5">
               {[
+                { name: "Tata Capital Wealth", url: "/projects/tata-capital-wealth" },
+                { name: "MeeroLink", url: "/projects/meerolink" },
                 { name: "UCaaS [Verizon]", url: "/projects/verizon-uccaas" },
                 { name: "BlueJeans Conference", url: "/projects/bluejeans-verizon" },
                 { name: "Inaam Application", url: "/projects/inaam-application" },

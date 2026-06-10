@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { Book, Sparkles, Coffee, ArrowRight } from "lucide-react";
 import { useRef } from "react";
-import profileImage from "@assets/v1313_1751872364455.jpg";
+import profileImage from "@/assets/images/vedansh-profile.jpg";
 
 export default function AboutSection() {
   const ref = useRef(null);

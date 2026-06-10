@@ -8,6 +8,119 @@ import { cn } from "@/lib/utils";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
 
+function GalleryScreenshotFrame({
+  src,
+  alt,
+  caption,
+  variant = "mobile",
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  variant?: "mobile" | "desktop" | "iphone";
+}) {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = useState(false);
+
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+
+    const checkScrollable = () => {
+      setCanScroll(el.scrollHeight > el.clientHeight + 4);
+    };
+
+    checkScrollable();
+    const img = el.querySelector("img");
+    img?.addEventListener("load", checkScrollable);
+    window.addEventListener("resize", checkScrollable);
+
+    return () => {
+      img?.removeEventListener("load", checkScrollable);
+      window.removeEventListener("resize", checkScrollable);
+    };
+  }, [src]);
+
+  const stopGalleryDrag = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
+  };
+
+  if (variant === "iphone") {
+    return (
+      <div className="relative w-[300px]">
+        <div
+          className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] p-2 shadow-2xl border border-white/10 backdrop-blur-sm h-[650px]"
+        >
+          <div className="bg-black rounded-[2rem] p-1 h-full">
+            <div className="relative bg-white rounded-[1.8rem] overflow-hidden h-full">
+              <img
+                src={src}
+                alt={alt}
+                className="w-full h-full object-cover object-top"
+                draggable={false}
+              />
+            </div>
+          </div>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white rounded-full opacity-60" />
+        </div>
+        {caption && (
+          <p className="text-sm text-gray-400 mt-3 text-center min-h-[2.75rem] line-clamp-2 max-w-[300px]">
+            {caption}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  const isMobile = variant === "mobile";
+  const frameWidth = isMobile ? "w-[280px] md:w-[300px]" : "w-[520px] md:w-[600px]";
+  const viewportHeight = isMobile ? "h-[520px] md:h-[540px]" : "h-[380px] md:h-[420px]";
+
+  return (
+    <div className={cn("relative flex flex-col", frameWidth)}>
+      <div
+        className={cn(
+          "relative bg-gradient-to-b from-gray-800 to-gray-900 shadow-2xl border border-white/10 backdrop-blur-sm",
+          isMobile ? "rounded-2xl p-2" : "rounded-lg p-3"
+        )}
+      >
+        <div className={cn("relative bg-zinc-950 overflow-hidden", isMobile ? "rounded-xl" : "rounded-md", viewportHeight)}>
+          <div
+            ref={viewportRef}
+            className="h-full overflow-y-auto overflow-x-hidden overscroll-y-contain [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.2)_transparent]"
+            onMouseDown={stopGalleryDrag}
+            onTouchStart={stopGalleryDrag}
+          >
+            <div className="min-h-full flex items-center justify-center">
+              <img
+                src={src}
+                alt={alt}
+                className="w-full h-auto block select-none"
+                draggable={false}
+              />
+            </div>
+          </div>
+          {canScroll && (
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent flex items-end justify-center pb-2.5">
+              <span className="text-[10px] uppercase tracking-widest text-white/45 font-medium">
+                Scroll to explore
+              </span>
+            </div>
+          )}
+        </div>
+        {!isMobile && (
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-2 bg-gradient-to-r from-gray-600 to-gray-800 rounded-full" />
+        )}
+      </div>
+      {caption && (
+        <p className="text-sm text-gray-400 mt-3 text-center min-h-[2.75rem] line-clamp-2 px-1">
+          {caption}
+        </p>
+      )}
+    </div>
+  );
+}
+
 // Visual Components for enhanced storytelling
 const ProcessFlow = ({ steps, color = "#3b82f6" }: { 
   steps: { title: string; description: string; icon: LucideIcon }[];
@@ -102,46 +215,6 @@ const MetricsCard = ({
       <h3 className="text-2xl font-bold text-gray-200 mb-1">{value}</h3>
       <p className="text-gray-400 text-sm">{title}</p>
     </motion.div>
-  );
-};
-
-const TechStack = ({ technologies, color = "#3b82f6" }: {
-  technologies: { name: string; category: string; icon?: string }[];
-  color?: string;
-}) => {
-  const categories = Array.from(new Set(technologies.map(t => t.category)));
-  
-  return (
-    <div className="space-y-6">
-      {categories.map((category, catIndex) => (
-        <motion.div
-          key={category}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-        >
-          <h3 className="text-lg font-semibold mb-3 text-gray-200">{category}</h3>
-          <div className="flex flex-wrap gap-3">
-            {technologies
-              .filter(tech => tech.category === category)
-              .map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: (catIndex * 0.1) + (index * 0.05) }}
-                  className="px-4 py-2 rounded-lg border border-white/10 bg-card/5 hover:bg-card/10 hover:border-white/20 transition-all duration-300"
-                  style={{ borderColor: `${color}30` }}
-                >
-                  <span className="text-sm text-gray-300">{tech.name}</span>
-                </motion.div>
-              ))}
-          </div>
-        </motion.div>
-      ))}
-    </div>
   );
 };
 
@@ -1147,7 +1220,7 @@ export default function ProjectDetails() {
                 <p className="text-lg md:text-xl font-medium">{projectDetails.date}</p>
               </div>
               
-              {projectDetails.metrics.map((metric, index) => (
+              {projectDetails.metrics.length > 0 && projectDetails.metrics.map((metric, index) => (
                 <div 
                   key={index} 
                   className="bg-card/20 backdrop-blur-md px-4 md:px-5 py-3 rounded-md border border-white/10"
@@ -1273,7 +1346,7 @@ export default function ProjectDetails() {
                 onTouchEnd={handleTouchEnd}
                 onTouchMove={handleTouchMove}
               >
-                <div className="inline-flex space-x-6">
+                <div className="inline-flex items-stretch space-x-6 pb-2">
                   {mobileScreenshots.map((screenshot, index) => (
                     <motion.div
                       key={index}
@@ -1282,68 +1355,12 @@ export default function ProjectDetails() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex-none"
                     >
-                      {screenshot.type === 'mobile' ? (
-                        // Mobile screenshot - iPhone mockup for UCaaS and BlueJeans, simple for Inaam
-                        projectDetails?.id === 'inaam-application' ? (
-                          <div className="relative">
-                            {/* Simple mobile frame with glassmorphism */}
-                            <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-2 shadow-2xl border border-white/10 backdrop-blur-sm">
-                              <div className="bg-black rounded-md p-1 overflow-hidden">
-                                <img 
-                                  src={screenshot.url} 
-                                  alt={screenshot.alt}
-                                  className="w-[300px] md:w-[350px] h-auto object-cover rounded-sm"
-                                />
-                              </div>
-                            </div>
-                            {screenshot.caption && (
-                              <p className="text-sm text-gray-400 mt-3 text-center">
-                                {screenshot.caption}
-                              </p>
-                            )}
-                          </div>
-                        ) : (
-                          // iPhone mockup with glassmorphism for other projects
-                          <div className="relative">
-                            {/* iPhone frame with glassmorphism */}
-                            <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] p-2 shadow-2xl border border-white/10 backdrop-blur-sm" style={{ width: '300px', height: '650px' }}>
-                              {/* Screen bezel */}
-                              <div className="bg-black rounded-[2rem] p-1 h-full">
-                                {/* Screen */}
-                                <div className="relative bg-white rounded-[1.8rem] overflow-hidden h-full">
-                                  <img 
-                                    src={screenshot.url} 
-                                    alt={screenshot.alt}
-                                    className="w-full h-full object-cover object-top"
-                                  />
-                                </div>
-                              </div>
-                              {/* Home indicator */}
-                              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full opacity-60"></div>
-                            </div>
-                            {/* Caption */}
-                            {screenshot.caption && (
-                              <p className="text-sm text-gray-400 mt-3 text-center max-w-[300px]">
-                                {screenshot.caption}
-                              </p>
-                            )}
-                          </div>
-                        )
-                      ) : (
-                        // Desktop screenshot
-                        <div className="relative">
-                          <img 
-                            src={screenshot.url} 
-                            alt={screenshot.alt}
-                            className="flex-none rounded-lg shadow-lg w-[400px] md:w-[500px]"
-                          />
-                          {screenshot.caption && (
-                            <p className="text-sm text-gray-400 mt-3 text-center">
-                              {screenshot.caption}
-                            </p>
-                          )}
-                        </div>
-                      )}
+                      <GalleryScreenshotFrame
+                        src={screenshot.url}
+                        alt={screenshot.alt}
+                        caption={screenshot.caption}
+                        variant={projectDetails?.id === "verizon-uccaas" ? "iphone" : "mobile"}
+                      />
                     </motion.div>
                   ))}
                 </div>
@@ -1430,7 +1447,7 @@ export default function ProjectDetails() {
                 onTouchEnd={handleDesktopTouchEnd}
                 onTouchMove={handleDesktopTouchMove}
               >
-                <div className="inline-flex space-x-6">
+                <div className="inline-flex items-stretch space-x-6 pb-2">
                   {desktopScreenshots.map((screenshot, index) => (
                     <motion.div
                       key={index}
@@ -1439,31 +1456,12 @@ export default function ProjectDetails() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex-none"
                     >
-                      {/* Desktop screenshot with glassmorphism frame */}
-                      <div className="relative">
-                        {/* Desktop frame */}
-                        <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-3 shadow-2xl border border-white/10 backdrop-blur-sm">
-                          {/* Screen bezel */}
-                          <div className="bg-black rounded-md p-2 overflow-hidden">
-                            {/* Screen */}
-                            <div className="relative bg-white rounded-sm overflow-hidden">
-                              <img 
-                                src={screenshot.url} 
-                                alt={screenshot.alt}
-                                className="w-[500px] md:w-[600px] h-auto object-cover"
-                              />
-                            </div>
-                          </div>
-                          {/* Desktop stand effect */}
-                          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gradient-to-r from-gray-600 to-gray-800 rounded-full"></div>
-                        </div>
-                        {/* Caption */}
-                        {screenshot.caption && (
-                          <p className="text-sm text-gray-400 mt-4 text-center max-w-[500px]">
-                            {screenshot.caption}
-                          </p>
-                        )}
-                      </div>
+                      <GalleryScreenshotFrame
+                        src={screenshot.url}
+                        alt={screenshot.alt}
+                        caption={screenshot.caption}
+                        variant="desktop"
+                      />
                     </motion.div>
                   ))}
                 </div>
@@ -1676,10 +1674,10 @@ export default function ProjectDetails() {
         </div>
       </section>
       
-      {/* Project Timeline & Tech Stack */}
+      {/* Project Timeline */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1691,113 +1689,42 @@ export default function ProjectDetails() {
               <p className="text-gray-300 mb-12 max-w-3xl mx-auto">The journey from concept to completion</p>
             </motion.div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Timeline */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <Timeline 
-                  milestones={[
-                    { 
-                      date: "", 
-                      title: "Discovery & Research", 
-                      description: "User interviews, competitive analysis, and requirement gathering", 
-                      status: "completed" 
-                    },
-                    { 
-                      date: "", 
-                      title: "Design & Prototyping", 
-                      description: "Wireframes, user flows, and interactive prototypes", 
-                      status: "completed" 
-                    },
-                    { 
-                      date: "", 
-                      title: "Development", 
-                      description: "Frontend and backend implementation with regular testing", 
-                      status: "completed" 
-                    },
-                    { 
-                      date: "", 
-                      title: "Testing & Launch", 
-                      description: "Quality assurance, bug fixes, and production deployment", 
-                      status: "completed" 
-                    }
-                  ]}
-                  color="#3b82f6"
-                />
-              </motion.div>
-              
-              {/* Tech Stack */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <h3 className="text-2xl md:text-3xl artistic-text font-extralight mb-8 text-gray-200">Technology Stack</h3>
-                <TechStack 
-                  technologies={(() => {
-                    // Contextual tech stack based on project type
-                    const baseTech = [
-                      { name: "React", category: "Frontend" },
-                      { name: "TypeScript", category: "Frontend" },
-                      { name: "Tailwind CSS", category: "Frontend" },
-                      { name: "Framer Motion", category: "Frontend" }
-                    ];
-                    
-                    const backendTech = [
-                      { name: "Node.js", category: "Backend" },
-                      { name: "Express", category: "Backend" }
-                    ];
-                    
-                    const databaseTech = [
-                      { name: "PostgreSQL", category: "Database" },
-                      { name: "Drizzle ORM", category: "Database" }
-                    ];
-                    
-                    const toolsTech = [
-                      { name: "Vite", category: "Build Tools" },
-                      { name: "Netlify", category: "Deployment" }
-                    ];
-                    
-                    // Add project-specific technologies
-                    let projectSpecificTech: { name: string; category: string }[] = [];
-                    
-                    if (projectId?.includes('replyrocket')) {
-                      projectSpecificTech = [
-                        { name: "OpenAI API", category: "AI/ML" },
-                        { name: "LangChain", category: "AI/ML" },
-                        { name: "WebSocket", category: "Real-time" }
-                      ];
-                    } else if (projectId?.includes('omnycomm')) {
-                      projectSpecificTech = [
-                        { name: "Shopify API", category: "E-commerce" },
-                        { name: "Google Analytics", category: "Analytics" },
-                        { name: "Chart.js", category: "Data Visualization" }
-                      ];
-                    } else if (projectId?.includes('bluejeans')) {
-                      projectSpecificTech = [
-                        { name: "WebRTC", category: "Communication" },
-                        { name: "Socket.io", category: "Real-time" },
-                        { name: "Media APIs", category: "Communication" }
-                      ];
-                    } else if (projectId?.includes('inaam')) {
-                      projectSpecificTech = [
-                        { name: "React Native", category: "Mobile" },
-                        { name: "Firebase", category: "Backend" },
-                        { name: "Push Notifications", category: "Mobile" }
-                      ];
-                    }
-                    
-                    return [...baseTech, ...backendTech, ...databaseTech, ...toolsTech, ...projectSpecificTech];
-                  })()}
-                  color="#3b82f6"
-                />
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Timeline 
+                milestones={[
+                  { 
+                    date: "", 
+                    title: "Discovery & Research", 
+                    description: "User interviews, competitive analysis, and requirement gathering", 
+                    status: "completed" 
+                  },
+                  { 
+                    date: "", 
+                    title: "Design & Prototyping", 
+                    description: "Wireframes, user flows, and interactive prototypes", 
+                    status: "completed" 
+                  },
+                  { 
+                    date: "", 
+                    title: "Development", 
+                    description: "Frontend and backend implementation with regular testing", 
+                    status: "completed" 
+                  },
+                  { 
+                    date: "", 
+                    title: "Testing & Launch", 
+                    description: "Quality assurance, bug fixes, and production deployment", 
+                    status: "completed" 
+                  }
+                ]}
+                color="#3b82f6"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
