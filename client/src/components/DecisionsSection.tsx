@@ -126,7 +126,7 @@ export default function DecisionsSection() {
             </p>
             <div className="mt-auto pt-4">
               <a 
-                href="#" 
+                href="https://servicedesignindia.com/" 
                 className="text-sm text-gray-500 hover:text-gray-300 underline underline-offset-4 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"

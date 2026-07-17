@@ -77,10 +77,12 @@ export default function Navbar() {
                   <div className="absolute -bottom-1 left-0 w-0 group-hover:w-full h-px bg-accent transition-all duration-300"></div>
                 </a>
                 <a
-                  href="#services"
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium relative group"
                 >
-                  Services
+                  Resume
                   <div className="absolute -bottom-1 left-0 w-0 group-hover:w-full h-px bg-accent transition-all duration-300"></div>
                 </a>
                 <a
@@ -159,11 +161,13 @@ export default function Navbar() {
                     Projects
                   </a>
                   <a
-                    href="#services"
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-white py-2 hover:text-accent transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    Services
+                    Resume
                   </a>
                   <a
                     href="#about"
