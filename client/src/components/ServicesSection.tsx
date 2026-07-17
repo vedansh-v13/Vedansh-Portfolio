@@ -1,19 +1,7 @@
 import { motion } from "framer-motion";
-import { servicesData } from "../data/servicesData";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ServicesSection() {
-  // Add safety check for servicesData
-  if (!servicesData || servicesData.length === 0) {
-    return (
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Services</h2>
-          <p className="text-gray-400">Loading services...</p>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section
       id="services"
@@ -28,154 +16,81 @@ export default function ServicesSection() {
       >
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-6xl artistic-text font-extralight mb-6 leading-tight text-gray-200">
-            My Design Expertise
+            How I Work
           </h2>
-          <p className="text-gray-300 artistic-text font-light text-lg">
-            That drives digital transformation
-          </p>
         </div>
 
-
-
         {/* Bento Grid Services Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-12 auto-rows-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           
-          {/* UX/UI Design - Large featured card */}
+          {/* Card 1 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-2 lg:col-span-3 bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 rounded-xl p-8 hover:from-accent/15 hover:to-accent/10 transition-all duration-300"
+            className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 pt-16 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <motion.div 
-                className="w-12 h-12 bg-accent/30 rounded-xl flex items-center justify-center"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {(servicesData && servicesData[0] && servicesData[0].icon) || "🎨"}
-              </motion.div>
-              <h3 className="text-2xl font-bold text-accent">{servicesData[0].title}</h3>
-            </div>
-            <p className="text-gray-300 text-lg leading-relaxed">{servicesData[0].description}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">User Research</span>
-              <span className="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Wireframing</span>
-              <span className="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Prototyping</span>
+            <span className="text-5xl font-bold text-[#e5313a]/20 absolute top-4 left-6">01</span>
+            <div>
+              <h3 className="text-xl font-bold mb-4 text-white">Redistribute the work, don't just remove it</h3>
+              <p className="text-gray-400 leading-relaxed">The best fix for a slow process usually isn't fewer steps. It's asking who is actually best positioned to do the work.</p>
             </div>
           </motion.div>
 
-          {/* Creative Direction - Medium card */}
+          {/* Card 2 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:col-span-2 lg:col-span-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300"
+            className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 pt-16 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <motion.div 
-                className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {(servicesData && servicesData[1] && servicesData[1].icon) || "🎯"}
-              </motion.div>
-              <h3 className="text-xl font-bold">{servicesData[1].title}</h3>
+            <span className="text-5xl font-bold text-[#e5313a]/20 absolute top-4 left-6">02</span>
+            <div>
+              <h3 className="text-xl font-bold mb-4 text-white">Sort by urgency, not by feature</h3>
+              <p className="text-gray-400 leading-relaxed">When there is too much information, organizing it by what needs attention first beats organizing it by category.</p>
             </div>
-            <p className="text-gray-400">{servicesData[1].description}</p>
           </motion.div>
 
-          {/* Mobile App Design - Small tall card */}
+          {/* Card 3 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-xl p-6 hover:from-white/15 hover:to-white/10 transition-all duration-300"
+            className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 pt-16 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between"
           >
-            <div className="flex flex-col items-center text-center">
-              <motion.div 
-                className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {(servicesData && servicesData[2] && servicesData[2].icon) || "📱"}
-              </motion.div>
-              <h3 className="text-lg font-bold mb-3">{servicesData[2].title}</h3>
-              <p className="text-gray-400 text-sm">{servicesData[2].description}</p>
+            <span className="text-5xl font-bold text-[#e5313a]/20 absolute top-4 left-6">03</span>
+            <div>
+              <h3 className="text-xl font-bold mb-4 text-white">Familiar beats novel when trust is on the line</h3>
+              <p className="text-gray-400 leading-relaxed">The newest technology isn't always the right call. Sometimes the more trustworthy choice is the boring one.</p>
             </div>
           </motion.div>
-
-          {/* Enterprise Solutions - Medium horizontal card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="md:col-span-2 lg:col-span-2 bg-gradient-to-r from-white/10 to-white/5 border border-white/10 rounded-xl p-6 hover:from-white/15 hover:to-white/10 transition-all duration-300"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <motion.div 
-                className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {(servicesData && servicesData[3] && servicesData[3].icon) || "📱"}
-              </motion.div>
-              <h3 className="text-xl font-bold">{servicesData[3].title}</h3>
-            </div>
-            <p className="text-gray-400">{servicesData[3].description}</p>
-          </motion.div>
-
-          {/* User Research - Square card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="md:col-span-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <motion.div 
-                className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {(servicesData && servicesData[4] && servicesData[4].icon) || "👁️"}
-              </motion.div>
-              <h3 className="text-xl font-bold">{servicesData[4].title}</h3>
-            </div>
-            <p className="text-gray-400">{servicesData[4].description}</p>
-          </motion.div>
-
-          {/* Design Systems - Wide card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="md:col-span-4 lg:col-span-2 bg-gradient-to-r from-accent/10 to-white/5 border border-accent/20 rounded-xl p-6 hover:from-accent/15 hover:to-white/10 transition-all duration-300"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <motion.div 
-                className="w-10 h-10 bg-accent/30 rounded-lg flex items-center justify-center"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {(servicesData && servicesData[5] && servicesData[5].icon) || "🎯"}
-              </motion.div>
-              <h3 className="text-xl font-bold text-accent">{servicesData[5].title}</h3>
-            </div>
-            <p className="text-gray-300">{servicesData[5].description}</p>
-            <div className="mt-4 flex gap-2">
-              <span className="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Components</span>
-              <span className="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Guidelines</span>
-            </div>
-          </motion.div>
-
         </div>
+
+        {/* Flat row for Published article */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-t border-white/10 pt-8"
+        >
+          <div className="max-w-3xl">
+            <h3 className="text-lg font-bold mb-2 text-gray-300">Published: "The Invisible Layer"</h3>
+            <p className="text-gray-500 text-sm leading-relaxed">I co-wrote a piece for Service Design Drinks India Magazine on why Indian digital products succeed by designing around broken systems, not despite them.</p>
+          </div>
+          <a 
+            href="#" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-accent hover:text-white transition-colors font-medium text-sm whitespace-nowrap"
+          >
+            Read Article
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </motion.div>
       </motion.div>
     </section>
   );

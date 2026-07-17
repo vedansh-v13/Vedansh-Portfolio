@@ -1,0 +1,7 @@
+Image name: captions
+
+1.png: Relationship Managers handle the paperwork before investors begin.
+
+2.png: Investors verify their details instead of entering everything again.
+
+5.png: Only identity verification, consent, and signatures require investor action.

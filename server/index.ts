@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 
   // Use environment variable for port, fallback to 5000 for Railway/cloud deployment
   const port = process.env.PORT ? parseInt(process.env.PORT) : 5000;
-  const host = process.env.NODE_ENV === "development" ? "localhost" : "0.0.0.0";
+  const host = "0.0.0.0";
   
   server.listen(port, host, () => {
     log(`serving on http://${host}:${port}`);

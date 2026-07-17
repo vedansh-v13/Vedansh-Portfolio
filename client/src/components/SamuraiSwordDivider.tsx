@@ -6,7 +6,7 @@ export default function SamuraiSwordDivider() {
   const isInView = useInView(ref, { once: true, margin: "-20%" });
 
   return (
-    <section ref={ref} className="py-20 relative overflow-hidden">
+    <section ref={ref} className="py-6 relative overflow-hidden">
       <div className="container mx-auto px-6 relative">
         {/* Clean Cutting Animation */}
         <div className="relative h-24 flex items-center justify-center">

@@ -57,7 +57,7 @@ export default function Navbar() {
                   Vedansh
                 </span>
                 <span className="text-gray-400 text-xs font-medium -mt-1 hidden sm:block">
-                  UX Designer
+                  Product Designer
                 </span>
               </div>
             </div>

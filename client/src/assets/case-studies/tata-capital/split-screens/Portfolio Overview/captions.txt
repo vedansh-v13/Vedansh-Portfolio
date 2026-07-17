@@ -1,0 +1,11 @@
+Image name: Caption
+
+1.png: The dashboard highlights what needs attention before anything else.
+
+2.png: Your portfolio stays front and center, with research tools always within reach.
+
+3.png: For first-time investors, the experience shifts from portfolio management to guided fund discovery.
+
+4.png: Performance is explained with context, not just numbers.
+
+5.png: As portfolios grow, insights replace long fund lists to make decisions easier.

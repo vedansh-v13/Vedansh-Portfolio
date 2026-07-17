@@ -1,0 +1,9 @@
+Image name: Caption
+
+6.png: A clear step-by-step journey keeps users oriented from start to finish.
+
+8.png: Related information is grouped together to make KYC feel less overwhelming.
+
+10.png: Users can go back and review their details without starting over.
+
+13.png: Returning users pick up exactly where they left off.
