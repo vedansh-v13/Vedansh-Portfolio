@@ -89,7 +89,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 1.0, duration: 0.8 }}
-            className="text-center bg-gradient-to-r from-accent/10 to-white/5 border border-accent/20 rounded-2xl p-12 mb-20"
+            className="text-center bg-gradient-to-r from-accent/10 to-white/5 border border-accent/20 rounded-2xl p-6 sm:p-8 md:p-12 mb-20"
           >
             <motion.div
               animate={{ 
@@ -105,10 +105,10 @@ export default function AboutSection() {
             >
               <Coffee className="w-12 h-12 text-accent" />
             </motion.div>
-            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4 px-4 leading-tight">
+            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4 leading-tight">
               Working on something that needs this?
             </h3>
-            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto px-4 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               I'm looking for new roles. If the problem involves people trying to trust a complicated system, I'd like to hear about it.
             </p>
             <motion.a

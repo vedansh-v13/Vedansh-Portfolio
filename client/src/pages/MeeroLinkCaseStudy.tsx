@@ -81,7 +81,7 @@ export default function MeeroLinkCaseStudy() {
       </Helmet>
 
       {/* Hero section */}
-      <section className="relative w-full min-h-[600px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-background pt-32 pb-24">
+      <section className="relative w-full min-h-[450px] sm:min-h-[600px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-background pt-20 sm:pt-32 pb-16 sm:pb-24">
         <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY, opacity }}>
           <div className="absolute inset-0 grid-lines opacity-10"></div>
           <AnimatedGrid mouseX={mousePosition.x} mouseY={mousePosition.y} />
@@ -245,8 +245,8 @@ export default function MeeroLinkCaseStudy() {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
-              <Quote className="absolute -top-10 -left-10 w-24 h-24 text-[#16a34a]/10" />
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative overflow-hidden sm:overflow-visible rounded-3xl p-6 sm:p-0">
+              <Quote className="absolute -top-4 sm:-top-10 -left-4 sm:-left-10 w-16 sm:w-24 h-16 sm:h-24 text-[#16a34a]/10" />
               <h3 className="text-sm font-semibold uppercase tracking-widest text-[#16a34a] mb-6">The Brief</h3>
               <p className="text-2xl md:text-3xl text-gray-200 font-light leading-relaxed">
                 Design intuitive, efficient experiences for both farmers and operations teams, enabling better decision-making, streamlined workflows, and improved agricultural outcomes — across two completely different surfaces.
@@ -285,7 +285,7 @@ export default function MeeroLinkCaseStudy() {
             </div>
 
             {/* Design Decisions Callout Blocks */}
-            <div className="space-y-24 pt-16 border-t border-white/5">
+            <div className="space-y-24 pt-16 border-t border-white/5 overflow-hidden">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
@@ -370,7 +370,7 @@ export default function MeeroLinkCaseStudy() {
             </div>
 
             {/* Design Decisions Callout Blocks */}
-            <div className="space-y-24 pt-16 border-t border-white/5">
+            <div className="space-y-24 pt-16 border-t border-white/5 overflow-hidden">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
@@ -445,7 +445,7 @@ export default function MeeroLinkCaseStudy() {
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="-mx-6 md:mx-0">
             <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar pt-4 px-4 md:px-0 scroll-pl-4 md:scroll-pl-0" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
               {[ds888, ds889, ds890, ds891, ds892].map((src, i) => (
-                <div key={i} className="flex-none w-[280px] md:w-[400px] snap-start transition-transform hover:scale-[1.02] duration-300">
+                <div key={i} className="flex-none w-[240px] sm:w-[280px] md:w-[400px] snap-start transition-transform hover:scale-[1.02] duration-300">
                   <img src={src} alt={`Design System Component ${i + 1}`} className="w-full h-auto object-contain rounded-xl border border-white/10 shadow-2xl bg-black/40" />
                 </div>
               ))}

@@ -69,7 +69,7 @@ export default function VerizonUCaaSCaseStudy() {
       </Helmet>
 
       {/* Hero section */}
-      <section className="relative w-full min-h-[600px] overflow-hidden bg-gradient-to-br from-[#cc0000]/10 via-background to-background pt-32 pb-24">
+      <section className="relative w-full min-h-[450px] sm:min-h-[600px] overflow-hidden bg-gradient-to-br from-[#cc0000]/10 via-background to-background pt-20 sm:pt-32 pb-16 sm:pb-24">
         <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY, opacity }}>
           <div className="absolute inset-0 grid-lines opacity-10"></div>
           <AnimatedGrid mouseX={mousePosition.x} mouseY={mousePosition.y} />
@@ -251,8 +251,8 @@ export default function VerizonUCaaSCaseStudy() {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
-              <Quote className="absolute -top-10 -left-10 w-24 h-24 text-[#e5313a]/10" />
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative overflow-hidden sm:overflow-visible rounded-3xl p-6 sm:p-0">
+              <Quote className="absolute -top-4 sm:-top-10 -left-4 sm:-left-10 w-16 sm:w-24 h-16 sm:h-24 text-[#e5313a]/10" />
               <h3 className="text-sm font-semibold uppercase tracking-widest text-[#e5313a] mb-6">The Brief</h3>
               <p className="text-2xl md:text-3xl text-gray-200 font-light leading-relaxed">
                 Redesign enterprise communication experiences across three core product modules. Synthesise 60+ hours of user research into interaction improvements that hold across desktop, tablet, iOS, and Android. Contribute to a shared design system that keeps the platform coherent as it grows.
@@ -299,7 +299,7 @@ export default function VerizonUCaaSCaseStudy() {
             </div>
 
             {/* Design Decisions Callout Blocks */}
-            <div className="space-y-24 pt-16 border-t border-white/5">
+            <div className="space-y-24 pt-16 border-t border-white/5 overflow-hidden">
               <div className="text-center mb-16">
                 <h3 className="text-3xl font-bold text-white">What the Work Actually Looked Like</h3>
               </div>

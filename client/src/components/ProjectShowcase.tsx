@@ -74,7 +74,7 @@ export default function ProjectShowcase() {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-8 relative flex-grow flex flex-col">
+                <div className="p-5 sm:p-6 md:p-8 flex-grow flex flex-col relative">
                   {!isComingSoon && (
                     <ArrowRight className="absolute top-8 right-8 w-5 h-5 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   )}

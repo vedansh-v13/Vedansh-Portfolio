@@ -203,7 +203,7 @@ export default function TataCapitalWealthCaseStudy() {
       </Helmet>
 
       {/* Hero section */}
-      <section className="relative w-full min-h-[600px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-background pt-32 pb-24">
+      <section className="relative w-full min-h-[450px] sm:min-h-[600px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-background pt-20 sm:pt-32 pb-16 sm:pb-24">
         <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY, opacity }}>
           <div className="absolute inset-0 grid-lines opacity-10"></div>
           <AnimatedGrid mouseX={mousePosition.x} mouseY={mousePosition.y} />
@@ -241,7 +241,7 @@ export default function TataCapitalWealthCaseStudy() {
             {/* Right Column: Content & Metrics */}
             <div className="lg:col-span-7 space-y-12">
               <div>
-                <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-4xl md:text-5xl lg:text-7xl artistic-text font-extralight mb-4 text-white leading-tight">
+                <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-4xl md:text-5xl lg:text-6xl artistic-text font-extralight mb-4 text-white leading-tight">
                   Tata Capital Wealth
                 </motion.h1>
                 <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-xl md:text-2xl text-gray-300 mb-4 artistic-text font-light">
@@ -380,8 +380,8 @@ export default function TataCapitalWealthCaseStudy() {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
-              <Quote className="absolute -top-10 -left-10 w-24 h-24 text-accent/10" />
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative overflow-hidden sm:overflow-visible rounded-3xl p-6 sm:p-0">
+              <Quote className="absolute -top-4 sm:-top-10 -left-4 sm:-left-10 w-16 sm:w-24 h-16 sm:h-24 text-accent/10" />
               <h3 className="text-sm font-semibold uppercase tracking-widest text-accent mb-6">The Challenge</h3>
               <p className="text-2xl md:text-3xl text-gray-200 font-light leading-relaxed">
                 Design a wealth management experience that helps high-net-worth investors move confidently through every stage, from onboarding to long-term portfolio management, without stripping out the information depth or cutting around regulatory requirements.
@@ -435,7 +435,7 @@ export default function TataCapitalWealthCaseStudy() {
 
               <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center py-12 border-y border-white/5">
                 <Quote className="w-8 h-8 text-accent/50 mx-auto mb-6" />
-                <p className="text-3xl text-white font-medium italic mb-8">"The amount of work didn't change. Who performed it did."</p>
+                <p className="text-xl sm:text-2xl md:text-3xl text-white font-medium italic mb-8">"The amount of work didn't change. Who performed it did."</p>
                 <p className="text-gray-400 uppercase tracking-widest text-sm font-semibold">The improvement wasn't fewer steps. It was handing the steps to the right person.</p>
               </motion.div>
             </div>

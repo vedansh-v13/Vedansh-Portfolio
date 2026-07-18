@@ -27,7 +27,7 @@ export default function DecisionsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
+            className="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-bold text-white mb-4">
               Redistributing the work
@@ -35,11 +35,11 @@ export default function DecisionsSection() {
             <p className="text-gray-400 text-base leading-relaxed mb-8">
               Investors were filling in the same forms twice. I let the Relationship Manager prepare the application first, so investors only had to review and sign.
             </p>
-            <div className="mt-auto pt-4 border-t border-white/10 font-medium">
+            <div className="mt-auto pt-4 border-t border-white/10 font-medium flex flex-wrap items-center gap-1 sm:gap-0">
               <span className="text-white">42%</span>
               <span className="text-white/70 mx-2">→</span>
               <span className="text-[#16a34a]">22%</span>
-              <span className="text-gray-500 text-xs ml-3 font-normal tracking-wide uppercase">Form abandonment</span>
+              <span className="text-gray-500 text-xs ml-0 sm:ml-3 font-normal tracking-wide uppercase">Form abandonment</span>
             </div>
           </motion.div>
 
@@ -49,7 +49,7 @@ export default function DecisionsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
+            className="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-bold text-white mb-4">
               One decision, not one button
@@ -57,11 +57,11 @@ export default function DecisionsSection() {
             <p className="text-gray-400 text-base leading-relaxed mb-8">
               Most platforms show a single "Invest Now" CTA. I split it into One-Time and SIP, because by that screen the real decision left was how, not whether.
             </p>
-            <div className="mt-auto pt-4 border-t border-white/10 font-medium">
+            <div className="mt-auto pt-4 border-t border-white/10 font-medium flex flex-wrap items-center gap-1 sm:gap-0">
               <span className="text-white">4.5 min</span>
               <span className="text-white/70 mx-2">→</span>
               <span className="text-[#16a34a]">2.5 min</span>
-              <span className="text-gray-500 text-xs ml-3 font-normal tracking-wide uppercase">Time to create a SIP</span>
+              <span className="text-gray-500 text-xs ml-0 sm:ml-3 font-normal tracking-wide uppercase">Time to create a SIP</span>
             </div>
           </motion.div>
         </div>
@@ -96,7 +96,7 @@ export default function DecisionsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
+            className="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-bold text-white mb-4">
               A farm health card, not a dashboard
@@ -104,9 +104,9 @@ export default function DecisionsSection() {
             <p className="text-gray-400 text-base leading-relaxed mb-8">
               The home screen answered "is my farm okay" before asking farmers to read a single chart.
             </p>
-            <div className="mt-auto pt-4 border-t border-white/10 font-medium">
+            <div className="mt-auto pt-4 border-t border-white/10 font-medium flex flex-wrap items-center gap-1 sm:gap-0">
               <span className="text-[#16a34a]">94%</span>
-              <span className="text-gray-500 text-xs ml-3 font-normal tracking-wide uppercase">Dashboard adoption</span>
+              <span className="text-gray-500 text-xs ml-0 sm:ml-3 font-normal tracking-wide uppercase">Dashboard adoption</span>
             </div>
           </motion.div>
 
@@ -116,7 +116,7 @@ export default function DecisionsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
+            className="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-bold text-white mb-4">
               A belief I keep testing

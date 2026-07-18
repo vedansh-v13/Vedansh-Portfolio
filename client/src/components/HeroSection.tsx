@@ -15,7 +15,7 @@ export default function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <section ref={ref} className="relative pt-32 pb-24 overflow-hidden">
+    <section ref={ref} className="relative pt-20 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
       <HeroBackground />
 
 
@@ -30,7 +30,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl artistic-text font-extralight mb-8 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl artistic-text font-extralight mb-8 leading-tight"
           >
             <motion.span
               initial={{ opacity: 0, x: -20 }}
@@ -52,7 +52,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="block text-2xl md:text-3xl text-gray-400 font-light mt-4"
+              className="block text-xl sm:text-2xl md:text-3xl text-gray-400 font-light mt-4"
             >
               Designing products that reduce uncertainty.
             </motion.span>
