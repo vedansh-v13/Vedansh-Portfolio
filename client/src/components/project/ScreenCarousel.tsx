@@ -82,6 +82,15 @@ export function ScreenCarousel({ screens, caption }: ScreenCarouselProps) {
         </p>
       )}
 
+      {/* Swipe Affordance (Mobile Only) */}
+      {screens.length > 1 && (
+        <div className="md:hidden flex justify-center mt-4">
+          <div className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400 font-medium tracking-wide uppercase flex items-center gap-2">
+            <span>&larr;</span> Swipe <span>&rarr;</span>
+          </div>
+        </div>
+      )}
+
       <Lightbox
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}

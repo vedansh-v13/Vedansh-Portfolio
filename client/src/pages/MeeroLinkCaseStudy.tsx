@@ -88,7 +88,7 @@ export default function MeeroLinkCaseStudy() {
         </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 sm:mb-12 md:mb-16">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
               <Button asChild variant="outline" size="sm" className="group relative overflow-hidden bg-black/50 hover:bg-black/70 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300">
                 <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
@@ -181,13 +181,13 @@ export default function MeeroLinkCaseStudy() {
       </section>
 
       {/* Overview */}
-      <section className="py-24 bg-card/5">
+      <section className="py-12 md:py-24 bg-card/5">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16 max-w-4xl">
             <h2 className="text-3xl md:text-5xl font-light text-white leading-tight mb-12">
               MeeroLink started as an internal operations tool.
             </h2>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 The brief was narrow: give agronomists somewhere to look that wasn't a shared spreadsheet. What it turned into was more interesting: a platform that had to coordinate agronomists, field agents, and farmers, three groups with very different relationships to technology and data.
               </p>
@@ -215,7 +215,7 @@ export default function MeeroLinkCaseStudy() {
       </section>
 
       {/* Systems Framing Bridge Line */}
-      <section className="relative py-24 border-y border-white/5 bg-black/10 overflow-hidden">
+      <section className="relative py-12 md:py-24 border-y border-white/5 bg-black/10 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#16a34a]/10 via-transparent to-transparent pointer-events-none" />
         <div className="container mx-auto px-6 max-w-4xl text-center relative z-10">
           <span className="block text-[120px] font-serif text-[#16a34a]/10 leading-none h-16 absolute -top-10 left-1/2 -translate-x-1/2">"</span>
@@ -231,7 +231,7 @@ export default function MeeroLinkCaseStudy() {
       </section>
 
       {/* My Role + The Brief */}
-      <section className="py-24 bg-card/5 border-b border-white/5">
+      <section className="py-12 md:py-24 bg-card/5 border-b border-white/5">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10">
@@ -257,7 +257,7 @@ export default function MeeroLinkCaseStudy() {
       </section>
 
       {/* App Section */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16">
             <div className="flex items-center gap-4 mb-4">
@@ -265,7 +265,7 @@ export default function MeeroLinkCaseStudy() {
               <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Farmer App & MeeTag</h2>
             </div>
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">The App Had to Earn Its Place</h3>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 Low-end Android phones, patchy connectivity, multiple spoken languages, and a preference for face-to-face over software. These weren't edge cases to design around — they were the primary context.
               </p>
@@ -275,7 +275,7 @@ export default function MeeroLinkCaseStudy() {
             </div>
           </motion.div>
 
-          <div className="space-y-24">
+          <div className="space-y-12 md:space-y-24">
             <div className="space-y-12">
               <h4 className="text-xs uppercase tracking-widest text-gray-500 font-bold mb-4">Farmer App & MeeTag Workflow Gallery</h4>
               <div className="-mx-6 md:mx-0 space-y-12">
@@ -285,7 +285,7 @@ export default function MeeroLinkCaseStudy() {
             </div>
 
             {/* Design Decisions Callout Blocks */}
-            <div className="space-y-24 pt-16 border-t border-white/5 overflow-hidden">
+            <div className="space-y-12 md:space-y-24 pt-16 border-t border-white/5 overflow-hidden">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
@@ -343,7 +343,7 @@ export default function MeeroLinkCaseStudy() {
       </section>
 
       {/* Dashboard Section */}
-      <section className="py-24 bg-card/5 overflow-hidden">
+      <section className="py-12 md:py-24 bg-card/5 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16">
             <div className="flex items-center gap-4 mb-4">
@@ -351,7 +351,7 @@ export default function MeeroLinkCaseStudy() {
               <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Operational Dashboard</h2>
             </div>
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">From Scattered to Seen</h3>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 Before MeeroLink, an agronomist managing 200 farms operated like a dispatcher without a board: calls coming in, reports filed in different folders, no way to see everything at once. If something went wrong on a farm, they'd find out from a phone call, not a system.
               </p>
@@ -361,7 +361,7 @@ export default function MeeroLinkCaseStudy() {
             </div>
           </motion.div>
 
-          <div className="space-y-24">
+          <div className="space-y-12 md:space-y-24">
             <div className="space-y-12">
               <h4 className="text-xs uppercase tracking-widest text-gray-500 font-bold mb-4">Operational Dashboard Gallery</h4>
               <div className="-mx-6 md:mx-0 space-y-12">
@@ -370,7 +370,7 @@ export default function MeeroLinkCaseStudy() {
             </div>
 
             {/* Design Decisions Callout Blocks */}
-            <div className="space-y-24 pt-16 border-t border-white/5 overflow-hidden">
+            <div className="space-y-12 md:space-y-24 pt-16 border-t border-white/5 overflow-hidden">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
@@ -428,11 +428,11 @@ export default function MeeroLinkCaseStudy() {
       </section>
 
       {/* Design System */}
-      <section className="py-24 bg-card/5">
+      <section className="py-12 md:py-24 bg-card/5">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16 space-y-6">
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">A Shared Product Language</h3>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 The farmer app and the operational dashboard share a design language, but they don't share a grid, a density expectation, or an interaction pattern. The app runs on portrait-mode Android with large touch targets and high-contrast status colors. The dashboard runs full-width on web with dense data tables and a sidebar navigation.
               </p>
@@ -457,7 +457,7 @@ export default function MeeroLinkCaseStudy() {
       {/* Reflection */}
       <section className="py-32">
         <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 text-lg text-gray-300 leading-relaxed">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 text-base sm:text-lg text-gray-300 leading-relaxed">
             <h3 className="text-3xl font-bold text-white mb-8">Reflection</h3>
             <p>
               The hardest constraint on this project wasn't the technology or the field conditions. It was that the people using the farmer app and the people using the operational dashboard had almost no shared mental model. Designing for both in the same product cycle meant constant calibration — deciding which user's clarity to optimize for when both couldn't be satisfied simultaneously.

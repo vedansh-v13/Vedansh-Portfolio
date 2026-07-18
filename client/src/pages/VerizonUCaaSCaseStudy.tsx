@@ -76,7 +76,7 @@ export default function VerizonUCaaSCaseStudy() {
         </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 sm:mb-12 md:mb-16">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
               <Button asChild variant="outline" size="sm" className="group relative overflow-hidden bg-black/50 hover:bg-black/70 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300">
                 <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
@@ -167,13 +167,13 @@ export default function VerizonUCaaSCaseStudy() {
       </section>
 
       {/* Overview */}
-      <section className="py-24 bg-card/5">
+      <section className="py-12 md:py-24 bg-card/5">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16 max-w-4xl">
             <h2 className="text-3xl md:text-5xl font-light text-white leading-tight mb-12">
               Verizon UCaaS was a live product. Joining mid-cycle meant inheriting existing architecture and scaling it without disruption.
             </h2>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 As remote work drove UC&C revenue past $47.2B, BlueJeans UCaaS had to integrate seamlessly into an already active environment.
               </p>
@@ -213,7 +213,7 @@ export default function VerizonUCaaSCaseStudy() {
       </section>
 
       {/* Systems Framing Bridge Line */}
-      <section className="relative py-24 border-y border-white/5 bg-black/10 overflow-hidden">
+      <section className="relative py-12 md:py-24 border-y border-white/5 bg-black/10 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#cc0000]/10 via-transparent to-transparent pointer-events-none" />
         <div className="container mx-auto px-6 max-w-4xl text-center relative z-10">
           <span className="block text-[120px] font-serif text-[#e5313a]/10 leading-none h-16 absolute -top-10 left-1/2 -translate-x-1/2">"</span>
@@ -229,7 +229,7 @@ export default function VerizonUCaaSCaseStudy() {
       </section>
 
       {/* My Role + The Brief */}
-      <section className="py-24 bg-card/5 border-b border-white/5">
+      <section className="py-12 md:py-24 bg-card/5 border-b border-white/5">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10">
@@ -263,14 +263,14 @@ export default function VerizonUCaaSCaseStudy() {
       </section>
 
       {/* Messaging Section */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16">
             <div className="flex items-center gap-4 mb-4">
               <span className="text-sm font-bold bg-[#e5313a]/20 text-[#e5313a] py-1 px-3 rounded-full">Messaging</span>
               <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">The Surface in the Middle</h2>
             </div>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 Messaging feels like a solved problem: until it doesn't match the rest of the app. Thread models, presence states, and cross-platform notification behaviors are neither trivial nor isolated.
               </p>
@@ -283,7 +283,7 @@ export default function VerizonUCaaSCaseStudy() {
             </div>
           </motion.div>
 
-          <div className="space-y-24">
+          <div className="space-y-12 md:space-y-24">
             <div className="space-y-12">
               <h4 className="text-xs uppercase tracking-widest text-gray-500 font-bold mb-4">Web Experience</h4>
               <div className="-mx-6 md:mx-0 space-y-12">
@@ -299,7 +299,7 @@ export default function VerizonUCaaSCaseStudy() {
             </div>
 
             {/* Design Decisions Callout Blocks */}
-            <div className="space-y-24 pt-16 border-t border-white/5 overflow-hidden">
+            <div className="space-y-12 md:space-y-24 pt-16 border-t border-white/5 overflow-hidden">
               <div className="text-center mb-16">
                 <h3 className="text-3xl font-bold text-white">What the Work Actually Looked Like</h3>
               </div>
@@ -385,7 +385,7 @@ export default function VerizonUCaaSCaseStudy() {
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl space-y-6">
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Working Across the Whole</h3>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 You don't stay in your lane on a platform. Calling patterns dictated how threads surfaced. Contacts required in-message card models. A shared navigation bound it all together.
               </p>
@@ -403,7 +403,7 @@ export default function VerizonUCaaSCaseStudy() {
       {/* Reflection */}
       <section className="py-32">
         <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 text-lg text-gray-300 leading-relaxed">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 text-base sm:text-lg text-gray-300 leading-relaxed">
             <h3 className="text-3xl font-bold text-white mb-8">Reflection</h3>
             <p>
               The research foundation was rock solid. With 60+ interviews across eight personas, the challenge shifted from discovery to translation. We had to convert raw findings into production-ready interactions across four platforms without breaking existing paradigms.

@@ -75,17 +75,19 @@ export function AnimatedExperienceMap() {
       </div>
 
       {/* Right side: Description display */}
-      <div className="md:sticky top-1/3 flex items-center min-h-[160px] bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm shadow-xl">
+      <div className="md:sticky top-1/3 flex items-center min-h-[120px] md:min-h-[160px] bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-xl relative overflow-hidden">
         <div className="relative w-full">
           {stages.map((stage, i) => (
             <motion.div
               key={i}
-              className="absolute inset-0 flex items-center"
+              className={cn(
+                "w-full flex items-center",
+                activeStage === i ? "relative z-10" : "absolute inset-0 z-0 pointer-events-none"
+              )}
               initial={false}
               animate={{ 
                 opacity: activeStage === i ? 1 : 0,
                 y: activeStage === i ? 0 : 10,
-                pointerEvents: activeStage === i ? "auto" : "none"
               }}
               transition={{ duration: 0.3 }}
             >
@@ -93,11 +95,11 @@ export function AnimatedExperienceMap() {
                 {activeStage === i && (
                   <motion.div 
                     layoutId="active-indicator"
-                    className="absolute -left-8 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#c0392b] rounded-r-full"
+                    className="absolute -left-6 md:-left-8 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#c0392b] rounded-r-full"
                   />
                 )}
                 <p className="text-xs tracking-widest text-gray-500 font-bold uppercase mb-3">{stage.title}</p>
-                <p className="text-2xl md:text-3xl text-gray-200 font-light leading-snug">{stage.description}</p>
+                <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 font-light leading-snug">{stage.description}</p>
               </div>
             </motion.div>
           ))}

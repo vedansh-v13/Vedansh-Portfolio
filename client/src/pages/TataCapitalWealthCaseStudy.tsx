@@ -210,7 +210,7 @@ export default function TataCapitalWealthCaseStudy() {
         </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 sm:mb-12 md:mb-16">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
               <Button asChild variant="outline" size="sm" className="group relative overflow-hidden bg-black/50 hover:bg-black/70 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300">
                 <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
@@ -244,7 +244,7 @@ export default function TataCapitalWealthCaseStudy() {
                 <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-4xl md:text-5xl lg:text-6xl artistic-text font-extralight mb-4 text-white leading-tight">
                   Tata Capital Wealth
                 </motion.h1>
-                <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-xl md:text-2xl text-gray-300 mb-4 artistic-text font-light">
+                <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4 artistic-text font-light">
                   Designing Confidence Across the Investment Journey
                 </motion.p>
                 <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-gray-400 text-lg mb-8">
@@ -263,17 +263,17 @@ export default function TataCapitalWealthCaseStudy() {
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }} className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-black/20 p-8 rounded-2xl border border-white/5">
                 <div className="space-y-6">
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500">Product Metrics</h3>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                      <div className="text-3xl font-light text-white mb-1">5M+</div>
+                      <div className="text-2xl sm:text-3xl font-light text-white mb-1">5M+</div>
                       <div className="text-xs text-gray-400 uppercase tracking-wide">Downloads</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-light text-white mb-1">600K+</div>
+                      <div className="text-2xl sm:text-3xl font-light text-white mb-1">600K+</div>
                       <div className="text-xs text-gray-400 uppercase tracking-wide">Registered Users</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-light text-white mb-1">4.1★</div>
+                      <div className="text-2xl sm:text-3xl font-light text-white mb-1">4.1★</div>
                       <div className="text-xs text-gray-400 uppercase tracking-wide">Play Store Rating</div>
                     </div>
                   </div>
@@ -313,7 +313,7 @@ export default function TataCapitalWealthCaseStudy() {
             <h2 className="text-3xl md:text-5xl font-light text-white leading-tight mb-12">
               Tata Capital Wealth already had a comprehensive platform.
             </h2>
-            <div className="space-y-6 text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               <p>
                 The product had grown feature by feature over several years, each addition making sense in isolation. The whole was harder to navigate than any individual screen suggested. Users could complete tasks, but they had to work harder to figure out where to start.
               </p>
@@ -347,10 +347,10 @@ export default function TataCapitalWealthCaseStudy() {
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-4">The Final Product</h3>
-            <p className="text-xl text-gray-400">Selected screens from the completed platform.</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-400">Selected screens from the completed platform.</p>
           </motion.div>
           
-          <div className="-mx-6 md:mx-0 space-y-12">
+          <div className="-mx-6 sm:mx-0 space-y-12">
             <ScreenCarousel 
               screens={galleryImages.slice(0, 12).map((src, i) => ({ src, alt: `Final UI Screen ${i + 1}` }))} 
             />
@@ -400,12 +400,12 @@ export default function TataCapitalWealthCaseStudy() {
               <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Act 1</h2>
             </div>
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Becoming an investor</h3>
-            <p className="text-xl text-gray-400 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               The first obstacle isn't picking a fund. It's getting through the door. Onboarding for a regulated investment platform means identity verification, KYC, nominee setup, and document submission. None of it is skippable. The design question was whether it had to feel like a bureaucratic wall, or whether it could feel like a process with a clear end in sight.
             </p>
           </motion.div>
 
-          <div className="space-y-32">
+          <div className="space-y-16 md:space-y-32">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-5 space-y-6">
                 <h4 className="text-2xl font-bold text-white">Self-Serve Onboarding</h4>
@@ -413,7 +413,7 @@ export default function TataCapitalWealthCaseStudy() {
                   Every screen in the self-serve flow was built to answer the same three questions in sequence: what is this step, why is it required, what happens after I complete it. This was not always explicit. Sometimes it took the form of a progress indicator or a brief explanation line, but the structure was consistent across every stage of the flow. Regulatory requirements stayed intact. The friction was just made visible and predictable.
                 </p>
               </div>
-              <div className="lg:col-span-7 -mx-6 md:mx-0">
+              <div className="lg:col-span-7 -mx-6 sm:mx-0">
                 <ScreenCarousel screens={selfServeOnboardingScreens} />
               </div>
             </div>
@@ -429,7 +429,7 @@ export default function TataCapitalWealthCaseStudy() {
                 </p>
               </div>
               
-              <div className="-mx-6 md:mx-0">
+              <div className="-mx-6 sm:mx-0">
                 <ScreenCarousel screens={rmAssistedOnboardingScreens} />
               </div>
 
@@ -452,12 +452,12 @@ export default function TataCapitalWealthCaseStudy() {
               <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Act 2</h2>
             </div>
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Making informed decisions</h3>
-            <p className="text-xl text-gray-400 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               Once onboarding is done, the product's job shifts. It's no longer about getting someone in the door. It's about helping them decide where to put money they care about, without dumbing down the information or burying them in it.
             </p>
           </motion.div>
 
-          <div className="space-y-32">
+          <div className="space-y-16 md:space-y-32">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-5 space-y-6">
                 <h4 className="text-2xl font-bold text-white">Portfolio Overview</h4>
@@ -468,7 +468,7 @@ export default function TataCapitalWealthCaseStudy() {
                   The Relationship Manager sits in the most prominent position in the interface. This was a deliberate decision that came after prototyping an AI assistant and dropping it. For this audience, a real person they already know built more trust than a capable chatbot they'd never met.
                 </p>
               </div>
-              <div className="lg:col-span-7 -mx-6 md:mx-0">
+              <div className="lg:col-span-7 -mx-6 sm:mx-0">
                 <ScreenCarousel screens={portfolioOverviewScreens} />
               </div>
             </div>
@@ -487,7 +487,7 @@ export default function TataCapitalWealthCaseStudy() {
                 </p>
               </div>
               
-              <div className="-mx-6 md:mx-0">
+              <div className="-mx-6 sm:mx-0">
                 <ScreenCarousel screens={fundDiscoveryScreens} />
               </div>
 
@@ -510,12 +510,12 @@ export default function TataCapitalWealthCaseStudy() {
               <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Act 3</h2>
             </div>
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Staying confident after investing</h3>
-            <p className="text-xl text-gray-400 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               The product doesn't stop being relevant after the first investment. Most of its working life is spent on follow-through: SIP processing, redemptions, switches, and the unglamorous business of tracking money that takes days to settle.
             </p>
           </motion.div>
 
-          <div className="space-y-32">
+          <div className="space-y-16 md:space-y-32">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-5 space-y-6">
                 <h4 className="text-2xl font-bold text-white">Transaction & Lifecycle Management</h4>
@@ -526,7 +526,7 @@ export default function TataCapitalWealthCaseStudy() {
                   The order-detail screens were built to explain what happened at each stage and what to expect next, rather than just displaying a status badge.
                 </p>
               </div>
-              <div className="lg:col-span-7 -mx-6 md:mx-0">
+              <div className="lg:col-span-7 -mx-6 sm:mx-0">
                 <ScreenCarousel screens={transactionScreens} />
               </div>
             </div>
@@ -541,7 +541,7 @@ export default function TataCapitalWealthCaseStudy() {
                   Each recommendation surfaces who initiated it, the reason, and what the investor needs to do. The delegation has a paper trail. It doesn't become a black box.
                 </p>
               </div>
-              <div className="lg:col-span-7 lg:order-1 -mx-6 md:mx-0">
+              <div className="lg:col-span-7 lg:order-1 -mx-6 sm:mx-0">
                 <ScreenCarousel screens={rmUpdatesScreens} />
               </div>
             </div>
@@ -560,10 +560,10 @@ export default function TataCapitalWealthCaseStudy() {
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16 space-y-6">
             <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Building a cohesive product language</h3>
-            <p className="text-xl text-gray-400 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               As the scope grew, the thing holding it together stopped being individual screens. A consistent language of typography, color, and components was what let the platform feel like one product across five distinct workflows.
             </p>
-            <p className="text-xl text-gray-400 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
               The design system was built in parallel with the product work, not added at the end.
             </p>
           </motion.div>
@@ -577,7 +577,7 @@ export default function TataCapitalWealthCaseStudy() {
       {/* Reflection */}
       <section className="py-32">
         <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 text-lg text-gray-300 leading-relaxed">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 text-base sm:text-lg text-gray-300 leading-relaxed">
             <h3 className="text-3xl font-bold text-white mb-8">Reflection</h3>
             <p>
               The question that kept changing through this project wasn't how to simplify the product. It was how to help people understand it. For anything involving money, the complexity is real. Hiding it doesn't make the decisions easier. It just makes them feel arbitrary.

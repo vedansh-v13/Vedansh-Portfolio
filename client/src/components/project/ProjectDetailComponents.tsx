@@ -91,7 +91,7 @@ export function GalleryScreenshotFrame({
 
   if (variant === "iphone") {
     return (
-      <div className="relative w-[360px]">
+      <div className="relative w-full max-w-[360px] mx-auto">
         <div
           className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[3rem] p-2 shadow-2xl border border-white/10 backdrop-blur-sm h-[680px]"
         >
@@ -135,7 +135,7 @@ export function GalleryScreenshotFrame({
   }
 
   const isMobile = variant === "mobile";
-  const frameWidth = isMobile ? "w-[280px] md:w-[300px]" : "w-[520px] md:w-[800px]";
+  const frameWidth = isMobile ? "w-[280px] md:w-[300px]" : "w-[85vw] sm:w-[520px] lg:w-[800px]";
   const viewportHeight = isMobile ? "h-[520px] md:h-[540px]" : "h-[290px] md:h-[444px]";
 
   return (
