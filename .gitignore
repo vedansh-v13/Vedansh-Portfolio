@@ -28,6 +28,7 @@ yarn-error.log*
 *.sw?
 
 # OS generated files
-Thumbs.dbnpm-cache/
+Thumbs.db
+npm-cache/
 generated_imports.txt
 generated_gallery_imports.txt
