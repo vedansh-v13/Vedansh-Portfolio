@@ -1,13 +1,1 @@
-Image name: Captions
-
-1.png: Investing is just the beginning—the experience is built for long-term portfolio management.
-
-2.png: Every screen adapts to the investor's current stage, from first SIP to active portfolio.
-
-3.png: Every order state is clear, so investors always know what's happening.
-
-6.png: Failed transactions lead to support instead of a dead end.
-
-8.png: Everything needed to manage investments lives in one place.
-
-9.png: SIPs can be edited, skipped, stepped up, or cancelled without friction.
+open -e /Users/vedansh/Documents/Antigravity-project1/.env
