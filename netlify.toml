@@ -7,8 +7,9 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "https://vedansh-2026.netlify.app/:splat"
+  status = 301
+  force = true
 
 [dev]
   command = "npm run dev"
