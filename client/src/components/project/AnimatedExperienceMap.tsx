@@ -35,47 +35,54 @@ export function AnimatedExperienceMap() {
     <div ref={containerRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-start py-12">
       {/* Left side: Timeline */}
       <div className="relative">
-        <h4 className="text-xs tracking-widest text-[#c0392b] font-bold uppercase mb-12">Design Scope / Experience Map</h4>
+        <span className="font-mono text-xs text-blush uppercase tracking-widest block mb-10">
+          [ DESIGN SCOPE // EXPERIENCE MAP ]
+        </span>
         
-        <div className="relative pl-10 space-y-16">
+        <div className="relative pl-10 space-y-12">
           {/* Background track line */}
-          <div className="absolute left-[7px] top-4 bottom-4 w-[2px] bg-white/10" />
+          <div className="absolute left-[7px] top-4 bottom-4 w-[1px] bg-white/10" />
           
-          {/* Animated red line */}
+          {/* Animated fill line */}
           <motion.div 
-            className="absolute left-[7px] top-4 w-[2px] bg-[#c0392b] origin-top"
+            className="absolute left-[7px] top-4 w-[1px] bg-blush origin-top"
             style={{ height: lineHeight }}
           />
 
           {stages.map((stage, i) => (
             <motion.div 
               key={i}
-              className="relative cursor-pointer group py-2"
-              initial={{ opacity: 0, x: -20 }}
+              className="relative cursor-pointer group py-1"
+              initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-10%" }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.08 }}
               onMouseEnter={() => setActiveStage(i)}
             >
               {/* Dot */}
               <div className={cn(
-                "absolute -left-[42px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full transition-colors duration-300 z-10",
-                activeStage === i ? "bg-[#c0392b] shadow-[0_0_15px_rgba(192,57,43,0.6)]" : "bg-white/20 group-hover:bg-[#c0392b]/50"
+                "absolute -left-[40px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full transition-all duration-200 z-10 border",
+                activeStage === i 
+                  ? "bg-blush border-blush shadow-sm" 
+                  : "bg-[#181719] border-white/20 group-hover:border-blush/60"
               )} />
               
-              <h5 className={cn(
-                "text-3xl font-light artistic-text transition-colors duration-300",
-                activeStage === i ? "text-white" : "text-gray-500 group-hover:text-gray-300"
-              )}>
-                {stage.title}
-              </h5>
+              <div className="flex items-baseline gap-3">
+                <span className="font-mono text-xs text-[#AAA7AE]/60">0{i + 1}</span>
+                <h5 className={cn(
+                  "text-2xl sm:text-3xl font-display font-light transition-colors duration-200",
+                  activeStage === i ? "text-[#F5F4F6] font-medium" : "text-[#AAA7AE] group-hover:text-white"
+                )}>
+                  {stage.title}
+                </h5>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Right side: Description display */}
-      <div className="md:sticky top-1/3 flex items-center min-h-[120px] md:min-h-[160px] bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-xl relative overflow-hidden">
+      <div className="md:sticky top-1/3 flex items-center min-h-[140px] bg-[#1F1E21] border border-white/15 rounded-lg p-6 md:p-8 shadow-xl relative overflow-hidden">
         <div className="relative w-full">
           {stages.map((stage, i) => (
             <motion.div
@@ -87,19 +94,19 @@ export function AnimatedExperienceMap() {
               initial={false}
               animate={{ 
                 opacity: activeStage === i ? 1 : 0,
-                y: activeStage === i ? 0 : 10,
+                y: activeStage === i ? 0 : 8,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
             >
               <div className="w-full relative">
                 {activeStage === i && (
                   <motion.div 
                     layoutId="active-indicator"
-                    className="absolute -left-6 md:-left-8 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#c0392b] rounded-r-full"
+                    className="absolute -left-6 md:-left-8 top-1/2 -translate-y-1/2 w-1 h-8 bg-blush rounded-r"
                   />
                 )}
-                <p className="text-xs tracking-widest text-gray-500 font-bold uppercase mb-3">{stage.title}</p>
-                <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 font-light leading-snug">{stage.description}</p>
+                <p className="font-mono text-xs tracking-widest text-blush uppercase mb-2">STAGE 0{i + 1} // {stage.title}</p>
+                <p className="text-xl sm:text-2xl font-display font-light text-[#F5F4F6] leading-snug">{stage.description}</p>
               </div>
             </motion.div>
           ))}

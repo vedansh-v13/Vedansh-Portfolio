@@ -14,7 +14,7 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="overflow-x-hidden"
+      className="relative"
     >
       <Helmet>
         <title>Vedansh Wandalkar - Product Designer Portfolio</title>

@@ -6,7 +6,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -47,6 +49,44 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        // Editorial Palette Tokens
+        cool: {
+          DEFAULT: "#AAA7AE",
+          50: "#F2F1F3",
+          100: "#E3E2E5",
+          200: "#CCCACF",
+          300: "#B8B5BC",
+          400: "#AAA7AE",
+          500: "#8E8A93",
+          600: "#6F6B74",
+          700: "#524F56",
+          800: "#363439",
+          900: "#1C1B1E",
+        },
+        blush: {
+          DEFAULT: "#E7D0C8",
+          50: "#FAF5F3",
+          100: "#F5EBE7",
+          200: "#E7D0C8",
+          300: "#D9B4A8",
+          400: "#CB9989",
+          500: "#BD7E6B",
+          600: "#9E5D4B",
+          700: "#764538",
+          800: "#4F2E25",
+          900: "#271713",
+        },
+        ink: {
+          DEFAULT: "#181719",
+          light: "#252427",
+          border: "rgba(24, 23, 25, 0.12)",
+          card: "#1F1E21",
+        },
+        paper: {
+          DEFAULT: "#F5F4F6",
+          light: "#FFFFFF",
+          muted: "#EBE9ED",
+        },
         chart: {
           "1": "hsl(var(--chart-1))",
           "2": "hsl(var(--chart-2))",
@@ -67,20 +107,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRoute } from "wouter";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowLeft, ExternalLink, AlertTriangle, Globe, Smartphone, CheckCircle, Lightbulb, Target, Search, Palette, TrendingUp, BookOpen, LucideIcon, ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Activity, Clock, TrendingDown, Minus, BarChart3, Code, Rocket } from "lucide-react";
+import { ArrowLeft, ExternalLink, AlertTriangle, Globe, Smartphone, CheckCircle, Lightbulb, Target, Search, Palette, TrendingUp, BookOpen, LucideIcon, ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Activity, Clock, TrendingDown, Minus, BarChart3, Code, Rocket, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projectDetailsData } from "../data/projectDetailsData";
 import { cn } from "@/lib/utils";
 import Footer from "../components/Footer";
+import ProjectBottomNav from "@/components/project/ProjectBottomNav";
 import { Helmet } from "react-helmet-async";
 
 import { 
@@ -411,13 +412,13 @@ export default function ProjectDetails() {
 
   // Storytelling cards data
   const storyCards = [
-    { key: 'overview', icon: Globe, title: 'Overview', content: projectDetails?.projectOverview, color: '#3b82f6', delay: 0.1 },
-    { key: 'goals', icon: Target, title: 'Goals', content: projectDetails?.projectGoals, color: '#10b981', delay: 0.2 },
-    { key: 'research', icon: Search, title: 'Research', content: projectDetails?.researchDiscovery, color: '#8b5cf6', delay: 0.3 },
-    { key: 'ux', icon: Smartphone, title: 'UX Flow', content: projectDetails?.uxFlowWireframes, color: '#f97316', delay: 0.4 },
-    { key: 'ui', icon: Palette, title: 'UI Design', content: projectDetails?.uiDesignComponents, color: '#ec4899', delay: 0.5 },
-    { key: 'results', icon: TrendingUp, title: 'Results', content: projectDetails?.outcomeResults, color: '#22c55e', delay: 0.6 },
-    { key: 'learnings', icon: BookOpen, title: 'Key Learnings', content: projectDetails?.whatILearned, color: '#06b6d4', delay: 0.7, fullWidth: true },
+    { key: 'overview', icon: Globe, title: 'Overview', content: projectDetails?.projectOverview, color: '#E7D0C8', delay: 0.1 },
+    { key: 'goals', icon: Target, title: 'Goals', content: projectDetails?.projectGoals, color: '#E7D0C8', delay: 0.2 },
+    { key: 'research', icon: Search, title: 'Research', content: projectDetails?.researchDiscovery, color: '#E7D0C8', delay: 0.3 },
+    { key: 'ux', icon: Smartphone, title: 'UX Flow', content: projectDetails?.uxFlowWireframes, color: '#E7D0C8', delay: 0.4 },
+    { key: 'ui', icon: Palette, title: 'UI Design', content: projectDetails?.uiDesignComponents, color: '#E7D0C8', delay: 0.5 },
+    { key: 'results', icon: TrendingUp, title: 'Results', content: projectDetails?.outcomeResults, color: '#E7D0C8', delay: 0.6 },
+    { key: 'learnings', icon: BookOpen, title: 'Key Learnings', content: projectDetails?.whatILearned, color: '#E7D0C8', delay: 0.7, fullWidth: true },
   ].filter(card => card.content && card.content.length > 0);
 
   // Intersection observer for card visibility
@@ -452,62 +453,38 @@ export default function ProjectDetails() {
   // Render not found if project doesn't exist
   if (!projectDetails) {
     return (
-      <div className="min-h-screen bg-background">
-        {/* Hero section for not found page */}
-        <section className="relative w-full h-[40vh] min-h-[300px] overflow-hidden bg-black">
-          {/* Background with overlay */}
-          <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-card opacity-50"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
-          </div>
+      <div className="min-h-screen bg-[#181719] text-[#F5F4F6] relative">
+        <section className="relative w-full h-[50vh] min-h-[360px] overflow-hidden bg-[#181719] border-b border-white/10 flex flex-col justify-between">
+          <div className="absolute inset-0 architectural-grid opacity-30 pointer-events-none" />
           
-          {/* Content */}
-          <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-between">
-            {/* Enhanced Back button - layered over the image for better visibility */}
-            <div className="pt-6 md:pt-8">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-between py-8">
+            <div>
+              <Button 
+                asChild 
+                variant="outline" 
+                size="sm" 
+                className="btn-tactile bg-[#1F1E21] hover:bg-blush hover:text-ink text-[#F5F4F6] border-white/20 transition-all duration-200"
               >
-                <Button 
-                  asChild 
-                  variant="outline" 
-                  size="sm" 
-                  className="group relative overflow-hidden bg-black/50 hover:bg-black/70 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
-                    <motion.div
-                      className="relative"
-                      whileHover={{ x: -2 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ArrowLeft size={18} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
-                    </motion.div>
-                                      <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
-                    Back
-                  </span>
-                    
-                    {/* Hover effect background */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "0%" }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </a>
-                </Button>
-              </motion.div>
+                <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2">
+                  <ArrowLeft size={16} />
+                  <span className="font-mono text-xs uppercase tracking-wider">Back</span>
+                </a>
+              </Button>
             </div>
             
-            <div className="pb-16 md:pb-20 mt-8 md:mt-12 text-center">
-              <h1 className="text-4xl md:text-6xl artistic-text font-extralight mb-8 text-gray-200">Project Not Found</h1>
-              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto artistic-text font-light">
+            <div className="pb-12 text-center max-w-2xl mx-auto">
+              <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-3">
+                [ 404 // NOT FOUND ]
+              </span>
+              <h1 className="text-4xl md:text-5xl font-display font-light mb-4 text-[#F5F4F6] tracking-tight">Project Not Found</h1>
+              <p className="text-[#AAA7AE] text-base md:text-lg font-light leading-relaxed">
                 The project you're looking for doesn't seem to exist.
               </p>
             </div>
           </div>
         </section>
+        <ProjectBottomNav />
+        <Footer />
       </div>
     );
   }
@@ -516,7 +493,7 @@ export default function ProjectDetails() {
   const desktopScreenshots = projectDetails.screenshots.filter(s => s.type === 'desktop');
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#181719] text-[#F5F4F6]">
       <Helmet>
         <title>{projectDetails.title} - Vedansh Wandalkar Portfolio</title>
         <meta name="description" content={projectDetails.description} />
@@ -531,90 +508,47 @@ export default function ProjectDetails() {
         <meta name="twitter:image" content={projectDetails.screenshots?.[0]?.url || 'https://vedanshwandalkar.com/og-image.jpg'} />
       </Helmet>
       {/* Hero section */}
-      <section className="relative w-full h-[60vh] min-h-[500px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-background">
-        {/* Animated background with gradient shifts */}
-        <motion.div 
-          className="absolute inset-0 z-0"
-          style={{ y: backgroundY, opacity }}
-        >
-          <div className="absolute inset-0 grid-lines opacity-10"></div>
-          
-          {/* Floating particles */}
-          {Array.from({ length: 15 }).map((_, i) => (
-            <FloatingParticle
-              key={i}
-              delay={i * 0.5}
-              duration={15 + Math.random() * 10}
-              size={2 + Math.random() * 6}
-              color={`rgba(255,255,255,${0.05 + Math.random() * 0.1})`}
-            />
-          ))}
-          
-          {/* Artistic geometric line */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <svg
-              className="w-full h-full opacity-5"
-              viewBox="0 0 800 600"
-              preserveAspectRatio="xMidYMid slice"
-            >
-              <motion.path
-                d="M100,100 Q400,50 700,100 T700,300 Q350,350 100,300 Z"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-              />
-            </svg>
-          </div>
-        </motion.div>
+      <section className="relative w-full min-h-[500px] overflow-hidden bg-[#181719] border-b border-white/10 pt-8 pb-16">
+        <div className="absolute inset-0 architectural-grid opacity-30 pointer-events-none" />
         
         {/* Content */}
-        <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-between">
-          {/* Enhanced Back button */}
-          <div className="pt-6 md:pt-8">
+        <div className="container mx-auto px-6 relative z-10">
+          {/* Back button */}
+          <div className="mb-10">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <Button 
                 asChild 
                 variant="outline" 
                 size="sm" 
-                className="group relative overflow-hidden bg-black/20 hover:bg-black/40 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="btn-tactile bg-[#1F1E21] hover:bg-blush hover:text-ink text-[#F5F4F6] border-white/20 transition-all duration-200"
               >
-                <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
-                  <motion.div
-                    className="relative"
-                    whileHover={{ x: -2 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowLeft size={18} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
-                  </motion.div>
-                  <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
-                    Back
-                  </span>
-                  
-                  {/* Hover effect background */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "0%" }}
-                    transition={{ duration: 0.3 }}
-                  />
+                <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2">
+                  <ArrowLeft size={16} />
+                  <span className="font-mono text-xs uppercase tracking-wider">Back</span>
                 </a>
               </Button>
             </motion.div>
           </div>
           
-          <div className="pb-16 md:pb-20 mt-8 md:mt-12">            
+          <div className="max-w-4xl">            
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-mono text-xs uppercase tracking-widest text-blush mb-3"
+            >
+              [ CASE STUDY // ARCHIVE ]
+            </motion.div>
+            
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-4xl md:text-5xl lg:text-7xl artistic-text font-extralight mb-8 text-gray-200"
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-light mb-6 text-[#F5F4F6] tracking-tight leading-tight"
             >
               {projectDetails.title}
             </motion.h1>
@@ -622,25 +556,25 @@ export default function ProjectDetails() {
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-gray-300 text-lg mb-8 max-w-2xl artistic-text font-light"
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="text-[#AAA7AE] text-lg sm:text-xl mb-10 max-w-3xl font-light leading-relaxed"
             >
               {projectDetails.description}
             </motion.p>
             
-            <div className="flex flex-wrap gap-4 md:gap-8">
-              <div className="bg-card/20 backdrop-blur-md px-4 md:px-5 py-3 rounded-md border border-white/10">
-                <p className="text-sm text-gray-400">Project Timeline</p>
-                <p className="text-lg md:text-xl font-medium">{projectDetails.date}</p>
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="bg-[#1F1E21] px-5 py-3 rounded-lg border border-white/10 font-mono">
+                <p className="text-[11px] uppercase tracking-wider text-[#AAA7AE]">Project Timeline</p>
+                <p className="text-base sm:text-lg font-medium text-[#F5F4F6] mt-0.5">{projectDetails.date}</p>
               </div>
               
               {projectDetails.metrics.length > 0 && projectDetails.metrics.map((metric, index) => (
                 <div 
                   key={index} 
-                  className="bg-card/20 backdrop-blur-md px-4 md:px-5 py-3 rounded-md border border-white/10"
+                  className="bg-[#1F1E21] px-5 py-3 rounded-lg border border-white/10 font-mono"
                 >
-                  <p className="text-sm text-gray-400">{metric.label}</p>
-                  <p className="text-lg md:text-xl font-medium text-white">{metric.value}</p>
+                  <p className="text-[11px] uppercase tracking-wider text-[#AAA7AE]">{metric.label}</p>
+                  <p className="text-base sm:text-lg font-medium text-blush mt-0.5">{metric.value}</p>
                 </div>
               ))}
               
@@ -650,20 +584,20 @@ export default function ProjectDetails() {
                   asChild 
                   variant="outline" 
                   size="lg" 
-                  className="bg-accent/20 hover:bg-accent/30 border border-white/10"
+                  className="btn-tactile bg-blush text-ink hover:bg-white border-0 font-mono text-xs uppercase tracking-wider font-semibold"
                 >
                   <a 
                     href={projectDetails.externalLink.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2"
+                    className="inline-flex items-center gap-2 px-5 py-3"
                   >
-                    {projectDetails.externalLink.type === 'web' && <Globe size={18} />}
-                    {projectDetails.externalLink.type === 'app_store' && <Smartphone size={18} />}
-                    {projectDetails.externalLink.type === 'play_store' && <Smartphone size={18} />}
-                    {projectDetails.externalLink.type === 'github' && <ExternalLink size={18} />}
+                    {projectDetails.externalLink.type === 'web' && <Globe size={16} />}
+                    {projectDetails.externalLink.type === 'app_store' && <Smartphone size={16} />}
+                    {projectDetails.externalLink.type === 'play_store' && <Smartphone size={16} />}
+                    {projectDetails.externalLink.type === 'github' && <ExternalLink size={16} />}
                     {projectDetails.externalLink.label}
-                    <ExternalLink size={16} />
+                    <ExternalLink size={14} className="ml-1 opacity-70" />
                   </a>
                 </Button>
               )}
@@ -674,14 +608,14 @@ export default function ProjectDetails() {
       
       {/* Video section (if available) */}
       {projectDetails.videoUrl && (
-        <section className="py-20 bg-background relative grid-lines">
-          {/* Grid overlay background */}
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
-          
+        <section className="py-20 bg-[#141315] border-b border-white/10 relative">
           <div className="container mx-auto px-6 relative z-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">See it in action</h2>
-            <div className="aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl shadow-accent/10">
+            <div className="max-w-4xl mx-auto">
+              <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-2">
+                [ DEMO // WALKTHROUGH ]
+              </span>
+              <h2 className="text-2xl md:text-3xl font-display font-light mb-8 text-[#F5F4F6] tracking-tight">See it in action</h2>
+              <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10 bg-[#1F1E21] shadow-2xl">
               {projectDetails.videoUrl.includes('youtube.com') ? (
                 <iframe 
                   src={projectDetails.videoUrl} 
@@ -705,6 +639,7 @@ export default function ProjectDetails() {
                   Your browser does not support the video tag.
                 </video>
               )}
+              </div>
             </div>
           </div>
         </section>
@@ -712,33 +647,40 @@ export default function ProjectDetails() {
       
       {/* Screenshots section */}
       {shouldShowScreenshots && (mobileScreenshots.length > 0 || desktopScreenshots.length > 0) && (
-        <section className="py-20 bg-card/5">
+        <section className="py-20 bg-[#181719] border-b border-white/10">
           <div className="container mx-auto px-6">
             {mobileScreenshots.length > 0 && (
               <>
-                <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-12 text-gray-200">Mobile Experience Gallery</h2>
+                <div className="mb-10">
+                  <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-2">
+                    [ INTERACTION // MOBILE ]
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-display font-light text-[#F5F4F6] tracking-tight">Mobile Experience Gallery</h2>
+                </div>
                 
                 {/* Gallery Container with Controls */}
                 <div className="relative group">
               {/* Navigation Buttons */}
               <motion.button
                 onClick={navigateLeft}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#1F1E21] hover:bg-blush hover:text-ink text-[#F5F4F6] p-3 rounded-lg border border-white/20 transition-all duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 shadow-lg"
                 disabled={currentImageIndex === 0}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Previous mobile screenshot"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} />
               </motion.button>
               
               <motion.button
                 onClick={() => scrollToImage(currentImageIndex + 1, mobileScreenshots)}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#1F1E21] hover:bg-blush hover:text-ink text-[#F5F4F6] p-3 rounded-lg border border-white/20 transition-all duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 shadow-lg"
                 disabled={currentImageIndex === (mobileScreenshots.length || 0) - 1}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Next mobile screenshot"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={20} />
               </motion.button>
               
               {/* Scroll Container */}
@@ -788,10 +730,10 @@ export default function ProjectDetails() {
                   <button
                     key={index}
                     onClick={() => scrollToImage(index, mobileScreenshots)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`h-1.5 transition-all duration-300 rounded-full ${
                       index === currentImageIndex 
-                        ? 'bg-white scale-125' 
-                        : 'bg-white/30 hover:bg-white/50'
+                        ? 'w-6 bg-blush' 
+                        : 'w-1.5 bg-white/20 hover:bg-white/40'
                     }`}
                   />
                 ))}
@@ -799,12 +741,12 @@ export default function ProjectDetails() {
             )}
             
             {/* Auto-scroll indicator */}
-            <div className="flex justify-center mt-4">
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                isAutoScrolling ? 'bg-green-400 animate-pulse' : 'bg-gray-400'
+            <div className="flex justify-center items-center mt-4 font-mono text-[11px] text-[#AAA7AE]">
+              <div className={`w-1.5 h-1.5 rounded-full mr-2 ${
+                isAutoScrolling ? 'bg-blush animate-pulse' : 'bg-[#AAA7AE]/40'
               }`} />
-              <span className="text-xs text-gray-400 ml-2">
-                {isAutoScrolling ? 'Auto-scrolling' : 'Paused'}
+              <span>
+                {isAutoScrolling ? '[ AUTO-SCROLL ACTIVE ]' : '[ PAUSED ]'}
               </span>
             </div>
           </>
@@ -815,31 +757,38 @@ export default function ProjectDetails() {
       
       {/* Desktop Screenshots section */}
       {shouldShowScreenshots && desktopScreenshots.length > 0 && (
-        <section className="py-20 bg-card/5">
+        <section className="py-20 bg-[#181719] border-b border-white/10">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-12 text-gray-200">Desktop Experience Gallery</h2>
+            <div className="mb-10">
+              <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-2">
+                [ INTERACTION // DESKTOP ]
+              </span>
+              <h2 className="text-3xl md:text-4xl font-display font-light text-[#F5F4F6] tracking-tight">Desktop Experience Gallery</h2>
+            </div>
             
             {/* Desktop Gallery Container with Controls */}
             <div className="relative group">
               {/* Navigation Buttons */}
               <motion.button
                 onClick={() => scrollToDesktopImage(currentDesktopImageIndex - 1)}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#1F1E21] hover:bg-blush hover:text-ink text-[#F5F4F6] p-3 rounded-lg border border-white/20 transition-all duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 shadow-lg"
                 disabled={currentDesktopImageIndex === 0}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Previous desktop screenshot"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} />
               </motion.button>
               
               <motion.button
                 onClick={() => scrollToDesktopImage(currentDesktopImageIndex + 1)}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#1F1E21] hover:bg-blush hover:text-ink text-[#F5F4F6] p-3 rounded-lg border border-white/20 transition-all duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 shadow-lg"
                 disabled={currentDesktopImageIndex === (desktopScreenshots.length || 0) - 1}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Next desktop screenshot"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={20} />
               </motion.button>
               
               {/* Scroll Container */}
@@ -889,10 +838,10 @@ export default function ProjectDetails() {
                   <button
                     key={index}
                     onClick={() => scrollToDesktopImage(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`h-1.5 transition-all duration-300 rounded-full ${
                       index === currentDesktopImageIndex 
-                        ? 'bg-white scale-125' 
-                        : 'bg-white/30 hover:bg-white/50'
+                        ? 'w-6 bg-blush' 
+                        : 'w-1.5 bg-white/20 hover:bg-white/40'
                     }`}
                   />
                 ))}
@@ -900,12 +849,12 @@ export default function ProjectDetails() {
             )}
             
             {/* Auto-scroll indicator */}
-            <div className="flex justify-center mt-4">
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                isDesktopAutoScrolling ? 'bg-green-400 animate-pulse' : 'bg-gray-400'
+            <div className="flex justify-center items-center mt-4 font-mono text-[11px] text-[#AAA7AE]">
+              <div className={`w-1.5 h-1.5 rounded-full mr-2 ${
+                isDesktopAutoScrolling ? 'bg-blush animate-pulse' : 'bg-[#AAA7AE]/40'
               }`} />
-              <span className="text-xs text-gray-400 ml-2">
-                {isDesktopAutoScrolling ? 'Auto-scrolling' : 'Paused'}
+              <span>
+                {isDesktopAutoScrolling ? '[ AUTO-SCROLL ACTIVE ]' : '[ PAUSED ]'}
               </span>
             </div>
           </div>
@@ -913,7 +862,7 @@ export default function ProjectDetails() {
       )}
       
       {/* Problem section */}
-      <section className="py-20 bg-background">
+      <section className="py-24 bg-[#141315] border-b border-white/10">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -923,8 +872,11 @@ export default function ProjectDetails() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">The Challenge</h2>
-              <p className="text-gray-300 mb-12 max-w-3xl mx-auto">{projectDetails.problemDescription}</p>
+              <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-3">
+                [ 01 // THE CHALLENGE ]
+              </span>
+              <h2 className="text-3xl md:text-5xl font-display font-light mb-6 text-[#F5F4F6] tracking-tight">The Challenge</h2>
+              <p className="text-[#AAA7AE] text-base md:text-lg font-light leading-relaxed mb-12 max-w-3xl mx-auto">{projectDetails.problemDescription}</p>
             </motion.div>
             
             {/* Visual Problem Flow */}
@@ -953,12 +905,12 @@ export default function ProjectDetails() {
                     icon: Target 
                   }
                 ]}
-                color="#ef4444"
+                color="#E7D0C8"
               />
             </motion.div>
             
             {/* Pain Points with Enhanced Visuals */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projectDetails.painPoints.map((point, index) => (
                 <motion.div
                   key={index}
@@ -966,18 +918,15 @@ export default function ProjectDetails() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-card/10 p-6 rounded-xl border border-white/10 hover:bg-card/15 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
+                  className="bg-[#1F1E21] p-6 sm:p-7 rounded-lg border border-white/10 hover:border-blush/40 card-tactile transition-all duration-300 relative group"
                 >
-                  {/* Background gradient effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  <div className="relative z-10 flex gap-4 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-rose-500/15 rounded-xl flex items-center justify-center text-rose-400 group-hover:scale-110 transition-transform duration-300">
-                      {point.icon || <AlertTriangle size={24} />}
+                  <div className="flex gap-4 items-start">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-blush">
+                      {point.icon || <AlertTriangle size={20} />}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-200">{point.title}</h3>
-                      <p className="text-gray-400">{point.description}</p>
+                      <h3 className="text-lg font-display font-medium mb-2 text-[#F5F4F6] tracking-tight">{point.title}</h3>
+                      <p className="text-sm text-[#AAA7AE] font-light leading-relaxed">{point.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -988,7 +937,7 @@ export default function ProjectDetails() {
       </section>
       
       {/* Solution section */}
-      <section className="py-20 bg-card/5">
+      <section className="py-24 bg-[#181719] border-b border-white/10">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -998,8 +947,11 @@ export default function ProjectDetails() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">The Solution</h2>
-              <p className="text-gray-300 mb-12 max-w-3xl mx-auto">{projectDetails.solutionDescription}</p>
+              <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-3">
+                [ 02 // THE SOLUTION ]
+              </span>
+              <h2 className="text-3xl md:text-5xl font-display font-light mb-6 text-[#F5F4F6] tracking-tight">The Solution</h2>
+              <p className="text-[#AAA7AE] text-base md:text-lg font-light leading-relaxed mb-12 max-w-3xl mx-auto">{projectDetails.solutionDescription}</p>
             </motion.div>
             
             {/* Visual Solution Process */}
@@ -1028,12 +980,12 @@ export default function ProjectDetails() {
                     icon: Rocket 
                   }
                 ]}
-                color="#10b981"
+                color="#E7D0C8"
               />
             </motion.div>
             
             {/* Solutions with Enhanced Visuals */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projectDetails.solutions.map((solution, index) => (
                 <motion.div
                   key={index}
@@ -1041,18 +993,15 @@ export default function ProjectDetails() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-card/10 p-6 rounded-xl border border-white/10 hover:bg-card/15 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
+                  className="bg-[#1F1E21] p-6 sm:p-7 rounded-lg border border-white/10 hover:border-blush/40 card-tactile transition-all duration-300 relative group"
                 >
-                  {/* Background gradient effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  <div className="relative z-10 flex gap-4 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/15 rounded-xl flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle size={24} />
+                  <div className="flex gap-4 items-start">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-blush">
+                      <CheckCircle size={20} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-200">{solution.title}</h3>
-                      <p className="text-gray-400">{solution.description}</p>
+                      <h3 className="text-lg font-display font-medium mb-2 text-[#F5F4F6] tracking-tight">{solution.title}</h3>
+                      <p className="text-sm text-[#AAA7AE] font-light leading-relaxed">{solution.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -1066,9 +1015,12 @@ export default function ProjectDetails() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="mt-16"
+                className="mt-20"
               >
-                <h3 className="text-2xl md:text-3xl artistic-text font-extralight mb-8 text-gray-200 text-center">Impact & Results</h3>
+                <div className="text-center mb-8">
+                  <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-2">[ OUTCOMES // METRICS ]</span>
+                  <h3 className="text-2xl md:text-3xl font-display font-light text-[#F5F4F6] tracking-tight">Impact & Results</h3>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {projectDetails.metrics.map((metric, index) => (
                     <MetricsCard
@@ -1077,7 +1029,7 @@ export default function ProjectDetails() {
                       value={metric.value}
                       change="+25%"
                       icon={TrendingUp}
-                      color="#10b981"
+                      color="#E7D0C8"
                       trend="up"
                     />
                   ))}
@@ -1089,7 +1041,7 @@ export default function ProjectDetails() {
       </section>
       
       {/* Project Timeline */}
-      <section className="py-20 bg-background">
+      <section className="py-24 bg-[#141315] border-b border-white/10">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <motion.div
@@ -1099,8 +1051,11 @@ export default function ProjectDetails() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200">Project Timeline</h2>
-              <p className="text-gray-300 mb-12 max-w-3xl mx-auto">The journey from concept to completion</p>
+              <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-3">
+                [ 03 // EXECUTION ]
+              </span>
+              <h2 className="text-3xl md:text-5xl font-display font-light mb-4 text-[#F5F4F6] tracking-tight">Project Timeline</h2>
+              <p className="text-[#AAA7AE] text-base md:text-lg font-light leading-relaxed mb-12 max-w-2xl mx-auto">The journey from concept to completion</p>
             </motion.div>
             
             <motion.div
@@ -1136,38 +1091,17 @@ export default function ProjectDetails() {
                     status: "completed" 
                   }
                 ]}
-                color="#3b82f6"
+                color="#E7D0C8"
               />
             </motion.div>
           </div>
         </div>
       </section>
       
-      {/* Enhanced Storytelling sections with Motion Design */}
+      {/* Enhanced Storytelling sections */}
       {storyCards.length > 0 && (
-        <section className="py-20 bg-background relative overflow-hidden">
-          {/* Animated background with floating particles */}
-          <div className="absolute inset-0 pointer-events-none">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <FloatingParticle
-                key={i}
-                delay={i * 0.8}
-                duration={20 + Math.random() * 15}
-                size={3 + Math.random() * 4}
-                color={`rgba(255,255,255,${0.03 + Math.random() * 0.05})`}
-              />
-            ))}
-          </div>
-          
-          {/* Parallax background elements */}
-          <motion.div 
-            className="absolute inset-0 pointer-events-none"
-            style={{ y: useTransform(scrollYProgress, [0, 1], [0, -100]) }}
-          >
-            <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-br from-pink-500/5 to-orange-500/5 rounded-full blur-3xl"></div>
-          </motion.div>
+        <section className="py-24 bg-[#181719] border-b border-white/10 relative overflow-hidden">
+          <div className="absolute inset-0 architectural-grid opacity-30 pointer-events-none" />
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-6xl mx-auto">
@@ -1178,8 +1112,11 @@ export default function ProjectDetails() {
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-center mb-16"
               >
+                <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-3">
+                  [ 04 // REFLECTIONS ]
+                </span>
                 <motion.h2 
-                  className="text-3xl md:text-5xl artistic-text font-extralight mb-8 text-gray-200"
+                  className="text-3xl md:text-5xl font-display font-light mb-4 text-[#F5F4F6] tracking-tight"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -1188,7 +1125,7 @@ export default function ProjectDetails() {
                   Project Journey
                 </motion.h2>
                 <motion.p 
-                  className="text-gray-300 artistic-text font-light text-lg"
+                  className="text-[#AAA7AE] text-base md:text-lg font-light leading-relaxed"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -1197,14 +1134,8 @@ export default function ProjectDetails() {
                   Key insights and learnings from this project
                 </motion.p>
                 
-                {/* Animated progress indicator */}
-                <motion.div
-                  className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-8 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                />
+                {/* Clean architectural hairline rule */}
+                <div className="w-16 h-px bg-blush mx-auto mt-6" />
               </motion.div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1227,53 +1158,41 @@ export default function ProjectDetails() {
                 ))}
               </div>
               
-              {/* Bottom decorative element */}
-              <motion.div
-                className="flex justify-center mt-16"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 1 }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-px bg-gradient-to-r from-transparent to-gray-500"></div>
-                  <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
-                  <div className="w-8 h-px bg-gradient-to-l from-transparent to-gray-500"></div>
-                </div>
-              </motion.div>
+              {/* Monospace terminal mark */}
+              <div className="flex justify-center mt-16 font-mono text-xs text-[#AAA7AE]/60 uppercase tracking-widest">
+                + [ END OF LOG // VEDANSH.WANDALKAR ] +
+              </div>
             </div>
           </div>
         </section>
       )}
 
-
-      
       {/* Testimonial section - hidden for Agent Ari project */}
       {shouldShowTestimonial && projectDetails.testimonial && (
-        <section className="py-20 bg-background">
+        <section className="py-24 bg-[#141315] border-b border-white/10">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="max-w-4xl mx-auto bg-card/10 p-8 md:p-12 rounded-xl border border-white/10"
+              className="max-w-4xl mx-auto bg-[#1F1E21] p-8 md:p-14 rounded-lg border border-white/10 relative"
             >
+              <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-6 text-center">
+                [ TESTIMONIAL // ENDORSEMENT ]
+              </span>
               <div className="flex flex-col items-center text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-12 h-12 text-accent/50 mb-6">
-                  <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                  <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                </svg>
+                <Quote className="w-10 h-10 text-blush/60 mb-6" />
                 
-                <blockquote className="text-xl md:text-2xl italic text-gray-200 mb-8">
+                <blockquote className="text-xl md:text-2xl font-light text-[#F5F4F6] leading-relaxed mb-8 italic">
                   "{projectDetails.testimonial.quote}"
                 </blockquote>
                 
                 <div className="flex items-center flex-col">
-                  <cite className="font-bold text-gray-100 not-italic">
+                  <cite className="font-display font-medium text-base text-[#F5F4F6] not-italic tracking-wide">
                     {projectDetails.testimonial.author}
                   </cite>
-                  <span className="text-gray-400 text-sm mt-1">
+                  <span className="text-[#AAA7AE] font-mono text-xs uppercase tracking-wider mt-1">
                     {projectDetails.testimonial.position}, {projectDetails.testimonial.company}
                   </span>
                 </div>
@@ -1283,6 +1202,8 @@ export default function ProjectDetails() {
         </section>
       )}
       
+      <ProjectBottomNav currentProjectTitle={projectDetails.title} />
+
       <Footer />
     </div>
   );

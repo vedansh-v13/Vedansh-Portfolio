@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Users, Globe, Clock, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
+import ProjectBottomNav from "@/components/project/ProjectBottomNav";
 import { AnimatedGrid } from "@/components/project/ProjectDetailComponents";
 import { ScreenCarousel } from "@/components/project/ScreenCarousel";
 import { AnimatedExperienceMap } from "@/components/project/AnimatedExperienceMap";
@@ -196,31 +197,31 @@ export default function TataCapitalWealthCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#181719] text-[#F5F4F6]">
       <Helmet>
         <title>Tata Capital Wealth Case Study | Vedansh Wandalkar</title>
         <meta name="description" content="Reimagining a wealth platform for high-net-worth investors." />
       </Helmet>
 
       {/* Hero section */}
-      <section className="relative w-full min-h-[450px] sm:min-h-[600px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-background pt-20 sm:pt-32 pb-16 sm:pb-24">
+      <section className="relative w-full min-h-[450px] sm:min-h-[600px] overflow-hidden bg-[#181719] border-b border-white/10 pt-20 sm:pt-32 pb-16 sm:pb-24">
         <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY, opacity }}>
-          <div className="absolute inset-0 grid-lines opacity-10"></div>
+          <div className="absolute inset-0 architectural-grid opacity-50"></div>
           <AnimatedGrid mouseX={mousePosition.x} mouseY={mousePosition.y} />
         </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 sm:mb-12 md:mb-16">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <Button asChild variant="outline" size="sm" className="group relative overflow-hidden bg-black/50 hover:bg-black/70 border-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-300">
+              <Button asChild variant="outline" size="sm" className="group relative overflow-hidden bg-[#1F1E21] hover:bg-blush hover:text-ink border-white/15 transition-all duration-200">
                 <a href="/#projects" className="inline-flex items-center gap-2 px-4 py-2.5">
-                  <ArrowLeft size={18} className="text-gray-300 group-hover:text-white transition-colors" />
-                  <span className="text-gray-300 group-hover:text-white font-medium">Back</span>
+                  <ArrowLeft size={16} className="text-[#AAA7AE] group-hover:text-ink transition-colors" />
+                  <span className="text-[#AAA7AE] group-hover:text-ink font-mono text-xs uppercase tracking-wider">Back</span>
                 </a>
               </Button>
             </motion.div>
             
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-xs text-gray-500 max-w-[250px] md:text-right italic">
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="font-mono text-xs text-[#AAA7AE] max-w-[280px] md:text-right">
               Select screens shown. Full flows and final UI are under NDA.
             </motion.div>
           </div>
@@ -231,72 +232,75 @@ export default function TataCapitalWealthCaseStudy() {
               initial={{ opacity: 0, x: -30 }} 
               animate={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 relative w-full aspect-[9/16] max-h-[70vh] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/50 mx-auto max-w-[400px] lg:max-w-none"
+              className="lg:col-span-5 relative w-full aspect-[9/16] max-h-[70vh] rounded-xl overflow-hidden border border-white/15 shadow-2xl bg-[#0d0c0e] mx-auto max-w-[400px] lg:max-w-none"
             >
-              <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-90">
+              <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-95">
                 <source src={sceneVideo} type="video/mp4" />
               </video>
             </motion.div>
 
             {/* Right Column: Content & Metrics */}
-            <div className="lg:col-span-7 space-y-12">
+            <div className="lg:col-span-7 space-y-10">
               <div>
-                <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-4xl md:text-5xl lg:text-6xl artistic-text font-extralight mb-4 text-white leading-tight">
+                <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-3">
+                  [ CASE STUDY // 01 ]
+                </span>
+                <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-4xl sm:text-5xl lg:text-6xl font-display font-light mb-4 text-[#F5F4F6] leading-tight tracking-tight">
                   Tata Capital Wealth
                 </motion.h1>
-                <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4 artistic-text font-light">
+                <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-xl sm:text-2xl md:text-3xl text-blush mb-4 font-light tracking-tight">
                   Designing Confidence Across the Investment Journey
                 </motion.p>
-                <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-gray-400 text-lg mb-8">
+                <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-[#AAA7AE] text-base sm:text-lg mb-8 font-light leading-relaxed">
                   Reimagining a wealth platform for high-net-worth investors.
                 </motion.p>
-                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="flex flex-wrap gap-4 text-sm bg-white/5 p-4 rounded-xl border border-white/10 inline-flex">
-                  <div className="flex items-center gap-2 text-gray-300"><Users size={16} className="text-blue-400"/> Lead UX Designer</div>
-                  <div className="w-px h-4 bg-white/20"></div>
-                  <div className="flex items-center gap-2 text-gray-300"><Globe size={16} className="text-green-400"/> iOS & Android</div>
-                  <div className="w-px h-4 bg-white/20"></div>
-                  <div className="flex items-center gap-2 text-gray-300"><Clock size={16} className="text-orange-400"/> Jan '26 to Apr '26</div>
+                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="flex flex-wrap gap-4 font-mono text-xs bg-[#1F1E21] p-3.5 rounded-lg border border-white/10 inline-flex">
+                  <div className="flex items-center gap-2 text-[#F5F4F6]"><Users size={14} className="text-blush"/> Lead UX Designer</div>
+                  <div className="w-px h-3.5 bg-white/20"></div>
+                  <div className="flex items-center gap-2 text-[#F5F4F6]"><Globe size={14} className="text-blush"/> iOS & Android</div>
+                  <div className="w-px h-3.5 bg-white/20"></div>
+                  <div className="flex items-center gap-2 text-[#F5F4F6]"><Clock size={14} className="text-blush"/> Jan '26 to Apr '26</div>
                 </motion.div>
               </div>
 
               {/* Metrics Grid */}
-              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }} className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-black/20 p-8 rounded-2xl border border-white/5">
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }} className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-[#1F1E21] p-6 sm:p-8 rounded-lg border border-white/10 shadow-lg">
                 <div className="space-y-6">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500">Product Metrics</h3>
+                  <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-blush">Product Metrics</h3>
                   <div className="grid grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                      <div className="text-2xl sm:text-3xl font-light text-white mb-1">5M+</div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wide">Downloads</div>
+                      <div className="text-2xl sm:text-3xl font-display font-medium text-[#F5F4F6] mb-1">5M+</div>
+                      <div className="text-[11px] font-mono text-[#AAA7AE] uppercase tracking-wide">Downloads</div>
                     </div>
                     <div>
-                      <div className="text-2xl sm:text-3xl font-light text-white mb-1">600K+</div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wide">Registered Users</div>
+                      <div className="text-2xl sm:text-3xl font-display font-medium text-[#F5F4F6] mb-1">600K+</div>
+                      <div className="text-[11px] font-mono text-[#AAA7AE] uppercase tracking-wide">Registered Users</div>
                     </div>
                     <div>
-                      <div className="text-2xl sm:text-3xl font-light text-white mb-1">4.1★</div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wide">Play Store Rating</div>
+                      <div className="text-2xl sm:text-3xl font-display font-medium text-[#F5F4F6] mb-1">4.1★</div>
+                      <div className="text-[11px] font-mono text-[#AAA7AE] uppercase tracking-wide">Play Store Rating</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-6">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500">UX Redesign Impact</h3>
-                  <div className="space-y-4">
+                  <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-blush">UX Redesign Impact</h3>
+                  <div className="space-y-3 font-mono text-xs">
                     <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-sm text-gray-300">Task Success</span>
-                      <span className="text-sm font-medium text-white">81% → <span className="text-green-400">95%</span></span>
+                      <span className="text-[#AAA7AE]">Task Success</span>
+                      <span className="text-[#F5F4F6]">81% → <span className="text-blush font-bold">95%</span></span>
                     </div>
                     <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-sm text-gray-300">Create SIP</span>
-                      <span className="text-sm font-medium text-white">4.5 min → <span className="text-green-400">2.5 min</span></span>
+                      <span className="text-[#AAA7AE]">Create SIP</span>
+                      <span className="text-[#F5F4F6]">4.5 min → <span className="text-blush font-bold">2.5 min</span></span>
                     </div>
                     <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-sm text-gray-300">Find Fund</span>
-                      <span className="text-sm font-medium text-white">95 sec → <span className="text-green-400">45 sec</span></span>
+                      <span className="text-[#AAA7AE]">Find Fund</span>
+                      <span className="text-[#F5F4F6]">95 sec → <span className="text-blush font-bold">45 sec</span></span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-300">Form Abandonment</span>
-                      <span className="text-sm font-medium text-white">42% → <span className="text-green-400">22%</span></span>
+                      <span className="text-[#AAA7AE]">Form Abandonment</span>
+                      <span className="text-[#F5F4F6]">42% → <span className="text-blush font-bold">22%</span></span>
                     </div>
                   </div>
                 </div>
@@ -307,13 +311,16 @@ export default function TataCapitalWealthCaseStudy() {
       </section>
 
       {/* Overview */}
-      <section className="py-24 bg-card/5">
+      <section className="py-24 bg-[#141315] border-b border-white/10">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-24 max-w-4xl">
-            <h2 className="text-3xl md:text-5xl font-light text-white leading-tight mb-12">
+            <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-4">
+              [ OVERVIEW // CONTEXT ]
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-light text-[#F5F4F6] leading-tight mb-8">
               Tata Capital Wealth already had a comprehensive platform.
             </h2>
-            <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg md:text-xl text-[#AAA7AE] font-light leading-relaxed">
               <p>
                 The product had grown feature by feature over several years, each addition making sense in isolation. The whole was harder to navigate than any individual screen suggested. Users could complete tasks, but they had to work harder to figure out where to start.
               </p>
@@ -322,18 +329,18 @@ export default function TataCapitalWealthCaseStudy() {
               </p>
             </div>
             
-            <div className="mt-20 space-y-6">
-              <div className="flex gap-6 items-baseline group">
-                <span className="text-2xl font-light text-accent/50 group-hover:text-accent transition-colors">01</span>
-                <h3 className="text-2xl md:text-3xl font-light text-gray-300 group-hover:text-white transition-colors">How do users become investors?</h3>
+            <div className="mt-16 space-y-5">
+              <div className="flex gap-4 items-baseline p-4 rounded-lg bg-[#1F1E21] border border-white/10">
+                <span className="font-mono text-xs text-blush">01</span>
+                <h3 className="text-lg sm:text-xl font-display font-medium text-[#F5F4F6]">How do users become investors?</h3>
               </div>
-              <div className="flex gap-6 items-baseline group">
-                <span className="text-2xl font-light text-accent/50 group-hover:text-accent transition-colors">02</span>
-                <h3 className="text-2xl md:text-3xl font-light text-gray-300 group-hover:text-white transition-colors">How do investors make informed decisions?</h3>
+              <div className="flex gap-4 items-baseline p-4 rounded-lg bg-[#1F1E21] border border-white/10">
+                <span className="font-mono text-xs text-blush">02</span>
+                <h3 className="text-lg sm:text-xl font-display font-medium text-[#F5F4F6]">How do investors make informed decisions?</h3>
               </div>
-              <div className="flex gap-6 items-baseline group">
-                <span className="text-2xl font-light text-accent/50 group-hover:text-accent transition-colors">03</span>
-                <h3 className="text-2xl md:text-3xl font-light text-gray-300 group-hover:text-white transition-colors">How do investors stay confident after investing?</h3>
+              <div className="flex gap-4 items-baseline p-4 rounded-lg bg-[#1F1E21] border border-white/10">
+                <span className="font-mono text-xs text-blush">03</span>
+                <h3 className="text-lg sm:text-xl font-display font-medium text-[#F5F4F6]">How do investors stay confident after investing?</h3>
               </div>
             </div>
           </motion.div>
@@ -343,11 +350,14 @@ export default function TataCapitalWealthCaseStudy() {
       </section>
 
       {/* The Final Product Gallery */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-24 bg-[#181719] border-b border-white/10 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl artistic-text text-white mb-4">The Final Product</h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400">Selected screens from the completed platform.</p>
+            <span className="font-mono text-xs uppercase tracking-widest text-blush block mb-2">
+              [ GALLERY // COMPLETE INTERFACES ]
+            </span>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-light text-[#F5F4F6] mb-3">The Final Product</h3>
+            <p className="text-base sm:text-lg text-[#AAA7AE] font-light">Selected screens from the completed platform.</p>
           </motion.div>
           
           <div className="-mx-6 sm:mx-0 space-y-12">
@@ -362,28 +372,28 @@ export default function TataCapitalWealthCaseStudy() {
       </section>
 
       {/* My Role + The Challenge */}
-      <section className="py-24 bg-card/5 border-y border-white/5">
+      <section className="py-24 bg-[#141315] border-b border-white/10">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10">
-              <h3 className="text-2xl text-white font-bold mb-6">Lead UX Designer</h3>
-              <ul className="space-y-4 text-gray-400 mb-8">
-                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Product strategy</li>
-                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> UX & UI design</li>
-                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Interaction design</li>
-                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Information architecture</li>
-                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Design system</li>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-[#1F1E21] p-8 md:p-10 rounded-lg border border-white/10">
+              <span className="font-mono text-xs text-blush uppercase tracking-widest block mb-2">SCOPE & DELIVERABLES</span>
+              <h3 className="text-2xl font-display font-medium text-[#F5F4F6] mb-6">Lead UX Designer</h3>
+              <ul className="space-y-3.5 text-[#AAA7AE] text-sm font-light mb-8">
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-blush"></span> Product strategy</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-blush"></span> UX & UI design</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-blush"></span> Interaction design</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-blush"></span> Information architecture</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-blush"></span> Design system</li>
               </ul>
-              <div className="pt-8 border-t border-white/10">
-                <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-2">Platform</p>
-                <p className="text-gray-300">iOS & Android</p>
+              <div className="pt-6 border-t border-white/10 font-mono text-xs">
+                <p className="font-semibold uppercase tracking-wider text-[#AAA7AE] mb-1">Platform</p>
+                <p className="text-blush">iOS & Android</p>
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative overflow-hidden sm:overflow-visible rounded-3xl p-6 sm:p-0">
-              <Quote className="absolute -top-4 sm:-top-10 -left-4 sm:-left-10 w-16 sm:w-24 h-16 sm:h-24 text-accent/10" />
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-accent mb-6">The Challenge</h3>
-              <p className="text-2xl md:text-3xl text-gray-200 font-light leading-relaxed">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-6 sm:p-0">
+              <span className="font-mono text-xs uppercase tracking-widest text-blush mb-4 block">[ THE CHALLENGE ]</span>
+              <p className="text-xl sm:text-2xl md:text-3xl text-[#F5F4F6] font-display font-light leading-relaxed">
                 Design a wealth management experience that helps high-net-worth investors move confidently through every stage, from onboarding to long-term portfolio management, without stripping out the information depth or cutting around regulatory requirements.
               </p>
             </motion.div>
@@ -392,24 +402,26 @@ export default function TataCapitalWealthCaseStudy() {
       </section>
 
       {/* Act 1 */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-24 bg-[#181719] border-b border-white/10 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-sm font-bold bg-accent/20 text-accent py-1 px-3 rounded-full">01</span>
-              <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Act 1</h2>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="font-mono text-xs uppercase tracking-widest text-blush">
+                [ ACT 01 // FIRST STEP ]
+              </span>
             </div>
-            <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Becoming an investor</h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-light text-[#F5F4F6] mb-4">Becoming an investor</h3>
+            <p className="text-base sm:text-lg text-[#AAA7AE] font-light leading-relaxed">
               The first obstacle isn't picking a fund. It's getting through the door. Onboarding for a regulated investment platform means identity verification, KYC, nominee setup, and document submission. None of it is skippable. The design question was whether it had to feel like a bureaucratic wall, or whether it could feel like a process with a clear end in sight.
             </p>
           </motion.div>
 
-          <div className="space-y-16 md:space-y-32">
+          <div className="space-y-16 md:space-y-28">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5 space-y-6">
-                <h4 className="text-2xl font-bold text-white">Self-Serve Onboarding</h4>
-                <p className="text-gray-400 leading-relaxed">
+              <div className="lg:col-span-5 space-y-4">
+                <span className="font-mono text-xs text-blush uppercase tracking-wider block">FLOW 01</span>
+                <h4 className="text-2xl font-display font-medium text-[#F5F4F6]">Self-Serve Onboarding</h4>
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   Every screen in the self-serve flow was built to answer the same three questions in sequence: what is this step, why is it required, what happens after I complete it. This was not always explicit. Sometimes it took the form of a progress indicator or a brief explanation line, but the structure was consistent across every stage of the flow. Regulatory requirements stayed intact. The friction was just made visible and predictable.
                 </p>
               </div>
@@ -419,12 +431,13 @@ export default function TataCapitalWealthCaseStudy() {
             </div>
 
             <div className="space-y-12">
-              <div className="max-w-3xl">
-                <h4 className="text-2xl font-bold text-white mb-6">RM-Assisted Onboarding</h4>
-                <p className="text-gray-400 leading-relaxed mb-6">
+              <div className="max-w-3xl space-y-4">
+                <span className="font-mono text-xs text-blush uppercase tracking-wider block">FLOW 02</span>
+                <h4 className="text-2xl font-display font-medium text-[#F5F4F6]">RM-Assisted Onboarding</h4>
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   The obvious fix was PAN OCR: auto-fill the form fields, reduce the typing. It wasn't feasible within scope.
                 </p>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   The more interesting question turned out to be whether HNI investors working with a Relationship Manager should be filling out forms at all. In the RM-assisted flow, the RM prepares the application; the investor reviews, confirms, and signs. Same regulatory steps, same data collected. The work moved from the investor to the person already paid to handle it.
                 </p>
               </div>
@@ -433,10 +446,9 @@ export default function TataCapitalWealthCaseStudy() {
                 <ScreenCarousel screens={rmAssistedOnboardingScreens} />
               </div>
 
-              <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center py-12 border-y border-white/5">
-                <Quote className="w-8 h-8 text-accent/50 mx-auto mb-6" />
-                <p className="text-xl sm:text-2xl md:text-3xl text-white font-medium italic mb-8">"The amount of work didn't change. Who performed it did."</p>
-                <p className="text-gray-400 uppercase tracking-widest text-sm font-semibold">The improvement wasn't fewer steps. It was handing the steps to the right person.</p>
+              <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center py-10 px-6 rounded-lg bg-[#1F1E21] border border-blush/20">
+                <p className="text-xl sm:text-2xl md:text-3xl text-[#F5F4F6] font-display font-light italic mb-4">"The amount of work didn't change. Who performed it did."</p>
+                <p className="text-blush font-mono text-xs uppercase tracking-widest">The improvement wasn't fewer steps. It was handing the steps to the right person.</p>
               </motion.div>
             </div>
           </div>
@@ -444,27 +456,29 @@ export default function TataCapitalWealthCaseStudy() {
       </section>
 
       {/* Act 2 */}
-      <section className="py-24 bg-card/5 overflow-hidden">
+      <section className="py-24 bg-[#141315] border-b border-white/10 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-sm font-bold bg-accent/20 text-accent py-1 px-3 rounded-full">02</span>
-              <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Act 2</h2>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="font-mono text-xs uppercase tracking-widest text-blush">
+                [ ACT 02 // EVALUATION & DISCOVERY ]
+              </span>
             </div>
-            <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Making informed decisions</h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-light text-[#F5F4F6] mb-4">Making informed decisions</h3>
+            <p className="text-base sm:text-lg text-[#AAA7AE] font-light leading-relaxed">
               Once onboarding is done, the product's job shifts. It's no longer about getting someone in the door. It's about helping them decide where to put money they care about, without dumbing down the information or burying them in it.
             </p>
           </motion.div>
 
-          <div className="space-y-16 md:space-y-32">
+          <div className="space-y-16 md:space-y-28">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5 space-y-6">
-                <h4 className="text-2xl font-bold text-white">Portfolio Overview</h4>
-                <p className="text-gray-400 leading-relaxed">
+              <div className="lg:col-span-5 space-y-4">
+                <span className="font-mono text-xs text-blush uppercase tracking-wider block">INTERFACE ARCHITECTURE</span>
+                <h4 className="text-2xl font-display font-medium text-[#F5F4F6]">Portfolio Overview</h4>
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   The portfolio screen isn't a dashboard you visit once to check a number. Investors come back with different questions each time: how am I doing overall, where is my money sitting, who can I talk to. The navigation was designed around that.
                 </p>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   The Relationship Manager sits in the most prominent position in the interface. This was a deliberate decision that came after prototyping an AI assistant and dropping it. For this audience, a real person they already know built more trust than a capable chatbot they'd never met.
                 </p>
               </div>
@@ -474,15 +488,16 @@ export default function TataCapitalWealthCaseStudy() {
             </div>
 
             <div className="space-y-12">
-              <div className="max-w-3xl space-y-6">
-                <h4 className="text-2xl font-bold text-white">Fund Discovery & Details</h4>
-                <p className="text-gray-400 leading-relaxed">
+              <div className="max-w-3xl space-y-4">
+                <span className="font-mono text-xs text-blush uppercase tracking-wider block">INFORMATION HIERARCHY</span>
+                <h4 className="text-2xl font-display font-medium text-[#F5F4F6]">Fund Discovery & Details</h4>
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   Fund details pages carry a lot: performance history, risk rating, asset allocation, fund manager, regulatory documents. The design problem wasn't adding or removing information. The challenge was making sure the right things had the user's attention at the right moment.
                 </p>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   Tabs were prototyped and cut. They tucked too much behind an extra tap. Accordions let the important information stay visible while keeping the detail accessible rather than hidden.
                 </p>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   The investment CTA was split into two: One-Time Investment and Start SIP. By the time a user reaches this screen, they've already decided to invest. The only open question is how.
                 </p>
               </div>
@@ -491,10 +506,8 @@ export default function TataCapitalWealthCaseStudy() {
                 <ScreenCarousel screens={fundDiscoveryScreens} />
               </div>
 
-              <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center py-12 border-t border-white/5">
-                <p className="text-gray-300 text-lg uppercase tracking-widest font-semibold">
-                  Good financial products don't reduce the information. They reduce the effort it takes to make sense of it.
-                </p>
+              <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center py-8 border-t border-white/10 font-mono text-sm uppercase tracking-wider text-blush">
+                Good financial products don't reduce the information. They reduce the effort it takes to make sense of it.
               </motion.div>
             </div>
           </div>
@@ -502,27 +515,29 @@ export default function TataCapitalWealthCaseStudy() {
       </section>
 
       {/* Act 3 */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-24 bg-[#181719] border-b border-white/10 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-sm font-bold bg-accent/20 text-accent py-1 px-3 rounded-full">03</span>
-              <h2 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">Act 3</h2>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="font-mono text-xs uppercase tracking-widest text-blush">
+                [ ACT 03 // FOLLOW-THROUGH ]
+              </span>
             </div>
-            <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Staying confident after investing</h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-light text-[#F5F4F6] mb-4">Staying confident after investing</h3>
+            <p className="text-base sm:text-lg text-[#AAA7AE] font-light leading-relaxed">
               The product doesn't stop being relevant after the first investment. Most of its working life is spent on follow-through: SIP processing, redemptions, switches, and the unglamorous business of tracking money that takes days to settle.
             </p>
           </motion.div>
 
-          <div className="space-y-16 md:space-y-32">
+          <div className="space-y-16 md:space-y-28">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5 space-y-6">
-                <h4 className="text-2xl font-bold text-white">Transaction & Lifecycle Management</h4>
-                <p className="text-gray-400 leading-relaxed">
+              <div className="lg:col-span-5 space-y-4">
+                <span className="font-mono text-xs text-blush uppercase tracking-wider block">STATE VISIBILITY</span>
+                <h4 className="text-2xl font-display font-medium text-[#F5F4F6]">Transaction & Lifecycle Management</h4>
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   Investments don't settle immediately. Money leaves the account, an order gets placed, units are allocated later, a confirmation comes after that. Without visibility into each step, the gap between "I paid" and "I invested" creates real anxiety.
                 </p>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   The order-detail screens were built to explain what happened at each stage and what to expect next, rather than just displaying a status badge.
                 </p>
               </div>
@@ -532,12 +547,13 @@ export default function TataCapitalWealthCaseStudy() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5 space-y-6 lg:order-2">
-                <h4 className="text-2xl font-bold text-white">RM Updates & Ongoing Management</h4>
-                <p className="text-gray-400 leading-relaxed">
+              <div className="lg:col-span-5 space-y-4 lg:order-2">
+                <span className="font-mono text-xs text-blush uppercase tracking-wider block">ACCOUNTABILITY</span>
+                <h4 className="text-2xl font-display font-medium text-[#F5F4F6]">RM Updates & Ongoing Management</h4>
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   The RM-assisted principle from onboarding extends into ongoing portfolio management. RMs can prepare and recommend actions, such as a SIP step-up or a new allocation, but the investor approves every one individually.
                 </p>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-[#AAA7AE] font-light text-sm sm:text-base leading-relaxed">
                   Each recommendation surfaces who initiated it, the reason, and what the investor needs to do. The delegation has a paper trail. It doesn't become a black box.
                 </p>
               </div>
@@ -546,57 +562,64 @@ export default function TataCapitalWealthCaseStudy() {
               </div>
             </div>
 
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center py-12 border-t border-white/5">
-              <p className="text-gray-300 text-lg uppercase tracking-widest font-semibold">
-                Trust doesn't end at the first transaction. It has to hold up every time money moves.
-              </p>
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center py-8 border-t border-white/10 font-mono text-sm uppercase tracking-wider text-blush">
+              Trust doesn't end at the first transaction. It has to hold up every time money moves.
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Design System */}
-      <section className="py-24 bg-card/5">
+      <section className="py-24 bg-[#141315] border-b border-white/10">
         <div className="container mx-auto px-6 max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16 space-y-6">
-            <h3 className="text-4xl md:text-5xl artistic-text text-white mb-6">Building a cohesive product language</h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-12 space-y-4">
+            <span className="font-mono text-xs uppercase tracking-widest text-blush block">
+              [ SYSTEMS // COHESION ]
+            </span>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-light text-[#F5F4F6]">Building a cohesive product language</h3>
+            <p className="text-base sm:text-lg text-[#AAA7AE] font-light leading-relaxed">
               As the scope grew, the thing holding it together stopped being individual screens. A consistent language of typography, color, and components was what let the platform feel like one product across five distinct workflows.
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+            <p className="text-base sm:text-lg text-[#AAA7AE] font-light leading-relaxed">
               The design system was built in parallel with the product work, not added at the end.
             </p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <img src={designSystemImg} alt="Design System" className="w-full rounded-2xl border border-white/10 bg-white/5 shadow-2xl" />
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-lg overflow-hidden border border-white/15 bg-[#1F1E21] shadow-2xl p-2">
+            <img src={designSystemImg} alt="Design System" className="w-full rounded h-auto object-cover" />
           </motion.div>
         </div>
       </section>
 
       {/* Reflection */}
-      <section className="py-32">
+      <section className="py-28 bg-[#181719]">
         <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 text-base sm:text-lg text-gray-300 leading-relaxed">
-            <h3 className="text-3xl font-bold text-white mb-8">Reflection</h3>
-            <p>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-6">
+            <span className="font-mono text-xs uppercase tracking-widest text-blush block">
+              [ RETROSPECTIVE ]
+            </span>
+            <h3 className="text-3xl sm:text-4xl font-display font-medium text-[#F5F4F6] tracking-tight mb-6">Reflection</h3>
+            <p className="text-[#AAA7AE] text-base sm:text-lg font-light leading-relaxed">
               The question that kept changing through this project wasn't how to simplify the product. It was how to help people understand it. For anything involving money, the complexity is real. Hiding it doesn't make the decisions easier. It just makes them feel arbitrary.
             </p>
-            <p>
+            <p className="text-[#F5F4F6] font-mono text-sm uppercase tracking-wider pt-4">
               Things worth exploring next, if the project continued:
             </p>
-            <ul className="space-y-4 pt-4 border-t border-white/10">
-              <li className="flex items-start gap-4"><span className="text-accent font-bold mt-1">•</span> PAN OCR once it becomes feasible</li>
-              <li className="flex items-start gap-4"><span className="text-accent font-bold mt-1">•</span> An adaptive onboarding path that adjusts based on what the RM has already prepared</li>
-              <li className="flex items-start gap-4"><span className="text-accent font-bold mt-1">•</span> Cross-device resume so an interrupted flow doesn't restart from scratch</li>
-              <li className="flex items-start gap-4"><span className="text-accent font-bold mt-1">•</span> Smarter document validation</li>
-              <li className="flex items-start gap-4"><span className="text-accent font-bold mt-1">•</span> Context-sensitive assistance that shows up when it's needed rather than sitting in a menu</li>
+            <ul className="space-y-3 pt-4 border-t border-white/10 font-light text-sm sm:text-base text-[#AAA7AE]">
+              <li className="flex items-start gap-3"><span className="text-blush font-bold mt-0.5">•</span> PAN OCR once it becomes feasible</li>
+              <li className="flex items-start gap-3"><span className="text-blush font-bold mt-0.5">•</span> An adaptive onboarding path that adjusts based on what the RM has already prepared</li>
+              <li className="flex items-start gap-3"><span className="text-blush font-bold mt-0.5">•</span> Cross-device resume so an interrupted flow doesn't restart from scratch</li>
+              <li className="flex items-start gap-3"><span className="text-blush font-bold mt-0.5">•</span> Smarter document validation</li>
+              <li className="flex items-start gap-3"><span className="text-blush font-bold mt-0.5">•</span> Context-sensitive assistance that shows up when it's needed rather than sitting in a menu</li>
             </ul>
           </motion.div>
         </div>
       </section>
 
+      <ProjectBottomNav currentProjectTitle="Tata Capital Wealth" />
+
       <Footer />
     </div>
   );
 }
+

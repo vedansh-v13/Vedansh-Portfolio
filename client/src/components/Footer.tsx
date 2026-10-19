@@ -5,48 +5,49 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 bg-background border-t border-white/10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="container mx-auto px-6"
-      >
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-gray-400 text-sm font-medium tracking-wide">
-            © {currentYear} Vedansh Wandalkar.
+    <footer className="py-14 bg-[#181719] border-t border-white/10 text-[#AAA7AE]">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 rounded-full bg-blush inline-block" />
+            <span className="font-mono text-xs tracking-wider uppercase text-[#F5F4F6]">
+              © {currentYear} Vedansh Wandalkar.
+            </span>
+            <span className="text-white/20 hidden sm:inline">|</span>
+            <span className="text-xs font-mono text-[#AAA7AE] hidden sm:inline">
+              PRODUCT DESIGN & SYSTEMS
+            </span>
           </div>
           
           <div className="flex items-center gap-6">
             <a
               href="https://www.instagram.com/overcoming.eternal.recurrence/"
-              className="text-gray-500 hover:text-accent transition-colors"
+              className="text-[#AAA7AE] hover:text-blush transition-colors p-1"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
-              <Instagram size={20} />
+              <Instagram size={18} />
             </a>
             <a
               href="https://www.linkedin.com/in/vedansh-wandalkar/"
-              className="text-gray-500 hover:text-accent transition-colors"
+              className="text-[#AAA7AE] hover:text-blush transition-colors p-1"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <Linkedin size={20} />
+              <Linkedin size={18} />
             </a>
             <a
               href="mailto:vedansh.wandalkar@gmail.com"
-              className="text-gray-500 hover:text-accent transition-colors"
+              className="text-[#AAA7AE] hover:text-blush transition-colors p-1"
               aria-label="Email"
             >
-              <Mail size={20} />
+              <Mail size={18} />
             </a>
           </div>
         </div>
-      </motion.div>
+      </div>
     </footer>
   );
 }

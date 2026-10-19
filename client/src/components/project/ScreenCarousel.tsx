@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { GalleryScreenshotFrame } from "./ProjectDetailComponents";
 import { Lightbox } from "./Lightbox";
-import { motion } from "framer-motion";
 
 interface ScreenCarouselProps {
   screens: { src: string; alt: string; caption?: string; isAnnotation?: boolean }[];
@@ -44,7 +43,7 @@ export function ScreenCarousel({ screens, caption }: ScreenCarouselProps) {
         {screens.map((screen, idx) => (
           <div 
             key={idx} 
-            className="flex-none snap-start cursor-zoom-in transition-transform hover:scale-[1.02] duration-300"
+            className="flex-none snap-start cursor-zoom-in transition-transform duration-200 hover:scale-[1.01]"
             onClick={() => openLightbox(idx)}
           >
             <GalleryScreenshotFrame 
@@ -62,31 +61,33 @@ export function ScreenCarousel({ screens, caption }: ScreenCarouselProps) {
         <>
           <button 
             onClick={scrollLeft}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 hidden md:block hover:bg-black/80"
+            aria-label="Previous screens"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-md bg-[#181719]/90 text-[#AAA7AE] hover:text-ink hover:bg-blush border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-200 hidden md:flex items-center justify-center shadow-lg"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} />
           </button>
           <button 
             onClick={scrollRight}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 hidden md:block hover:bg-black/80"
+            aria-label="Next screens"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-md bg-[#181719]/90 text-[#AAA7AE] hover:text-ink hover:bg-blush border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-200 hidden md:flex items-center justify-center shadow-lg"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} />
           </button>
         </>
       )}
 
       {/* Optional Caption */}
       {caption && (
-        <p className="text-sm text-gray-500 text-center mt-2 italic">
+        <p className="text-xs font-mono text-[#AAA7AE] text-center mt-2 italic">
           {caption}
         </p>
       )}
 
       {/* Swipe Affordance (Mobile Only) */}
       {screens.length > 1 && (
-        <div className="md:hidden flex justify-center mt-4">
-          <div className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400 font-medium tracking-wide uppercase flex items-center gap-2">
-            <span>&larr;</span> Swipe <span>&rarr;</span>
+        <div className="md:hidden flex justify-center mt-3">
+          <div className="px-3 py-1 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-[#AAA7AE] uppercase tracking-wider flex items-center gap-2">
+            <span>←</span> SWIPE TO EXPLORE <span>→</span>
           </div>
         </div>
       )}
