@@ -314,6 +314,8 @@ export default function MeeroLinkCaseStudy() {
                     src={appHealthCardImg} 
                     alt="Health Report Card Framing Screen" 
                     className="w-full rounded-md border border-white/10 shadow-xl bg-[#0d0c0e] object-contain max-h-[480px]"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </motion.div>
@@ -339,6 +341,8 @@ export default function MeeroLinkCaseStudy() {
                     src={appNeedsAttImg} 
                     alt="Needs Attention Screen" 
                     className="w-full rounded-md border border-white/10 shadow-xl bg-[#0d0c0e] object-contain max-h-[480px]"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </motion.div>
@@ -398,6 +402,8 @@ export default function MeeroLinkCaseStudy() {
                     src={dashHealthCardImg} 
                     alt="Health Card Scaled Up Screen" 
                     className="w-full rounded-md border border-white/10 shadow-xl bg-[#0d0c0e] object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </motion.div>
@@ -423,6 +429,8 @@ export default function MeeroLinkCaseStudy() {
                     src={dashNeedsAttImg} 
                     alt="Needs Attention Retriaged Screen" 
                     className="w-full rounded-md border border-white/10 shadow-xl bg-[#0d0c0e] object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </motion.div>
@@ -453,7 +461,7 @@ export default function MeeroLinkCaseStudy() {
             <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar pt-4 px-4 md:px-0 scroll-pl-4 md:scroll-pl-0" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
               {[ds888, ds889, ds890, ds891, ds892].map((src, i) => (
                 <div key={i} className="flex-none w-[240px] sm:w-[280px] md:w-[400px] snap-start transition-transform hover:scale-[1.01] duration-200">
-                  <img src={src} alt={`Design System Component ${i + 1}`} className="w-full h-auto object-contain rounded-md border border-white/15 shadow-xl bg-[#0d0c0e]" />
+                  <img src={src} alt={`Design System Component ${i + 1}`} className="w-full h-auto object-contain rounded-md border border-white/15 shadow-xl bg-[#0d0c0e]" loading="lazy" decoding="async" />
                 </div>
               ))}
             </div>

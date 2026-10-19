@@ -2,11 +2,13 @@ import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-mot
 import { BookOpen, ArrowRight, MessageSquare, X } from "lucide-react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import profileImage from "@/assets/images/vedansh-about.jpg";
+import notebookElephantImage from "@/assets/images/notebook-elephant.jpeg";
+import openMangaImage from "@/assets/images/open-manga.jpeg";
 import liverpoolImage from "@/assets/images/liverpool-flag.jpeg";
 import vagabondImage from "@/assets/images/vagabond-poster.jpeg";
 import avatarImage from "@/assets/images/avatar-airbender.jpeg";
 
-type InterestId = "liverpool" | "vagabond" | "avatar";
+type InterestId = "outsideWork" | "manga" | "liverpool" | "vagabond" | "avatar";
 
 interface InterestItem {
   id: InterestId;
@@ -18,6 +20,22 @@ interface InterestItem {
 }
 
 const INTERESTS: Record<InterestId, InterestItem> = {
+  outsideWork: {
+    id: "outsideWork",
+    label: "Outside work",
+    image: notebookElephantImage,
+    alt: "Notebook with a small painted elephant figurine resting on laptop",
+    aspectClass: "aspect-[9/16]",
+    objectPositionClass: "object-center",
+  },
+  manga: {
+    id: "manga",
+    label: "manga",
+    image: openMangaImage,
+    alt: "Open manga volume on desk",
+    aspectClass: "aspect-[9/16]",
+    objectPositionClass: "object-center",
+  },
   liverpool: {
     id: "liverpool",
     label: "Liverpool supporter",
@@ -55,6 +73,8 @@ export default function AboutSection() {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const triggerRefs = useRef<Record<InterestId, HTMLButtonElement | null>>({
+    outsideWork: null,
+    manga: null,
     liverpool: null,
     vagabond: null,
     avatar: null,
@@ -112,6 +132,27 @@ export default function AboutSection() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Dismiss on touch or click outside the interactive trigger area
+  useEffect(() => {
+    if (!activeId) return;
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(target) &&
+        !Object.values(triggerRefs.current).some((ref) => ref?.contains(target))
+      ) {
+        setActiveId(null);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [activeId]);
+
   const cancelClose = () => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
@@ -126,14 +167,19 @@ export default function AboutSection() {
     }, 180);
   };
 
-  const handleTriggerMouseEnter = (id: InterestId) => {
-    cancelClose();
-    setActiveId(id);
-    updatePosition(id);
+  const handlePointerEnter = (id: InterestId, e: React.PointerEvent) => {
+    // Only fire hover previews on mouse devices (prevents double-tap issues on mobile touchscreens)
+    if (e.pointerType === "mouse") {
+      cancelClose();
+      setActiveId(id);
+      updatePosition(id);
+    }
   };
 
-  const handleTriggerMouseLeave = () => {
-    scheduleClose();
+  const handlePointerLeave = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") {
+      scheduleClose();
+    }
   };
 
   const handleTriggerFocus = (id: InterestId) => {
@@ -149,9 +195,7 @@ export default function AboutSection() {
   const handleTriggerClick = (id: InterestId) => {
     cancelClose();
     setActiveId((prev) => (prev === id ? null : id));
-    if (activeId !== id) {
-      updatePosition(id);
-    }
+    updatePosition(id);
   };
 
   const renderTrigger = (id: InterestId, label: string) => {
@@ -161,15 +205,14 @@ export default function AboutSection() {
         ref={(el) => { triggerRefs.current[id] = el; }}
         type="button"
         onClick={() => handleTriggerClick(id)}
-        onMouseEnter={() => handleTriggerMouseEnter(id)}
-        onMouseOver={() => handleTriggerMouseEnter(id)}
-        onMouseLeave={handleTriggerMouseLeave}
+        onPointerEnter={(e) => handlePointerEnter(id, e)}
+        onPointerLeave={handlePointerLeave}
         onFocus={() => handleTriggerFocus(id)}
         onBlur={handleTriggerBlur}
         aria-expanded={isActive}
         aria-controls="about-photo-preview"
         aria-label={`Photograph of ${label}`}
-        className={`inline font-normal text-ink cursor-pointer decoration-ink/40 underline underline-offset-[5px] decoration-[1.5px] hover:decoration-ink hover:text-ink focus:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:rounded transition-colors duration-200 ${
+        className={`inline font-normal text-ink cursor-pointer decoration-ink/40 underline underline-offset-[5px] decoration-[1.5px] hover:decoration-ink hover:text-ink focus:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:rounded transition-colors duration-200 select-none ${
           isActive ? "decoration-ink text-ink font-medium bg-ink/5 rounded px-1 -mx-1" : ""
         }`}
       >
@@ -212,7 +255,7 @@ export default function AboutSection() {
             {/* Interactive Personal Paragraph Container */}
             <div ref={containerRef} className="relative pt-1">
               <p className="text-base sm:text-lg font-light text-ink/80 leading-relaxed">
-                Outside work, you'll find me reading manga and books, watching or playing football, or exploring art and visual culture. I'm a {renderTrigger("liverpool", "Liverpool supporter")}, and stories like {renderTrigger("vagabond", "Vagabond")} and {renderTrigger("avatar", "Avatar: The Last Airbender")} have stayed with me.
+                {renderTrigger("outsideWork", "Outside work")}, you'll find me reading {renderTrigger("manga", "manga")} and books, watching or playing football, or exploring art and visual culture. I'm a {renderTrigger("liverpool", "Liverpool supporter")}, and stories like {renderTrigger("vagabond", "Vagabond")} and {renderTrigger("avatar", "Avatar: The Last Airbender")} have stayed with me.
               </p>
 
               {/* Desktop Floating Photo Preview Panel */}
@@ -307,6 +350,8 @@ export default function AboutSection() {
                   src={profileImage}
                   alt="Vedansh Wandalkar"
                   className="w-full h-auto aspect-[4/5] object-cover object-center grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="p-3 bg-ink text-[#F5F4F6] font-mono text-[11px] uppercase tracking-wider flex justify-between items-center border-t border-white/10">
                   <span>VEDANSH_W.JPG</span>

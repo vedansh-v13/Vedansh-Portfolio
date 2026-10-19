@@ -586,7 +586,7 @@ export default function TataCapitalWealthCaseStudy() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-lg overflow-hidden border border-white/15 bg-[#1F1E21] shadow-2xl p-2">
-            <img src={designSystemImg} alt="Design System" className="w-full rounded h-auto object-cover" />
+            <img src={designSystemImg} alt="Design System" className="w-full rounded h-auto object-cover" loading="lazy" decoding="async" />
           </motion.div>
         </div>
       </section>

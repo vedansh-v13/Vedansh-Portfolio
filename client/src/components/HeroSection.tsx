@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import HeroBackground from "./HeroBackground";
 import DesignKnotLayer from "./DesignKnotLayer";
+import { cn } from "@/lib/utils";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,7 +51,18 @@ export default function HeroSection() {
   // CTA buttons transforms
   const ctaOpacity = useTransform(smoothProgress, [0.52, 0.66], [0, 1]);
   const ctaY = useTransform(smoothProgress, [0.52, 0.66], [16, 0]);
-  const ctaPointerEvents = useTransform(smoothProgress, (p) => (p > 0.5 ? "auto" : "none"));
+  const ctaPointerEvents = useTransform(smoothProgress, (p) => (p > 0.58 ? "auto" : "none"));
+
+  // Track interactive state for keyboard navigation and touch hit-testing
+  const [isInteractive, setIsInteractive] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = smoothProgress.on("change", (latest) => {
+      const active = latest >= 0.58;
+      setIsInteractive((prev) => (prev !== active ? active : prev));
+    });
+    return () => unsubscribe();
+  }, [smoothProgress]);
 
   // Bottom scroll cue fades out immediately on initial scroll
   const indicatorOpacity = useTransform(smoothProgress, [0, 0.12], [0.75, 0]);
@@ -118,7 +130,14 @@ export default function HeroSection() {
         <DesignKnotLayer progress={smoothProgress} />
 
         {/* Main Hero Content: completely concealed at scroll = 0, revealed progressively */}
-        <div className="container mx-auto px-6 relative z-10 pointer-events-none pt-14 sm:pt-0">
+        <div 
+          className={cn(
+            "container mx-auto px-6 relative z-10 pt-14 sm:pt-0 transition-opacity duration-150",
+            isInteractive ? "pointer-events-auto" : "pointer-events-none select-none"
+          )}
+          aria-hidden={!isInteractive}
+          {...(!isInteractive ? { inert: "" } : {})}
+        >
           <div className="max-w-4xl mx-auto text-center">
             {/* Name */}
             <motion.h1 
@@ -162,21 +181,36 @@ export default function HeroSection() {
                 y: ctaY,
                 pointerEvents: ctaPointerEvents as unknown as "auto" | "none"
               }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-30"
+              className={cn(
+                "flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-30",
+                isInteractive ? "pointer-events-auto" : "pointer-events-none"
+              )}
             >
               <a
                 href="mailto:vedansh.wandalkar@gmail.com?subject=Hello"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-tactile w-full sm:w-auto bg-blush hover:bg-[#edd8d1] text-ink font-medium text-sm tracking-wide px-7 py-3 rounded-md shadow-sm transition-all duration-150 inline-flex items-center justify-center pointer-events-auto"
+                tabIndex={isInteractive ? 0 : -1}
+                className={cn(
+                  "btn-tactile w-full sm:w-auto bg-blush hover:bg-[#edd8d1] text-ink font-medium text-sm tracking-wide px-7 py-3 rounded-md shadow-sm transition-all duration-150 inline-flex items-center justify-center",
+                  isInteractive ? "pointer-events-auto" : "pointer-events-none"
+                )}
               >
                 Contact
               </a>
               
               <a 
                 href="#projects" 
-                className="w-full sm:w-auto text-[#AAA7AE] hover:text-[#F5F4F6] border border-white/15 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.05] px-6 py-3 rounded-md text-sm font-medium tracking-wide transition-all duration-200 inline-flex items-center justify-center gap-2 group pointer-events-auto"
+                tabIndex={isInteractive ? 0 : -1}
+                className={cn(
+                  "w-full sm:w-auto text-[#AAA7AE] hover:text-[#F5F4F6] border border-white/15 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.05] px-6 py-3 rounded-md text-sm font-medium tracking-wide transition-all duration-200 inline-flex items-center justify-center gap-2 group",
+                  isInteractive ? "pointer-events-auto" : "pointer-events-none"
+                )}
                 onClick={(e) => {
+                  if (!isInteractive) {
+                    e.preventDefault();
+                    return;
+                  }
                   e.preventDefault();
                   const lenis = (window as unknown as { lenis?: { scrollTo: (target: string) => void } }).lenis;
                   if (lenis) {

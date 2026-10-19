@@ -148,6 +148,8 @@ export default function ProjectShowcase() {
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-contain"
+                        loading="lazy"
+                        decoding="async"
                         onError={() => {
                           console.error(`Failed to load image: ${project.image}`);
                         }}

@@ -6,9 +6,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        display: ['Space Grotesk', 'Inter', 'sans-serif'],
-        mono: ['Space Mono', 'monospace'],
+        sans: ['"DM Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['"Space Grotesk"', 'sans-serif'],
+        mono: ['"Space Mono"', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",

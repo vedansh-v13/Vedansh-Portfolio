@@ -214,7 +214,7 @@ export default function VerizonUCaaSCaseStudy() {
       <section className="py-12 bg-[#181719] border-b border-white/10">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <img src={ucaasBanner} alt="Verizon UCaaS Overview" className="w-full rounded-lg border border-white/15 shadow-2xl bg-[#0d0c0e]" />
+            <img src={ucaasBanner} alt="Verizon UCaaS Overview" className="w-full rounded-lg border border-white/15 shadow-2xl bg-[#0d0c0e]" loading="lazy" decoding="async" />
           </motion.div>
         </div>
       </section>
@@ -333,7 +333,7 @@ export default function VerizonUCaaSCaseStudy() {
                   </p>
                 </div>
                 <div className="lg:col-span-6 flex justify-center">
-                  <img src={decision1} alt="FTUX Permissions Decision" className="w-full h-auto rounded-md border border-white/10 shadow-xl bg-[#0d0c0e]" />
+                  <img src={decision1} alt="FTUX Permissions Decision" className="w-full h-auto rounded-md border border-white/10 shadow-xl bg-[#0d0c0e]" loading="lazy" decoding="async" />
                 </div>
               </motion.div>
 
@@ -357,7 +357,7 @@ export default function VerizonUCaaSCaseStudy() {
                   </p>
                 </div>
                 <div className="lg:col-span-6 flex justify-center lg:order-1">
-                  <img src={decision2} alt="Compose Button Decision" className="w-full h-auto rounded-md border border-white/10 shadow-xl bg-[#0d0c0e]" />
+                  <img src={decision2} alt="Compose Button Decision" className="w-full h-auto rounded-md border border-white/10 shadow-xl bg-[#0d0c0e]" loading="lazy" decoding="async" />
                 </div>
               </motion.div>
 
@@ -381,7 +381,7 @@ export default function VerizonUCaaSCaseStudy() {
                   </p>
                 </div>
                 <div className="lg:col-span-6 flex justify-center">
-                  <img src={decision3} alt="Multi-Window Controls Decision" className="w-full h-auto rounded-md border border-white/10 shadow-xl bg-[#0d0c0e]" />
+                  <img src={decision3} alt="Multi-Window Controls Decision" className="w-full h-auto rounded-md border border-white/10 shadow-xl bg-[#0d0c0e]" loading="lazy" decoding="async" />
                 </div>
               </motion.div>
             </div>

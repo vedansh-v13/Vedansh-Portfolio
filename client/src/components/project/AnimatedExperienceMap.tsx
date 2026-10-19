@@ -32,14 +32,44 @@ export function AnimatedExperienceMap() {
   });
 
   return (
-    <div ref={containerRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-start py-12">
+    <div ref={containerRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-24 items-start py-8 sm:py-12">
       {/* Left side: Timeline */}
       <div className="relative">
-        <span className="font-mono text-xs text-blush uppercase tracking-widest block mb-10">
+        <span className="font-mono text-xs text-blush uppercase tracking-widest block mb-6 md:mb-10">
           [ DESIGN SCOPE // EXPERIENCE MAP ]
         </span>
+
+        {/* Mobile Sticky Information Display: pinned below navbar so it stays visible and readable during scroll */}
+        <div className="md:hidden sticky top-20 z-20 mb-8 bg-[#1F1E21]/95 backdrop-blur-md border border-white/15 rounded-lg p-4 shadow-xl overflow-hidden">
+          <div className="relative w-full min-h-[64px] flex items-center">
+            {stages.map((stage, i) => (
+              <motion.div
+                key={i}
+                className={cn(
+                  "w-full flex items-center",
+                  activeStage === i ? "relative z-10" : "absolute inset-0 z-0 pointer-events-none"
+                )}
+                initial={false}
+                animate={{ 
+                  opacity: activeStage === i ? 1 : 0,
+                  y: activeStage === i ? 0 : 6,
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="w-full relative pl-3.5 border-l-2 border-blush">
+                  <p className="font-mono text-[10px] tracking-widest text-blush uppercase mb-0.5">
+                    STAGE 0{i + 1} // {stage.title}
+                  </p>
+                  <p className="text-base font-display font-light text-[#F5F4F6] leading-snug">
+                    {stage.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
         
-        <div className="relative pl-10 space-y-12">
+        <div className="relative pl-10 space-y-10 sm:space-y-12">
           {/* Background track line */}
           <div className="absolute left-[7px] top-4 bottom-4 w-[1px] bg-white/10" />
           
@@ -52,12 +82,21 @@ export function AnimatedExperienceMap() {
           {stages.map((stage, i) => (
             <motion.div 
               key={i}
-              className="relative cursor-pointer group py-1"
+              role="button"
+              tabIndex={0}
+              className="relative cursor-pointer group py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-blush focus-visible:rounded"
               initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ delay: i * 0.08 }}
               onMouseEnter={() => setActiveStage(i)}
+              onClick={() => setActiveStage(i)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActiveStage(i);
+                }
+              }}
             >
               {/* Dot */}
               <div className={cn(
@@ -81,8 +120,8 @@ export function AnimatedExperienceMap() {
         </div>
       </div>
 
-      {/* Right side: Description display */}
-      <div className="md:sticky top-1/3 flex items-center min-h-[140px] bg-[#1F1E21] border border-white/15 rounded-lg p-6 md:p-8 shadow-xl relative overflow-hidden">
+      {/* Right side: Desktop Sticky Description display */}
+      <div className="hidden md:flex md:sticky top-1/3 items-center min-h-[140px] bg-[#1F1E21] border border-white/15 rounded-lg p-6 md:p-8 shadow-xl relative overflow-hidden">
         <div className="relative w-full">
           {stages.map((stage, i) => (
             <motion.div

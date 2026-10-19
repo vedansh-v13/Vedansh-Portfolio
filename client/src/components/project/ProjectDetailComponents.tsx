@@ -111,6 +111,8 @@ export function GalleryScreenshotFrame({
                     alt={alt}
                     className="w-full h-auto block select-none object-top"
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -161,6 +163,8 @@ export function GalleryScreenshotFrame({
                 alt={alt}
                 className="w-full h-auto block select-none"
                 draggable={false}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
