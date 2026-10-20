@@ -197,7 +197,7 @@ export default function TataCapitalWealthCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#181719] text-[#F5F4F6]">
+    <div className="min-h-screen bg-[#181719] text-[#F5F4F6] overflow-x-hidden w-full max-w-full">
       <Helmet>
         <title>Tata Capital Wealth Case Study | Vedansh Wandalkar</title>
         <meta name="description" content="Reimagining a wealth platform for high-net-worth investors." />

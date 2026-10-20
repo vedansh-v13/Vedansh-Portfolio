@@ -499,13 +499,13 @@ export default function ProjectDetails() {
         <meta name="description" content={projectDetails.description} />
         <meta property="og:title" content={`${projectDetails.title} - Vedansh Wandalkar Portfolio`} />
         <meta property="og:description" content={projectDetails.description} />
-        <meta property="og:image" content={projectDetails.screenshots?.[0]?.url || 'https://vedanshwandalkar.com/og-image.jpg'} />
+        <meta property="og:image" content={projectDetails.screenshots?.[0]?.url || 'https://vedanshwandalkar.com/og-image.png'} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://vedanshwandalkar.com/projects/${projectId}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${projectDetails.title} - Vedansh Wandalkar Portfolio`} />
         <meta name="twitter:description" content={projectDetails.description} />
-        <meta name="twitter:image" content={projectDetails.screenshots?.[0]?.url || 'https://vedanshwandalkar.com/og-image.jpg'} />
+        <meta name="twitter:image" content={projectDetails.screenshots?.[0]?.url || 'https://vedanshwandalkar.com/og-image.png'} />
       </Helmet>
       {/* Hero section */}
       <section className="relative w-full min-h-[500px] overflow-hidden bg-[#181719] border-b border-white/10 pt-8 pb-16">

@@ -19,6 +19,7 @@ function Router() {
       <Route path="/projects/omnycomm-ecommerce" component={OmnycommCaseStudy} />
       <Route path="/projects/tata-capital-wealth" component={TataCapitalWealthCaseStudy} />
       <Route path="/projects/meerolink" component={MeeroLinkCaseStudy} />
+      <Route path="/projects/verizon-ucaas" component={VerizonUCaaSCaseStudy} />
       <Route path="/projects/verizon-uccaas" component={VerizonUCaaSCaseStudy} />
       <Route path="/projects/:id" component={ProjectDetails} />
       <Route path="/case-studies/omnycomm" component={OmnycommCaseStudy} />

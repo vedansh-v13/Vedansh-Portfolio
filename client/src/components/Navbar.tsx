@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const [location] = useLocation();
   const isProjectPage = location.startsWith('/projects/');
 
@@ -18,11 +19,37 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (isProjectPage) return;
+
+    const sectionIds = ["projects", "decisions", "about"];
+    const handleScrollSpy = () => {
+      const scrollPosition = window.scrollY + 180;
+      let currentSection: string | null = null;
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            currentSection = id;
+            break;
+          }
+        }
+      }
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScrollSpy, { passive: true });
+    handleScrollSpy();
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, [isProjectPage]);
 
   return (
     <nav
@@ -53,31 +80,56 @@ export default function Navbar() {
               <nav className="flex items-center gap-7">
                 <a
                   href="#projects"
-                  className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors duration-200 text-sm font-medium tracking-wide relative group"
+                  className={`transition-colors duration-200 text-sm font-medium tracking-wide relative group py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blush/80 rounded-sm ${
+                    activeSection === "projects" ? "text-[#F5F4F6]" : "text-[#AAA7AE] hover:text-[#F5F4F6]"
+                  }`}
                 >
                   Projects
-                  <span className="absolute -bottom-1 left-0 w-0 group-hover:w-full h-[1px] bg-blush transition-all duration-200"></span>
+                  <span
+                    className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-blush transition-all duration-200 ease-out origin-left ${
+                      activeSection === "projects" ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </a>
+                <a
+                  href="#decisions"
+                  className={`transition-colors duration-200 text-sm font-medium tracking-wide relative group py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blush/80 rounded-sm ${
+                    activeSection === "decisions" ? "text-[#F5F4F6]" : "text-[#AAA7AE] hover:text-[#F5F4F6]"
+                  }`}
+                >
+                  Decisions
+                  <span
+                    className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-blush transition-all duration-200 ease-out origin-left ${
+                      activeSection === "decisions" ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
                 </a>
                 <a
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors duration-200 text-sm font-medium tracking-wide relative group"
+                  className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors duration-200 text-sm font-medium tracking-wide relative group py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blush/80 rounded-sm"
                 >
                   Resume
-                  <span className="absolute -bottom-1 left-0 w-0 group-hover:w-full h-[1px] bg-blush transition-all duration-200"></span>
+                  <span className="absolute -bottom-0.5 left-0 w-0 group-hover:w-full h-[1.5px] bg-blush transition-all duration-200 ease-out origin-left" />
                 </a>
                 <a
                   href="#about"
-                  className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors duration-200 text-sm font-medium tracking-wide relative group"
+                  className={`transition-colors duration-200 text-sm font-medium tracking-wide relative group py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blush/80 rounded-sm ${
+                    activeSection === "about" ? "text-[#F5F4F6]" : "text-[#AAA7AE] hover:text-[#F5F4F6]"
+                  }`}
                 >
                   About
-                  <span className="absolute -bottom-1 left-0 w-0 group-hover:w-full h-[1px] bg-blush transition-all duration-200"></span>
+                  <span
+                    className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-blush transition-all duration-200 ease-out origin-left ${
+                      activeSection === "about" ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
                 </a>
               </nav>
               <a
                 href="mailto:vedansh.wandalkar@gmail.com"
-                className="btn-tactile bg-blush text-ink font-medium text-xs uppercase tracking-wider px-4 py-2 rounded-md transition-all duration-150 shadow-sm hover:bg-[#edd8d1]"
+                className="btn-tactile bg-blush text-ink font-medium text-xs uppercase tracking-wider px-4 py-2 rounded-md shadow-sm hover:bg-[#edd8d1] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blush"
               >
                 Get in touch
               </a>
@@ -85,13 +137,13 @@ export default function Navbar() {
           ) : (
             <div className="hidden md:flex items-center gap-6">
               <Link href="/">
-                <span className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors flex items-center gap-2 cursor-pointer text-sm font-medium">
-                  <ArrowLeft size={16} />
+                <span className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors duration-200 flex items-center gap-2 cursor-pointer text-sm font-medium group">
+                  <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-200" />
                   Back to Home
                 </span>
               </Link>
               <Link href="/#projects">
-                <span className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors cursor-pointer text-sm font-medium">
+                <span className="text-[#AAA7AE] hover:text-[#F5F4F6] transition-colors duration-200 cursor-pointer text-sm font-medium">
                   All Projects
                 </span>
               </Link>
@@ -99,9 +151,10 @@ export default function Navbar() {
           )}
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-[#F5F4F6] hover:text-blush transition-colors p-1"
+            className="md:hidden text-[#F5F4F6] hover:text-blush transition-colors p-1.5 rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blush active:scale-95"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -115,30 +168,38 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#181719] border-b border-white/10 overflow-hidden"
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden bg-[#181719]/95 backdrop-blur-md border-b border-white/10 overflow-hidden"
           >
             <div className="container mx-auto px-6 py-6 flex flex-col space-y-4">
               {!isProjectPage ? (
                 <>
                   <a
                     href="#projects"
-                    className="text-[#F5F4F6] text-base font-medium py-2 hover:text-blush transition-colors border-b border-white/5"
+                    className="text-[#F5F4F6] text-base font-medium py-2 hover:text-blush transition-colors border-b border-white/5 active:text-blush"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Projects
                   </a>
                   <a
+                    href="#decisions"
+                    className="text-[#F5F4F6] text-base font-medium py-2 hover:text-blush transition-colors border-b border-white/5 active:text-blush"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Decisions
+                  </a>
+                  <a
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#F5F4F6] text-base font-medium py-2 hover:text-blush transition-colors border-b border-white/5"
+                    className="text-[#F5F4F6] text-base font-medium py-2 hover:text-blush transition-colors border-b border-white/5 active:text-blush"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Resume
                   </a>
                   <a
                     href="#about"
-                    className="text-[#F5F4F6] text-base font-medium py-2 hover:text-blush transition-colors border-b border-white/5"
+                    className="text-[#F5F4F6] text-base font-medium py-2 hover:text-blush transition-colors border-b border-white/5 active:text-blush"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     About

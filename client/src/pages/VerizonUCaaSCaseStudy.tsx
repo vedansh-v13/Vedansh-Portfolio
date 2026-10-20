@@ -63,7 +63,7 @@ export default function VerizonUCaaSCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#181719] text-[#F5F4F6]">
+    <div className="min-h-screen bg-[#181719] text-[#F5F4F6] overflow-x-hidden w-full max-w-full">
       <Helmet>
         <title>Verizon UCaaS Case Study | Vedansh Wandalkar</title>
         <meta name="description" content="Redesigning unified enterprise communications across desktop and mobile platforms." />

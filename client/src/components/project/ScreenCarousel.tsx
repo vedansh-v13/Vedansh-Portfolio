@@ -33,11 +33,11 @@ export function ScreenCarousel({ screens, caption }: ScreenCarouselProps) {
   };
 
   return (
-    <div className="relative w-full group">
+    <div className="relative w-full max-w-full overflow-hidden group">
       {/* Scrollable Container */}
       <div 
         ref={scrollRef}
-        className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory hide-scrollbar pt-4 px-4 md:px-0 scroll-pl-4 md:scroll-pl-0"
+        className="flex overflow-x-auto max-w-full gap-8 pb-8 snap-x snap-mandatory hide-scrollbar pt-4 px-4 md:px-0 scroll-pl-4 md:scroll-pl-0"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {screens.map((screen, idx) => (

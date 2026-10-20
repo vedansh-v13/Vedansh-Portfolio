@@ -17,17 +17,17 @@ export default function Home() {
       className="relative"
     >
       <Helmet>
-        <title>Vedansh Wandalkar - Product Designer Portfolio</title>
-        <meta name="description" content="I design products across finance, enterprise software, and AI. I write about the gap between how systems are designed and how people actually use them." />
-        <meta property="og:title" content="Vedansh Wandalkar - Product Designer Portfolio" />
-        <meta property="og:description" content="I design products across finance, enterprise software, and AI. I write about the gap between how systems are designed and how people actually use them." />
-        <meta property="og:image" content="https://vedanshwandalkar.com/og-image.jpg" />
+        <title>Vedansh Wandalkar — Product Designer</title>
+        <meta name="description" content="Product designer working across fintech, enterprise software, operational systems, and AI-native products. Designing products that reduce uncertainty." />
+        <meta property="og:title" content="Vedansh Wandalkar — Product Designer" />
+        <meta property="og:description" content="Product designer working across fintech, enterprise software, operational systems, and AI-native products. Designing products that reduce uncertainty." />
+        <meta property="og:image" content="https://vedanshwandalkar.com/og-image.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://vedanshwandalkar.com" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Vedansh Wandalkar - Product Designer Portfolio" />
-        <meta name="twitter:description" content="I design products across finance, enterprise software, and AI. I write about the gap between how systems are designed and how people actually use them." />
-        <meta name="twitter:image" content="https://vedanshwandalkar.com/og-image.jpg" />
+        <meta name="twitter:title" content="Vedansh Wandalkar — Product Designer" />
+        <meta name="twitter:description" content="Product designer working across fintech, enterprise software, operational systems, and AI-native products. Designing products that reduce uncertainty." />
+        <meta name="twitter:image" content="https://vedanshwandalkar.com/og-image.png" />
       </Helmet>
       <Navbar />
       <HeroSection />

@@ -164,7 +164,7 @@ export default function AboutSection() {
     cancelClose();
     closeTimeoutRef.current = setTimeout(() => {
       setActiveId(null);
-    }, 180);
+    }, 220);
   };
 
   const handlePointerEnter = (id: InterestId, e: React.PointerEvent) => {
@@ -222,7 +222,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section ref={ref} id="about" className="py-24 sm:py-32 bg-blush text-ink relative overflow-hidden">
+    <section ref={ref} id="about" className="py-24 sm:py-32 bg-blush text-ink relative overflow-hidden border-t border-[#181719]/15">
       {/* Background Subtle Architectural Texture */}
       <div className="absolute inset-0 architectural-grid-dark opacity-40 pointer-events-none" />
 
@@ -239,7 +239,7 @@ export default function AboutSection() {
         </div>
 
         {/* Bio split-column */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20 lg:mb-72">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16 lg:mb-24">
           
           {/* Left Column - Text Content */}
           <motion.div
@@ -276,7 +276,7 @@ export default function AboutSection() {
                       style={{
                         left: `${clampedLeft}px`,
                       }}
-                      className="absolute top-full mt-2.5 z-30 pointer-events-auto"
+                      className="absolute top-full mt-2.5 z-30 pointer-events-auto before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4"
                     >
                       {/* Subtle indicator arrow pointing directly up to the active word */}
                       <div
@@ -286,9 +286,13 @@ export default function AboutSection() {
 
                       <div className="bg-[#181719] border border-white/15 rounded-lg p-1.5 shadow-2xl w-[168px]">
                         <div className="relative overflow-hidden rounded-md bg-black/40">
-                          <img
+                          <motion.img
+                            key={activeId}
                             src={INTERESTS[activeId].image}
                             alt={INTERESTS[activeId].alt}
+                            initial={{ opacity: 0.7 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.18 }}
                             className={`w-full ${INTERESTS[activeId].aspectClass} ${INTERESTS[activeId].objectPositionClass} object-cover`}
                             loading="eager"
                           />
@@ -385,10 +389,10 @@ export default function AboutSection() {
 
             <a
               href="mailto:vedansh.wandalkar@gmail.com?subject=Let's%20create%20something%20remarkable"
-              className="btn-tactile inline-flex items-center gap-3 bg-blush text-ink font-medium text-sm px-6 py-3.5 rounded-md hover:bg-[#edd8d1] transition-all shadow-md group"
+              className="btn-tactile inline-flex items-center gap-3 bg-blush text-ink font-medium text-sm px-6 py-3.5 rounded-md hover:bg-[#edd8d1] transition-all shadow-md group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
             >
               <span>Start a conversation</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
             </a>
           </div>
         </motion.div>
@@ -411,7 +415,7 @@ export default function AboutSection() {
             {books.map((book, index) => (
               <div
                 key={index}
-                className="p-5 rounded-lg border border-ink/10 bg-ink/5 hover:bg-ink/10 transition-colors"
+                className="p-5 rounded-lg border border-ink/10 bg-ink/5 select-none hover:bg-ink/[0.08] hover:border-ink/20 transition-all duration-200"
               >
                 <div className="flex items-start gap-3">
                   <BookOpen className="w-4 h-4 text-ink/40 mt-1 shrink-0" />

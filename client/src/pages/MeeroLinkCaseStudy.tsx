@@ -75,7 +75,7 @@ export default function MeeroLinkCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#181719] text-[#F5F4F6]">
+    <div className="min-h-screen bg-[#181719] text-[#F5F4F6] overflow-x-hidden w-full max-w-full">
       <Helmet>
         <title>MeeroLink Case Study | Vedansh Wandalkar</title>
         <meta name="description" content="Operational coordination and farm advisory platform for agronomists and field teams." />

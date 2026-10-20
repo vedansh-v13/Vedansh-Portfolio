@@ -488,3 +488,6 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     whatILearned: "This project taught me the importance of democratizing technology through design. Creating powerful tools that are accessible to non-technical users requires careful attention to user experience and progressive disclosure of complexity."
   }
 };
+
+// Route alias for single-c spelling
+projectDetailsData["verizon-ucaas"] = projectDetailsData["verizon-uccaas"];

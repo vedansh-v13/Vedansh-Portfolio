@@ -70,7 +70,7 @@ export default function OmnycommCaseStudy() {
   }, [storyCards]);
 
   return (
-    <div className="min-h-screen bg-[#181719] text-[#F5F4F6]">
+    <div className="min-h-screen bg-[#181719] text-[#F5F4F6] overflow-x-hidden w-full max-w-full">
       <Helmet>
         <title>Omnycomm Case Study - Ecommerce Dashboard Design | Vedansh Wandalkar</title>
         <meta name="description" content="Case study: Designing the first ecommerce dashboard experience for Omnycomm, a marketing OS for D2C brands. Learn about the UX/UI design process, challenges, and outcomes." />

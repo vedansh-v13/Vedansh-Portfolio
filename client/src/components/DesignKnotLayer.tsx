@@ -6,29 +6,29 @@ interface DesignKnotLayerProps {
 }
 
 export default function DesignKnotLayer({ progress }: DesignKnotLayerProps) {
-  // Global layer opacity: settles to 0 as clarity phase is reached
-  const globalOpacity = useTransform(progress, [0, 0.44, 0.58], [1, 0.85, 0]);
+  // Global layer opacity: softly dissolves as ribbons finish separating (0.40 to 0.58)
+  const globalOpacity = useTransform(progress, [0, 0.40, 0.58], [1, 0.85, 0]);
 
-  // Motion transforms: Paths untangle, separate, and soften on scroll
-  const pathAX = useTransform(progress, [0.10, 0.52], [0, -170]);
-  const pathAY = useTransform(progress, [0.10, 0.52], [0, 20]);
-  const pathAScale = useTransform(progress, [0.10, 0.52], [1, 1.10]);
-  const pathARotate = useTransform(progress, [0.10, 0.52], [0, -6]);
-  const pathAOpacity = useTransform(progress, [0.10, 0.36, 0.54], [1, 0.60, 0]);
+  // Motion transforms: Ribbons untangle and glide apart with smooth deceleration over ~1.2s (progress 0.00 to 0.55)
+  const pathAX = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [0, -75, -135, -170]);
+  const pathAY = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [0, 9, 16, 20]);
+  const pathAScale = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [1, 1.04, 1.08, 1.10]);
+  const pathARotate = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [0, -2.5, -4.8, -6]);
+  const pathAOpacity = useTransform(progress, [0.00, 0.36, 0.55], [1, 0.75, 0]);
 
-  const pathBX = useTransform(progress, [0.10, 0.52], [0, 170]);
-  const pathBY = useTransform(progress, [0.10, 0.52], [0, -20]);
-  const pathBScale = useTransform(progress, [0.10, 0.52], [1, 1.10]);
-  const pathBRotate = useTransform(progress, [0.10, 0.52], [0, 6]);
-  const pathBOpacity = useTransform(progress, [0.10, 0.36, 0.54], [1, 0.55, 0]);
+  const pathBX = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [0, 75, 135, 170]);
+  const pathBY = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [0, -9, -16, -20]);
+  const pathBScale = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [1, 1.04, 1.08, 1.10]);
+  const pathBRotate = useTransform(progress, [0.00, 0.20, 0.38, 0.55], [0, 2.5, 4.8, 6]);
+  const pathBOpacity = useTransform(progress, [0.00, 0.36, 0.55], [1, 0.70, 0]);
 
-  // Secondary paths fade out first to rapidly reduce clutter and visual density
-  const secondaryScale = useTransform(progress, [0.05, 0.24], [1, 1.08]);
-  const secondaryOpacity = useTransform(progress, [0.05, 0.22], [1, 0]);
+  // Secondary paths fade out in first part of untangling
+  const secondaryScale = useTransform(progress, [0.00, 0.24], [1, 1.08]);
+  const secondaryOpacity = useTransform(progress, [0.00, 0.22], [1, 0]);
 
   // Subtle label drifts slightly and dissolves early
-  const labelY = useTransform(progress, [0.04, 0.18], [0, -18]);
-  const labelOpacity = useTransform(progress, [0.04, 0.16], [1, 0]);
+  const labelY = useTransform(progress, [0.00, 0.16], [0, -18]);
+  const labelOpacity = useTransform(progress, [0.00, 0.14], [1, 0]);
 
   return (
     <motion.div

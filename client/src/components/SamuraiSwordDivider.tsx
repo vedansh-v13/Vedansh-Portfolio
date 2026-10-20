@@ -12,7 +12,7 @@ export default function SamuraiSwordDivider() {
           {/* Left registration label */}
           <span className="text-[10px] font-mono text-[#AAA7AE] tracking-widest uppercase flex items-center gap-2">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-blush" />
-            SEC.01 / INDEX
+            PORTFOLIO // INDEX
           </span>
 
           {/* Center Expanding Hairline Rule */}
