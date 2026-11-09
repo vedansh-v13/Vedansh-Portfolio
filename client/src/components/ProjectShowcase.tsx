@@ -324,7 +324,7 @@ export default function ProjectShowcase() {
 }
 
 // -----------------------------------------------------------------------------
-// Interactive Video Player with Play/Pause Control
+// Interactive Video Player with Play/Pause Control & In-View Lazy Loading
 // -----------------------------------------------------------------------------
 function ProjectVideoFrame({
   src,
@@ -335,8 +335,26 @@ function ProjectVideoFrame({
   aspectRatio: string;
   isPhoneFrame?: boolean;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -351,7 +369,10 @@ function ProjectVideoFrame({
 
   if (isPhoneFrame) {
     return (
-      <div className="relative w-full max-w-[360px] aspect-[9/16] max-h-[580px] rounded-[2.5rem] p-3 bg-[#0c0b0e] border border-white/15 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.85)] overflow-hidden group">
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[360px] aspect-[9/16] max-h-[580px] rounded-[2.5rem] p-3 bg-[#0c0b0e] border border-white/15 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.85)] overflow-hidden group"
+      >
         {/* Minimal speaker notch */}
         <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-4 bg-black/90 rounded-full z-20 flex items-center justify-center">
           <div className="w-2.5 h-2.5 rounded-full bg-[#1c1b1f] mr-2" />
@@ -360,11 +381,12 @@ function ProjectVideoFrame({
         <div className="w-full h-full rounded-[2rem] overflow-hidden bg-[#181719] relative">
           <video
             ref={videoRef}
-            src={src}
+            src={isInView ? src : undefined}
             autoPlay
             loop
             muted
             playsInline
+            preload="none"
             className="w-full h-full object-cover"
           />
           <button
@@ -385,14 +407,18 @@ function ProjectVideoFrame({
   }
 
   return (
-    <div className={`w-full ${aspectRatio} rounded-2xl overflow-hidden border border-white/15 bg-[#0c0b0e] shadow-2xl relative group`}>
+    <div
+      ref={containerRef}
+      className={`w-full ${aspectRatio} rounded-2xl overflow-hidden border border-white/15 bg-[#0c0b0e] shadow-2xl relative group`}
+    >
       <video
         ref={videoRef}
-        src={src}
+        src={isInView ? src : undefined}
         autoPlay
         loop
         muted
         playsInline
+        preload="none"
         className="w-full h-full object-cover"
       />
       <button
@@ -546,7 +572,7 @@ function DesktopProjectSpread({
 }
 
 // -----------------------------------------------------------------------------
-// Mobile Media Component (Optimized for 375px+ screens)
+// Mobile Media Component (Optimized for 375px+ screens with in-view lazy loading)
 // -----------------------------------------------------------------------------
 function MobileProjectMedia({
   project,
@@ -557,17 +583,39 @@ function MobileProjectMedia({
 }) {
   const isTata = project.id === "tata-capital-wealth";
   const isSherlock = project.id === "sherlock";
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   if (isTata) {
     return (
-      <div className="relative w-full max-w-[280px] aspect-[9/16] rounded-[2rem] p-2 bg-[#0c0b0e] border border-white/15 shadow-xl overflow-hidden">
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[280px] aspect-[9/16] rounded-[2rem] p-2 bg-[#0c0b0e] border border-white/15 shadow-xl overflow-hidden"
+      >
         <div className="w-full h-full rounded-[1.5rem] overflow-hidden bg-[#181719]">
           <video
-            src={project.videoSrc}
+            src={isInView ? project.videoSrc : undefined}
             autoPlay
             loop
             muted
             playsInline
+            preload="none"
             className="w-full h-full object-cover"
           />
         </div>
@@ -589,13 +637,17 @@ function MobileProjectMedia({
   }
 
   return (
-    <div className="w-full max-w-[420px] aspect-[4/3] rounded-xl overflow-hidden border border-white/15 bg-[#0c0b0e] shadow-lg">
+    <div
+      ref={containerRef}
+      className="w-full max-w-[420px] aspect-[4/3] rounded-xl overflow-hidden border border-white/15 bg-[#0c0b0e] shadow-lg"
+    >
       <video
-        src={project.videoSrc}
+        src={isInView ? project.videoSrc : undefined}
         autoPlay
         loop
         muted
         playsInline
+        preload="none"
         className="w-full h-full object-cover"
       />
     </div>

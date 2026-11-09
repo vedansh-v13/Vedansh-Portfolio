@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
-import SamuraiSwordDivider from "../components/SamuraiSwordDivider";
 import ProjectShowcase from "../components/ProjectShowcase";
 import AboutSection from "../components/AboutSection";
 import Footer from "../components/Footer";
@@ -31,7 +30,6 @@ export default function Home() {
       </Helmet>
       <Navbar />
       <HeroSection />
-      <SamuraiSwordDivider />
       <ProjectShowcase />
       <DecisionsSection />
       <AboutSection />
