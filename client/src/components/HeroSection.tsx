@@ -88,30 +88,25 @@ export default function HeroSection() {
   // ───────────────────────────────────────────────────────────────────────────
   // Deliberately Staged Choreography (2.2s duration following 900ms hold):
   // Phase 1 (0.00 - 0.45): Knot untangles exclusively (~1.0s); zero text competing.
-  // Phase 2 (0.45 - 0.65): Name emerges toward latter part of untangling (~1.0s - 1.4s).
+  // Phase 2 (0.45 - 0.65): Name & Role emerge toward latter part of untangling (~1.0s - 1.4s).
   // Phase 3 (0.62 - 0.80): Headline settles in after name starts to settle (~1.4s - 1.75s).
-  // Phase 4 (0.76 - 0.90): Supporting description glides into place (~1.65s - 2.0s).
-  // Phase 5 (0.85 - 0.98): CTA buttons emerge and activate (~1.85s - 2.15s).
-  // Phase 6 (0.98 - 1.00): Full clarity reached at rest.
+  // Phase 4 (0.75 - 0.95): CTA button emerges and activates (~1.65s - 2.1s).
+  // Phase 5 (0.95 - 1.00): Full clarity reached at rest.
   // ───────────────────────────────────────────────────────────────────────────
 
-  // Name transforms (with smooth deceleration curve)
+  // Name & Role transforms (with smooth deceleration curve)
   const nameOpacity = useTransform(progress, [0.45, 0.65], [0, 1]);
   const nameY = useTransform(progress, [0.45, 0.55, 0.65], [24, 6, 0]);
   const nameScale = useTransform(progress, [0.45, 0.55, 0.65], [0.96, 0.99, 1]);
 
-  // Headline & Role transforms (with smooth deceleration curve)
+  // Headline transforms (with smooth deceleration curve)
   const headlineOpacity = useTransform(progress, [0.62, 0.80], [0, 1]);
   const headlineY = useTransform(progress, [0.62, 0.71, 0.80], [20, 5, 0]);
 
-  // Supporting description transforms (with smooth deceleration curve)
-  const descOpacity = useTransform(progress, [0.76, 0.90], [0, 1]);
-  const descY = useTransform(progress, [0.76, 0.83, 0.90], [16, 4, 0]);
-
   // CTA buttons transforms (with smooth deceleration curve)
-  const ctaOpacity = useTransform(progress, [0.85, 0.98], [0, 1]);
-  const ctaY = useTransform(progress, [0.85, 0.92, 0.98], [16, 4, 0]);
-  const ctaPointerEvents = useTransform(progress, (p) => (p > 0.88 ? "auto" : "none"));
+  const ctaOpacity = useTransform(progress, [0.75, 0.95], [0, 1]);
+  const ctaY = useTransform(progress, [0.75, 0.85, 0.95], [16, 4, 0]);
+  const ctaPointerEvents = useTransform(progress, (p) => (p > 0.82 ? "auto" : "none"));
 
   // Illustration frame transforms (emerging harmoniously with the layout)
   const illustrationOpacity = useTransform(progress, [0.48, 0.70], [0, 1]);
@@ -156,24 +151,33 @@ export default function HeroSection() {
         {/* =====================================================================
             DESKTOP & TABLET COMPOSITION (md+)
             Cohesive, vertically balanced editorial composition:
-            - Left Column (7 cols): Name + Role tightly paired -> Controlled gap -> Headline -> Description -> CTA
-            - Right Column (5 cols): Editorial artwork plate vertically aligned with the left composition
+            1. Product Designer (eyebrow, in secondary blush #E7D0C8)
+            2. VEDANSH WANDALKAR (dominant name display)
+            3. Designing products that reduce uncertainty. (main headline)
+            4. Explore selected work (CTA button)
+            Right Column: Editorial artwork plate with vertical edge annotation
             ===================================================================== */}
         <div className="hidden md:grid md:grid-cols-12 md:gap-8 lg:gap-12 xl:gap-14 items-center">
           
           {/* Left Column: Unified typographic composition */}
           <div className="md:col-span-7 flex flex-col items-start justify-center">
             
-            {/* 1. Identity Lockup: Dominant Name + Role tightly connected */}
+            {/* 1. Identity Lockup: Role placed above Name */}
             <motion.div
               style={{
                 opacity: nameOpacity,
                 y: nameY,
                 scale: nameScale,
               }}
-              className="mb-5 lg:mb-6"
+              className="mb-6 lg:mb-8"
             >
-              <h1 className="font-display font-bold uppercase tracking-[-0.035em] text-[#F5F4F6] text-[3.25rem] lg:text-[4.2rem] xl:text-[4.75rem] leading-[0.9] select-none">
+              {/* 1. Role (Eyebrow): Strengthened visual presence in secondary blush (#E7D0C8) */}
+              <p className="font-sans text-base sm:text-lg lg:text-[1.25rem] xl:text-[1.35rem] font-medium text-blush tracking-[0.02em] mb-3 lg:mb-3.5 select-none">
+                Product Designer
+              </p>
+
+              {/* 2. Name: Dominant visual prominence */}
+              <h1 className="font-display font-bold uppercase tracking-[-0.035em] text-[#F5F4F6] text-[3.75rem] lg:text-[4.75rem] xl:text-[5.5rem] leading-[0.88] select-none">
                 <span className="block text-[#F5F4F6]">
                   VEDANSH
                 </span>
@@ -181,40 +185,24 @@ export default function HeroSection() {
                   WANDAL<span className="text-blush">KAR</span>
                 </span>
               </h1>
-              
-              {/* Role: Positioned directly under the name with controlled negative space */}
-              <p className="font-sans text-xs lg:text-[13px] text-[#AAA7AE] font-normal tracking-[0.01em] mt-3 select-none">
-                Product Designer
-              </p>
             </motion.div>
 
-            {/* 2. Editorial Introduction: Headline -> Description -> CTA */}
+            {/* Editorial Introduction: Headline -> CTA */}
             <div className="flex flex-col items-start text-left max-w-xl">
               
-              {/* Headline: Confident, primary focal point */}
+              {/* 3. Main Headline: Primary focal point with sampled manga red accent */}
               <motion.h2
                 style={{
                   opacity: headlineOpacity,
                   y: headlineY,
                 }}
-                className="font-display font-medium text-[#F5F4F6] text-2xl lg:text-[1.85rem] xl:text-[2.1rem] tracking-[-0.02em] leading-[1.2] max-w-[460px] mb-4"
+                className="font-display font-medium text-[#F5F4F6] text-[1.85rem] lg:text-[2.25rem] xl:text-[2.6rem] tracking-[-0.025em] leading-[1.18] max-w-[540px] mb-7 lg:mb-8"
               >
                 Designing products that{" "}
                 <span className="text-[#da4942]">reduce uncertainty.</span>
               </motion.h2>
 
-              {/* Supporting Copy: Constrained line length for effortless readability */}
-              <motion.p
-                style={{
-                  opacity: descOpacity,
-                  y: descY,
-                }}
-                className="font-sans text-sm lg:text-[15px] text-[#AAA7AE] font-normal leading-[1.6] max-w-[420px] mb-6"
-              >
-                I turn complex workflows, information, and decisions into thoughtful product experiences.
-              </motion.p>
-
-              {/* CTA: Tactile anchor, visually connected to text above */}
+              {/* 4. CTA: Tactile anchor, brought into natural position beneath headline */}
               <motion.div
                 style={{
                   opacity: ctaOpacity,
@@ -225,7 +213,7 @@ export default function HeroSection() {
                 <a
                   href="#projects"
                   onClick={handleScrollToProjects}
-                  className="btn-tactile inline-flex items-center gap-2 bg-blush text-ink font-medium text-xs sm:text-[13px] px-5 py-2.5 rounded-[5px] hover:bg-[#edd8d1] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blush group"
+                  className="btn-tactile inline-flex items-center gap-2.5 bg-blush text-ink font-medium text-sm lg:text-[14.5px] px-6 py-3 rounded-[6px] hover:bg-[#edd8d1] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blush group"
                 >
                   <span>Explore selected work</span>
                   <span className="text-sm leading-none transition-transform duration-200 group-hover:translate-y-0.5">↓</span>
@@ -245,7 +233,7 @@ export default function HeroSection() {
             }}
             className="md:col-span-5 flex flex-col items-end justify-center"
           >
-            <div className="w-full max-w-[270px] md:max-w-[290px] lg:max-w-[340px] xl:max-w-[355px]">
+            <div className="w-full max-w-[285px] md:max-w-[310px] lg:max-w-[360px] xl:max-w-[380px]">
               
               {/* Restrained editorial artwork plate */}
               <div
@@ -257,7 +245,7 @@ export default function HeroSection() {
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={handleToggleState}
                 onKeyDown={handleKeyDown}
-                className="relative aspect-[3/4] w-full overflow-hidden cursor-pointer select-none shadow-[0_12px_28px_-8px_rgba(0,0,0,0.55)] focus:outline-none focus-visible:ring-2 focus-visible:ring-blush"
+                className="relative aspect-[3/4] w-full overflow-hidden cursor-pointer select-none shadow-[0_12px_28px_-8px_rgba(0,0,0,0.55)] focus:outline-none focus-visible:ring-2 focus-visible:ring-blush group"
               >
                 {/* Layer 1: Original Photograph with matching warm paper border */}
                 <div className="absolute inset-0 w-full h-full">
@@ -295,12 +283,16 @@ export default function HeroSection() {
                     />
                   </picture>
                 </div>
-              </div>
 
-              {/* Single understated interaction instruction */}
-              <p className="mt-2 text-right font-sans text-[11px] text-[#AAA7AE]/75 tracking-[0.01em] select-none transition-colors">
-                {showPhoto ? "Original photograph" : "Hover to reveal original photograph"}
-              </p>
+                {/* Layer 3: Vertical Editorial Annotation along the bottom-right edge */}
+                <div className="absolute right-3.5 sm:right-4 bottom-3.5 sm:bottom-4 z-30 pointer-events-none select-none flex items-center justify-end">
+                  <span
+                    className="font-mono text-[8.5px] lg:text-[9.5px] tracking-[0.16em] uppercase text-[#181719]/90 bg-[#F6F3EB]/95 backdrop-blur-sm px-1.5 py-2 rounded-[2px] shadow-sm border border-[#181719]/25 [writing-mode:vertical-rl] rotate-180"
+                  >
+                    {showPhoto ? "Original photograph" : "Hover to reveal original photograph"}
+                  </span>
+                </div>
+              </div>
 
             </div>
           </motion.div>
@@ -309,24 +301,34 @@ export default function HeroSection() {
 
         {/* =====================================================================
             MOBILE COMPOSITION (< md / 390px Viewports)
-            Strict sequence with precise editorial spacing:
-            1. Name
-            2. Illustration Frame
-            3. Cohesive Introduction Group (Role -> Headline -> Description -> CTA)
-               - Role to Headline: ~12-16px (mb-3 = 12px)
-               - Headline to Description: ~16-20px (mb-4 = 16px)
-               - Description to CTA: ~24-28px (mb-6 = 24px)
+            Strict sequence:
+            1. Product Designer (eyebrow above the name)
+            2. VEDANSH WANDALKAR (dominant name display)
+            3. Illustration Frame (with vertical annotation along bottom-right edge)
+            4. Designing products that reduce uncertainty. (main headline)
+            5. Explore selected work (CTA button)
             ===================================================================== */}
         <div className="block md:hidden relative w-full">
           
-          {/* 1. Name: Large and impactful, tight line-height, controlled margin to illustration */}
+          {/* 1. Role (Eyebrow): Strengthened visual presence above the name */}
+          <motion.p
+            style={{
+              opacity: nameOpacity,
+              y: nameY,
+            }}
+            className="font-sans text-sm sm:text-base font-medium text-blush tracking-[0.02em] mb-2 select-none"
+          >
+            Product Designer
+          </motion.p>
+
+          {/* 2. Name: Scaled up with dominant presence */}
           <motion.h1
             style={{
               opacity: nameOpacity,
               y: nameY,
               scale: nameScale,
             }}
-            className="font-display font-bold uppercase tracking-[-0.035em] text-[#F5F4F6] text-[2.45rem] sm:text-5xl leading-[0.91] select-none mb-3"
+            className="font-display font-bold uppercase tracking-[-0.035em] text-[#F5F4F6] text-[2.75rem] sm:text-[3.25rem] leading-[0.9] select-none mb-4"
           >
             <span className="block text-[#F5F4F6]">
               VEDANSH
@@ -336,14 +338,14 @@ export default function HeroSection() {
             </span>
           </motion.h1>
 
-          {/* 2. Illustration Frame: Sized to avoid pushing content excessively, minimal vertical gap */}
+          {/* 3. Illustration Frame: Sized proportionately with vertical edge annotation */}
           <motion.div
             style={{
               opacity: illustrationOpacity,
               y: illustrationY,
               scale: illustrationScale,
             }}
-            className="w-full max-w-[235px] sm:max-w-[260px] mb-3.5"
+            className="w-full max-w-[245px] sm:max-w-[270px] mb-5"
           >
             <div
               tabIndex={0}
@@ -390,52 +392,34 @@ export default function HeroSection() {
                   />
                 </picture>
               </div>
-            </div>
 
-            {/* Subtle tap instruction */}
-            <p className="mt-1 font-sans text-[10px] sm:text-[11px] text-[#AAA7AE]/75 tracking-[0.01em] select-none">
-              {showPhoto ? "Original photograph · Tap to restore" : "Tap to reveal original photograph"}
-            </p>
+              {/* Layer 3: Vertical Editorial Annotation along the bottom-right edge */}
+              <div className="absolute right-2.5 bottom-2.5 z-30 pointer-events-none select-none flex items-center justify-end">
+                <span
+                  className="font-mono text-[8px] sm:text-[9px] tracking-[0.14em] uppercase text-[#181719]/90 bg-[#F6F3EB]/95 backdrop-blur-sm px-1 py-1.5 rounded-[2px] shadow-sm border border-[#181719]/25 [writing-mode:vertical-rl] rotate-180"
+                >
+                  {showPhoto ? "Original photograph" : "Tap to reveal original photograph"}
+                </span>
+              </div>
+            </div>
           </motion.div>
 
-          {/* 3. Cohesive Introduction Text Group: Role -> Headline -> Description -> CTA */}
+          {/* 4. Cohesive Introduction Text Group: Headline -> CTA */}
           <div className="flex flex-col items-start text-left">
             
-            {/* Role: Positioned with 12px gap before headline */}
-            <motion.p
-              style={{
-                opacity: headlineOpacity,
-                y: headlineY,
-              }}
-              className="font-sans text-xs text-[#AAA7AE] font-normal tracking-[0.01em] mb-3 select-none"
-            >
-              Product Designer
-            </motion.p>
-
-            {/* Headline: Natural 2-line break, 16px gap before description */}
+            {/* 3. Headline: Natural 2-line break with manga red accent */}
             <motion.h2
               style={{
                 opacity: headlineOpacity,
                 y: headlineY,
               }}
-              className="font-display font-medium text-[#F5F4F6] text-[1.45rem] sm:text-[1.65rem] tracking-[-0.02em] leading-[1.2] max-w-[290px] mb-4"
+              className="font-display font-medium text-[#F5F4F6] text-[1.65rem] sm:text-[1.85rem] tracking-[-0.025em] leading-[1.2] max-w-[320px] mb-5 sm:mb-6"
             >
               Designing products that{" "}
               <span className="text-[#da4942]">reduce uncertainty.</span>
             </motion.h2>
 
-            {/* Supporting Copy: Constrained to 310px to avoid awkward wrapping, 24px gap before CTA */}
-            <motion.p
-              style={{
-                opacity: descOpacity,
-                y: descY,
-              }}
-              className="font-sans text-[13.5px] sm:text-[14px] text-[#AAA7AE] font-normal leading-[1.55] max-w-[310px] mb-6"
-            >
-              I turn complex workflows, information, and decisions into thoughtful product experiences.
-            </motion.p>
-
-            {/* CTA: Proportionate action button */}
+            {/* 4. CTA: Tactile anchor, directly beneath headline */}
             <motion.div
               style={{
                 opacity: ctaOpacity,
@@ -446,7 +430,7 @@ export default function HeroSection() {
               <a
                 href="#projects"
                 onClick={handleScrollToProjects}
-                className="btn-tactile inline-flex items-center gap-2 bg-blush text-ink font-medium text-xs px-5 py-2.5 rounded-[5px] hover:bg-[#edd8d1] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blush group"
+                className="btn-tactile inline-flex items-center gap-2 bg-blush text-ink font-medium text-xs sm:text-sm px-5 py-2.5 rounded-[5px] hover:bg-[#edd8d1] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blush group"
               >
                 <span>Explore selected work</span>
                 <span className="text-sm leading-none transition-transform duration-200 group-hover:translate-y-0.5">↓</span>
